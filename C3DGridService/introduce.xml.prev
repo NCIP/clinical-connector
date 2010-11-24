@@ -1,0 +1,422 @@
+<ns1:ServiceDescription introduceVersion="1.3" xmlns:ns1="gme://gov.nih.nci.cagrid/1/Introduce">
+ <ns2:Namespaces xsi:type="ns2:NamespacesType" xmlns:ns2="gme://gov.nih.nci.cagrid.introduce/1/Namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ns2:Namespace location="./cdt.xsd" namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.cdt" packageName="gov.nih.nci.cabig.ccts.domain.cdt" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="AD" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="BL" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="BRIDGRelativeTS" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="CD" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="II" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="INT" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="IVLTS" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ON" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PN" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PQ" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="REAL" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ST" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="TEL" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="TS" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./cdt.xsd" namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.cdt" packageName="gov.nih.nci.cabig.ccts.domain.cdt" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="BRIDGRelativeTS" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="CD" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="II" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PQ" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="IVLTS" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="BL" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="TS" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="AD" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="TEL" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PN" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ON" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="INT" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="REAL" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ST" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./GetStudyData.xsd" namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData" packageName="gov.nih.nci.cabig.ccts.domain.studydata" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="GetStudyCDEDataRequest" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="GetStudyCDEDataResponse" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="GetStudyCDEsRequest" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="GetStudyCDEsResponse" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="IsValidStudyRequest" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="IsValidStudyResponse" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./bridg.xsd" namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg" packageName="gov.nih.nci.cabig.ccts.domain.bridg" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="Activity" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ActivityRelationship" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="AdverseEvent" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="AdverseEventData" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="AECausalAssessment" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="AEIdentification" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Analysis" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Application" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ApplicationSponsor" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Assessment" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="AssessmentPerformedActivityRelationship" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="AssessmentRelationship" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Assessor" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="AssociatedPerson" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="BiologicMaterial" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="CentralLaboratory" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ClinicalInterpretation" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ClinicalResearchCoordinator" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ClinicalResearchStaff" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="CommonDataElement" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ConcomitantAgent" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Container" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DataCollectionInstrument" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DataCollectionModule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedActivity" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedActivityStudySegmentRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedAdministrativeActivity" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedArm" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedEpoch" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedObservation" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedProcedure" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedSpecimenCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedStudyAgentTransfer" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedStudyCell" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedStudySegment" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedStudySegmentStudyCellRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DefinedSubstanceAdministration" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Document" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DocumentAuthor" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DocumentContent" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DocumentFrame" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DocumentRelationship" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DocumentStructure" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="DocumentStructureRelationship" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Event" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="HealthCareProvider" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="HealthCareSite" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Laboratory" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ManufacturedMaterial" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Material" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="NonTherapeuticAgent" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ObservationResult" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ObservationResultAssessmentRelationship" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ObservationResultRelationship" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Organization" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Participant" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedActivity" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedActivityStudySegmentRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedAdministrativeActivity" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedArm" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedArmSoA" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedClinicalResult" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedEpoch" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedEpochRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedMedicalHistoryResult" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedNonSubjectAdministrativeActivity" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedObservation" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedObservationResult" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedProcedure" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedSoACell" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedSpecimenCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedStudy" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedStudyAgentTransfer" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedStudyCell" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedStudySegment" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedStudySegmentStudyCellRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedStudySoA" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedSubjectMilestone" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedSubjectStudyEncounter" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedSubjectStudyEncounterRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformedSubstanceAdministration" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformingLaboratory" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PerformingParty" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Person" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedActivity" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedActivityStudySegmentRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedAdministrativeActivity" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedArm" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedArmSoA" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedEpoch" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedEpochRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedObservation" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedObservationResult" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedProcedure" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedSoACell" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedSpecimenCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedStudy" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedStudyAgentTransfer" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedStudyCell" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedStudySegment" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedStudySegmentStudyCellRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedStudySoA" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedSubjectStudyEncounter" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedSubjectStudyEncounterRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PlannedSubstanceAdministration" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ProtocolDeviation" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Question" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="QuestionGroup" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="QuestionValue" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="RegulatedIndustry" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ReviewableUnit" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledActivity" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledActivityStudySegmentRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledAdministrativeActivity" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledArm" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledArmSoA" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledEpoch" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledEpochRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledObservation" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledProcedure" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledSoACell" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledSpecimenCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledStudyAgentTransfer" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledStudyCell" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledStudySegment" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledStudySegmentStudyCellRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledStudySoA" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledSubjectStudyEncounter" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledSubjectStudyEncounterRule" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ScheduledSubstanceAdministration" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Specimen" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudyAgent" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudyAuthor" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudyInvestigator" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudyObective" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudyProtocol" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudyRelationship" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudySite" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudySponsor" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudySubject" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Submission" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="SubmissionUnit" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="SubmissionUnitRelationship" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="TherapeuticAgent" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./EnrollPatient.xsd" namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.enrollPatient" packageName="gov.nih.nci.cabig.ccts.domain.enrollpatient" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="EnrollPatientRequest" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="EnrollPatientResponse" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./LoadLabs.xsd" namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg.loadlabs" packageName="gov.nih.nci.cabig.ccts.domain.bridg.loadlabs" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="LoadLabsRequest" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="LoadLabsResponse" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace namespace="http://www.w3.org/2001/XMLSchema" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="anySimpleType" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="anyType" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="anyURI" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="base64Binary" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="boolean" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="byte" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="date" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="dateTime" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="decimal" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="double" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="duration" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ENTITIES" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ENTITY" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="float" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="gDay" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="gMonth" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="gMonthDay" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="gYear" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="gYearMonth" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="hexBinary" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ID" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="IDREF" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="IDREFS" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="int" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="integer" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="language" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="long" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Name" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="NCName" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="negativeInteger" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="NMTOKEN" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="NMTOKENS" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="nonNegativeInteger" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="nonPositiveInteger" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="normalizedString" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="NOTATION" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="positiveInteger" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="QName" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="short" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="string" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="time" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="token" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="unsignedByte" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="unsignedInt" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="unsignedLong" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="unsignedShort" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./C3DGridServiceTypes.xsd" namespace="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types" packageName="gov.nih.nci.cdmsconnector.c3d.stubs.types" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="C3DGridServiceReference" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="EnrollPatientException" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="InValidStudyException" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="LoadLabsException" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudyDataException" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace generateStubs="false" location="./xsd/cagrid/types/security/security.xsd" namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" packageName="gov.nih.nci.cagrid.metadata.security" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="CommunicationMechanism" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="CommunicationStyle" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="GSISecureConversation" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="GSISecureMessage" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="GSITransport" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="None" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Operation" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ServiceSecurityMetadata" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace generateStubs="false" location="./xsd/cagrid/types/caGridMetadata.xsd" namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" packageName="gov.nih.nci.cagrid.metadata" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="ServiceMetadata" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+ </ns2:Namespaces>
+ <ns3:Services xsi:type="ns3:ServicesType" xmlns:ns3="gme://gov.nih.nci.cagrid.introduce/1/Services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ns3:Service name="C3DGridService" namespace="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService" packageName="gov.nih.nci.cdmsconnector.c3d" xsi:type="ns3:ServiceType">
+   <ns4:Methods xsi:type="ns4:MethodsType" xmlns:ns4="gme://gov.nih.nci.cagrid.introduce/1/Methods">
+    <ns4:Method isImported="true" isProvided="true" name="getServiceSecurityMetadata" xsi:type="ns4:MethodType">
+     <ns4:Output qName="ns5:ServiceSecurityMetadata" isArray="false" isClientHandle="false" xmlns:ns5="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security"/>
+     <ns6:MethodSecurity xsi:type="ns6:MethodSecurity" xmlns:ns6="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns6:SecuritySetting xsi:type="ns6:SecuritySetting">None</ns6:SecuritySetting>
+      <ns6:MethodAuthorization xsi:type="ns6:MethodAuthorization">
+       <ns6:NoAuthorization xsi:type="ns6:NoAuthorization"/>
+      </ns6:MethodAuthorization>
+     </ns6:MethodSecurity>
+     <ns4:ImportInformation namespace="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" packageName="gov.nih.nci.cagrid.introduce.security.stubs" portTypeName="ServiceSecurityPortType" wsdlFile="ServiceSecurity.wsdl"/>
+     <ns4:ProviderInformation providerClass="gov.nih.nci.cagrid.introduce.security.service.globus.ServiceSecurityProviderImpl"/>
+    </ns4:Method>
+    <ns4:Method description="" isImported="false" isProvided="false" name="enrollPatient" xsi:type="ns4:MethodType">
+     <ns4:Inputs>
+      <ns4:Input qName="ns7:EnrollPatientRequest" description="" isArray="false" name="enrollPatientRequest" xmlns:ns7="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.enrollPatient"/>
+     </ns4:Inputs>
+     <ns4:Output qName="ns8:EnrollPatientResponse" description="" isArray="false" xmlns:ns8="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.enrollPatient"/>
+     <ns4:Exceptions>
+      <ns4:Exception description="" name="InValidStudyException" qname="ns9:InValidStudyException" xmlns:ns9="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+      <ns4:Exception description="" name="EnrollPatientException" qname="ns10:EnrollPatientException" xmlns:ns10="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+     </ns4:Exceptions>
+     <ns11:MethodSecurity xsi:type="ns11:MethodSecurity" xmlns:ns11="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns11:SecuritySetting xsi:type="ns11:SecuritySetting">Custom</ns11:SecuritySetting>
+      <ns11:TransportLevelSecurity xsi:type="ns11:TransportLevelSecurity">
+       <ns11:CommunicationMethod xsi:type="ns11:CommunicationMethod">Privacy</ns11:CommunicationMethod>
+      </ns11:TransportLevelSecurity>
+      <ns11:RunAsMode xsi:type="ns11:RunAsMode">System</ns11:RunAsMode>
+      <ns11:AnonymousClients xsi:type="ns11:AnonymousCommunication">No</ns11:AnonymousClients>
+      <ns11:MethodAuthorization xsi:type="ns11:MethodAuthorization">
+       <ns11:InheritServiceAuthorization xsi:type="ns11:InheritServiceAuthorization"/>
+      </ns11:MethodAuthorization>
+     </ns11:MethodSecurity>
+    </ns4:Method>
+    <ns4:Method description="" isImported="false" isProvided="false" name="getStudyCDEData" xsi:type="ns4:MethodType">
+     <ns4:Inputs>
+      <ns4:Input qName="ns12:GetStudyCDEDataRequest" description="" isArray="false" name="getStudyCDEDataRequest" xmlns:ns12="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+     </ns4:Inputs>
+     <ns4:Output qName="ns13:GetStudyCDEDataResponse" description="" isArray="false" xmlns:ns13="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+     <ns4:Exceptions>
+      <ns4:Exception description="" name="StudyDataException" qname="ns14:StudyDataException" xmlns:ns14="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+      <ns4:Exception description="" name="InValidStudyException" qname="ns15:InValidStudyException" xmlns:ns15="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+     </ns4:Exceptions>
+     <ns16:MethodSecurity xsi:type="ns16:MethodSecurity" xmlns:ns16="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns16:SecuritySetting xsi:type="ns16:SecuritySetting">Custom</ns16:SecuritySetting>
+      <ns16:TransportLevelSecurity xsi:type="ns16:TransportLevelSecurity">
+       <ns16:CommunicationMethod xsi:type="ns16:CommunicationMethod">Privacy</ns16:CommunicationMethod>
+      </ns16:TransportLevelSecurity>
+      <ns16:RunAsMode xsi:type="ns16:RunAsMode">System</ns16:RunAsMode>
+      <ns16:AnonymousClients xsi:type="ns16:AnonymousCommunication">No</ns16:AnonymousClients>
+      <ns16:MethodAuthorization xsi:type="ns16:MethodAuthorization">
+       <ns16:InheritServiceAuthorization xsi:type="ns16:InheritServiceAuthorization"/>
+      </ns16:MethodAuthorization>
+     </ns16:MethodSecurity>
+    </ns4:Method>
+    <ns4:Method description="" isImported="false" isProvided="false" name="getStudyCDEs" xsi:type="ns4:MethodType">
+     <ns4:Inputs>
+      <ns4:Input qName="ns17:GetStudyCDEsRequest" description="" isArray="false" name="getStudyCDEsRequest" xmlns:ns17="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+     </ns4:Inputs>
+     <ns4:Output qName="ns18:GetStudyCDEsResponse" description="" isArray="false" xmlns:ns18="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+     <ns4:Exceptions>
+      <ns4:Exception description="" name="InValidStudyException" qname="ns19:InValidStudyException" xmlns:ns19="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+      <ns4:Exception description="" name="StudyDataException" qname="ns20:StudyDataException" xmlns:ns20="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+     </ns4:Exceptions>
+     <ns21:MethodSecurity xsi:type="ns21:MethodSecurity" xmlns:ns21="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns21:SecuritySetting xsi:type="ns21:SecuritySetting">Custom</ns21:SecuritySetting>
+      <ns21:TransportLevelSecurity xsi:type="ns21:TransportLevelSecurity">
+       <ns21:CommunicationMethod xsi:type="ns21:CommunicationMethod">Privacy</ns21:CommunicationMethod>
+      </ns21:TransportLevelSecurity>
+      <ns21:RunAsMode xsi:type="ns21:RunAsMode">System</ns21:RunAsMode>
+      <ns21:AnonymousClients xsi:type="ns21:AnonymousCommunication">No</ns21:AnonymousClients>
+      <ns21:MethodAuthorization xsi:type="ns21:MethodAuthorization">
+       <ns21:InheritServiceAuthorization xsi:type="ns21:InheritServiceAuthorization"/>
+      </ns21:MethodAuthorization>
+     </ns21:MethodSecurity>
+    </ns4:Method>
+    <ns4:Method description="" isImported="false" isProvided="false" name="loadLabs" xsi:type="ns4:MethodType">
+     <ns4:Inputs>
+      <ns4:Input qName="ns22:LoadLabsRequest" description="" isArray="false" name="loadLabsRequest" xmlns:ns22="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg.loadlabs"/>
+     </ns4:Inputs>
+     <ns4:Output qName="ns23:LoadLabsResponse" description="" isArray="false" xmlns:ns23="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg.loadlabs"/>
+     <ns4:Exceptions>
+      <ns4:Exception description="" name="InValidStudyException" qname="ns24:InValidStudyException" xmlns:ns24="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+      <ns4:Exception description="" name="LoadLabsException" qname="ns25:LoadLabsException" xmlns:ns25="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+     </ns4:Exceptions>
+     <ns26:MethodSecurity xsi:type="ns26:MethodSecurity" xmlns:ns26="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns26:SecuritySetting xsi:type="ns26:SecuritySetting">Custom</ns26:SecuritySetting>
+      <ns26:TransportLevelSecurity xsi:type="ns26:TransportLevelSecurity">
+       <ns26:CommunicationMethod xsi:type="ns26:CommunicationMethod">Privacy</ns26:CommunicationMethod>
+      </ns26:TransportLevelSecurity>
+      <ns26:RunAsMode xsi:type="ns26:RunAsMode">System</ns26:RunAsMode>
+      <ns26:AnonymousClients xsi:type="ns26:AnonymousCommunication">No</ns26:AnonymousClients>
+      <ns26:MethodAuthorization xsi:type="ns26:MethodAuthorization">
+       <ns26:InheritServiceAuthorization xsi:type="ns26:InheritServiceAuthorization"/>
+      </ns26:MethodAuthorization>
+     </ns26:MethodSecurity>
+     <ns27:Extensions xsi:type="ns27:ExtensionsType" xmlns:ns27="gme://gov.nih.nci.cagrid.introduce/1/Extension"/>
+    </ns4:Method>
+    <ns4:Method description="" isImported="false" isProvided="false" name="isValidStudy" xsi:type="ns4:MethodType">
+     <ns4:Inputs>
+      <ns4:Input qName="ns28:IsValidStudyRequest" description="" isArray="false" name="isValidStudyRequest" xmlns:ns28="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+     </ns4:Inputs>
+     <ns4:Output qName="ns29:IsValidStudyResponse" description="" isArray="false" xmlns:ns29="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+     <ns4:Exceptions/>
+     <ns30:MethodSecurity xsi:type="ns30:MethodSecurity" xmlns:ns30="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns30:SecuritySetting xsi:type="ns30:SecuritySetting">Custom</ns30:SecuritySetting>
+      <ns30:TransportLevelSecurity xsi:type="ns30:TransportLevelSecurity">
+       <ns30:CommunicationMethod xsi:type="ns30:CommunicationMethod">Privacy</ns30:CommunicationMethod>
+      </ns30:TransportLevelSecurity>
+      <ns30:RunAsMode xsi:type="ns30:RunAsMode">System</ns30:RunAsMode>
+      <ns30:AnonymousClients xsi:type="ns30:AnonymousCommunication">No</ns30:AnonymousClients>
+      <ns30:MethodAuthorization xsi:type="ns30:MethodAuthorization">
+       <ns30:InheritServiceAuthorization xsi:type="ns30:InheritServiceAuthorization"/>
+      </ns30:MethodAuthorization>
+     </ns30:MethodSecurity>
+    </ns4:Method>
+    <ns4:Method isImported="true" isProvided="true" name="GetMultipleResourceProperties" xsi:type="ns4:MethodType">
+     <ns4:Output qName="void" isArray="false"/>
+     <ns31:MethodSecurity xsi:type="ns31:MethodSecurity" xmlns:ns31="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns31:SecuritySetting xsi:type="ns31:SecuritySetting">None</ns31:SecuritySetting>
+     </ns31:MethodSecurity>
+     <ns4:ImportInformation fromIntroduce="false" inputMessage="ns32:GetMultipleResourcePropertiesRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" outputMessage="ns32:GetMultipleResourcePropertiesResponse" packageName="org.oasis.wsrf.properties" portTypeName="GetMultipleResourceProperties" wsdlFile="../wsrf/properties/WS-ResourceProperties.wsdl" xmlns:ns32="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl"/>
+     <ns4:ProviderInformation providerClass="GetMRPProvider"/>
+    </ns4:Method>
+    <ns4:Method isImported="true" isProvided="true" name="GetResourceProperty" xsi:type="ns4:MethodType">
+     <ns4:Output qName="void" isArray="false"/>
+     <ns33:MethodSecurity xsi:type="ns33:MethodSecurity" xmlns:ns33="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns33:SecuritySetting xsi:type="ns33:SecuritySetting">None</ns33:SecuritySetting>
+     </ns33:MethodSecurity>
+     <ns4:ImportInformation fromIntroduce="false" inputMessage="ns34:GetResourcePropertyRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" outputMessage="ns34:GetResourcePropertyResponse" packageName="org.oasis.wsrf.properties" portTypeName="GetResourceProperty" wsdlFile="../wsrf/properties/WS-ResourceProperties.wsdl" xmlns:ns34="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl"/>
+     <ns4:ProviderInformation providerClass="GetRPProvider"/>
+    </ns4:Method>
+    <ns4:Method isImported="true" isProvided="true" name="QueryResourceProperties" xsi:type="ns4:MethodType">
+     <ns4:Output qName="void" isArray="false"/>
+     <ns35:MethodSecurity xsi:type="ns35:MethodSecurity" xmlns:ns35="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns35:SecuritySetting xsi:type="ns35:SecuritySetting">None</ns35:SecuritySetting>
+     </ns35:MethodSecurity>
+     <ns4:ImportInformation fromIntroduce="false" inputMessage="ns36:QueryResourcePropertiesRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" outputMessage="ns36:QueryResourcePropertiesResponse" packageName="org.oasis.wsrf.properties" portTypeName="QueryResourceProperties" wsdlFile="../wsrf/properties/WS-ResourceProperties.wsdl" xmlns:ns36="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl"/>
+     <ns4:ProviderInformation providerClass="QueryRPProvider"/>
+    </ns4:Method>
+   </ns4:Methods>
+   <ns37:ResourcePropertiesList xsi:type="ns37:ResourcePropertiesListType" xmlns:ns37="gme://gov.nih.nci.cagrid.introduce/1/Resources">
+    <ns37:ResourceProperty qName="ns38:ServiceMetadata" fileLocation="serviceMetadata.xml" populateFromFile="true" register="true" xsi:type="ns37:ResourcePropertyType" xmlns:ns38="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata"/>
+   </ns37:ResourcePropertiesList>
+   <ns3:ResourceFrameworkOptions xsi:type="ns3:ResourceFrameworkOptions">
+    <ns3:Main xsi:type="ns3:Main"/>
+    <ns3:Singleton xsi:type="ns3:Singleton"/>
+    <ns3:Identifiable xsi:type="ns3:Identifiable"/>
+    <ns3:ResourcePropertyManagement xsi:type="ns3:ResourcePropertyManagement"/>
+   </ns3:ResourceFrameworkOptions>
+  </ns3:Service>
+ </ns3:Services>
+ <ns39:Extensions xsi:type="ns39:ExtensionsType" xmlns:ns39="gme://gov.nih.nci.cagrid.introduce/1/Extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ns39:Extension name="cagrid_metadata" version="1.3" xsi:type="ns39:ExtensionType"/>
+ </ns39:Extensions>
+</ns1:ServiceDescription>

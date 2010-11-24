@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+        "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>file:${CATALINA_HOME}/conf/c3d/c3dgridservice.properties</value>
+		</property>
+		<property name="placeholderPrefix" value="#{"/>
+		<property name="placeholderSuffix" value="}"/>
+	</bean>
+	<!--<import resource="classpath:c3d/c3dgridservice.properties"/>-->
+	<bean id="c3DGridService"
+		class="gov.nih.nci.cdmsconnector.c3d.service.C3DGridServiceImpl">
+		<property name="enrollPatientManager" ref="enrollPatientManager" />
+		<property name="loadLabsManager" ref="loadLabsManager" />
+		<property name="getStudyCDEsManager" ref="getStudyCDEsManager" />
+		<property name="getStudyCDEDataManager" ref="getStudyCDEDataManager" />
+		<property name="isValidStudyManager" ref="isValidStudyManager" />
+	</bean>
+	<!-- EnrollPatient Section Starts -->
+	<bean id="enrollPatientManager"
+		class="gov.nih.nci.cdmsconnector.manager.EnrollPatientManagerImpl">
+		<property name="enrollmentDAO" ref="enrollmentDAO" />
+		<property name="modelAdapter" ref="enrollPatientAdapter" />
+		<property name="cctsModelAdapter" ref="cctsModelAdapter" />
+		<property name="securityManager" ref="securityManager" />
+		<property name="saveBirthDate" value="#{enrollPatientManager.saveBirthDate.value}" />
+		<property name="saveGender" value="#{enrollPatientManager.saveGender.value}" />
+		<property name="saveName" value="#{enrollPatientManager.saveName.value}"/>
+		<property name="saveInitials" value="#{enrollPatientManager.saveInitials.value}" />
+		<property name="saveEnrollmentDate" value="#{enrollPatientManager.saveEnrollmentDate.value}" />
+		<property name="validator" ref="enrollPatientValidator" />
+	</bean>
+	<bean id="enrollmentDAO"
+		class="gov.nih.nci.cdmsconnector.dao.c3d.EnrollmentOracleDAOImpl" />
+	<bean id="enrollPatientAdapter"
+		class="gov.nih.nci.cdmsconnector.domain.adapter.bridg111.EnrollPatientAdapterImpl" />
+	<bean id="enrollPatientValidator"
+		class="gov.nih.nci.cdmsconnector.domain.validator.EnrollPatientRequestValidatorImpl">
+		<property name="isValidStudyDAO" ref="isValidStudyDAO" />
+	</bean>
+	<!-- EnrollPatient Section Ends -->
+	<!-- LoadLabs Section Starts -->
+	<bean id="loadLabsManager" class="gov.nih.nci.cdmsconnector.manager.LoadLabsManagerImpl">
+		<property name="loadLabsDAO" ref="loadLabsDAO" />
+		<property name="modelAdapter" ref="loadLabsAdapter" />
+		<property name="validator" ref="loadLabsValidator" />
+		<property name="securityManager" ref="securityManager" />
+		<property name="cctsModelAdapter" ref="cctsModelAdapter" />
+	</bean>
+	<bean id="loadLabsDAO" class="gov.nih.nci.cdmsconnector.dao.c3d.LoadLabsOracleDAOImpl" />
+	<bean id="loadLabsAdapter"
+		class="gov.nih.nci.cdmsconnector.domain.adapter.bridg111.LoadLabsAdapterImpl" />
+	<bean id="loadLabsValidator"
+		class="gov.nih.nci.cdmsconnector.domain.validator.LoadLabsRequestValidatorImpl">
+		<property name="isValidStudyDAO" ref="isValidStudyDAO" />
+	</bean>
+	<!-- LoadLabs Section Ends -->
+	<!-- GetStudyCDEs Section Starts -->
+	<bean id="getStudyCDEsManager"
+		class="gov.nih.nci.cdmsconnector.manager.GetStudyCDEsManagerImpl">
+		<property name="dao" ref="getStudyCDEsDAO" />
+		<property name="modelAdapter" ref="getStudyCDEsAdapter" />
+		<property name="validator" ref="getStudyCDEDataValidator" />
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	<bean id="getStudyCDEsDAO"
+		class="gov.nih.nci.cdmsconnector.dao.c3d.GetStudyCDEDataOracleDAOImpl" />
+	<bean id="getStudyCDEsAdapter"
+		class="gov.nih.nci.cdmsconnector.domain.adapter.bridg111.GetStudyCDEsAdapterImpl" />
+	<bean id="getStudyCDEDataValidator"
+		class="gov.nih.nci.cdmsconnector.domain.validator.GetStudyCDEDataRequestValidatorImpl">
+		<property name="isValidStudyDAO" ref="isValidStudyDAO" />
+	</bean>
+	<bean id="getStudyCDEDataManager"
+		class="gov.nih.nci.cdmsconnector.manager.GetStudyCDEDataManagerImpl">
+		<property name="dao" ref="getStudyCDEsDAO" />
+		<property name="modelAdapter" ref="getStudyCDEDataAdapter" />
+		<property name="validator" ref="getStudyCDEDataValidator" />
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	<bean id="getStudyCDEDataAdapter"
+		class="gov.nih.nci.cdmsconnector.domain.adapter.bridg111.GetStudyCDEDataAdapterImpl" />
+	<!-- GetStudyCDEs Section Ends -->
+	<!-- IsValidStudy Section Starts -->
+	<bean id="isValidStudyManager"
+		class="gov.nih.nci.cdmsconnector.manager.IsValidStudyManagerImpl">
+		<property name="dao" ref="isValidStudyDAO" />
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	<bean id="isValidStudyDAO"
+		class="gov.nih.nci.cdmsconnector.dao.c3d.IsValidStudyOracleDAOImpl" />
+	<!-- IsValidStudy Section Ends -->
+	
+	<bean id="securityManager" class="gov.nih.nci.cdmsconnector.c3d.security.CSMCDMSConnectorSecurityManagerImpl">
+		<property name="csmAccessPermissions">
+			<map>
+				<entry key="ENROLLPATIENT_SERVICE" value="#{enrollPatientService.useCSM}"/>
+				<entry key="LOADLABS_SERVICE" value="#{loadLabsService.useCSM}"/>
+				<entry key="GETSTUDYCDES_SERVICE" value="#{getStudyCDESService.useCSM}"/>
+				<entry key="GETSTUDYCDEDATA_SERVICE" value="#{getStudyCDEDataService.useCSM}"/>
+				<entry key="ISVALIDSTUDY_SERVICE" value="#{isValidStudyService.useCSM}"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="hotLink" class="gov.nih.nci.cdmsconnector.c3d.actions.HotLink" singleton="false">
+		<property name="hotLinkManager" ref="hotLinkManager" />
+	</bean>
+	
+	<bean id="capture" class="gov.nih.nci.cdmsconnector.c3d.actions.C3DCapture" singleton="false">
+		<property name="captureManager" ref="captureManager" />
+	</bean>
+	
+	<bean id="hotLinkDAO" class="gov.nih.nci.cdmsconnector.dao.c3d.C3DHotLinkDAOImpl"/>
+	<bean id="hotLinkManager"
+		class="gov.nih.nci.cdmsconnector.c3d.hotLink.C3DHotLinkManagerImpl">
+		<property name="dao" ref="hotLinkDAO" />
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+
+	<bean id="captureManager"
+		class="gov.nih.nci.cdmsconnector.c3d.capture.C3DCaptureManagerImpl">
+		<property name="dao" ref="captureDAO" />
+	</bean>
+	<bean id="captureDAO" class="gov.nih.nci.cdmsconnector.dao.c3d.C3DCaptureDAOImpl"/>
+
+	<bean id="cctsModelAdapter"	class="gov.nih.nci.cdmsconnector.domain.adapter.ccts.CCTSAdapter" />
+	<alias name="c3DGridService" alias="registrationConsumer"/>
+	<alias name="c3DGridService" alias="loadLabsService"/>
+</beans>

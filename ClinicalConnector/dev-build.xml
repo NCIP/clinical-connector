@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+<project name="Developer Modified Build File" basedir=".">
+	<!-- ============================================================== -->
+	<!-- This file is designed to allow the developer to extend the     -->
+	<!-- build process without having to edit the master build.xml      -->
+	<!-- file. DO NOT REMOVE ANY TARGETS                                -->
+	<!-- ============================================================== -->
+
+
+	<!-- ============================================================== -->
+	<!-- Place any other properties you will need here                  -->
+	<!-- ============================================================== -->
+
+
+    <!-- PRC Added Directories -->
+    <property name="dist.dir" value="${basedir}/dist" />
+	<property name="templates.dir" value="${basedir}/templates" />
+
+	<!-- ============================================================== -->
+	<!-- Create any extended Classpaths here                            -->
+	<!-- ============================================================== -->
+	<target name="defineExtendedClasspaths">
+		<path id="base.extended.classpath">
+		</path>
+		<path id="service.build.extended.classpath">
+		</path>
+		<path id="service.run.extended.classpath">
+		</path>
+		<path id="test.build.extended.classpath">
+		</path>
+		<path id="test.run.extended.classpath">
+		</path>
+		<path id="run.extended.classpath">
+		</path>
+		<path id="tasks.run.extended.classpath">
+		</path>
+	</target>
+
+
+	<!-- ============================================================== -->
+	<!-- Pre Init Target                                                -->
+	<!-- ============================================================== -->
+	<target name="preInit">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Post Init Build Target                                         -->
+	<!-- ============================================================== -->
+	<target name="postInit">
+
+	</target>
+
+
+	<!-- ============================================================== -->
+	<!-- Pre Stubs Target                                               -->
+	<!-- ============================================================== -->
+	<target name="preStubs">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Post Stubs Build Target                                        -->
+	<!-- ============================================================== -->
+	<target name="postStubs">
+		<delete dir="${stubs.src}/org" />
+		<java classname="com.sun.tools.xjc.XJCFacade" fork="true" failonerror="true">
+	        <classpath>
+	            <path refid="base.classpath"/>
+	        </classpath>
+	        <arg value="-xmlschema" />
+	        <arg file="${basedir}/schema/ClinicalConnector/ClinicalConnector.xsd" />
+	        <arg file="${basedir}/schema/ClinicalConnector/ISO_datatypes_Narrative.xsd" />
+	        <arg value="-d" />
+	        <arg file="${stubs.src}" />
+	        <arg value="-b" />
+	        <arg file="${basedir}/schema/ClinicalConnector/jaxb-config.xjb" />
+	        <arg value="-nv" />
+	        <arg value="-verbose" />
+	    </java>
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Pre Compile Stubs Build Target                                 -->
+	<!-- ============================================================== -->
+	<target name="preCompileStubs">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Post Compile Stubs Build Target                                -->
+	<!-- ============================================================== -->
+	<target name="postCompileStubs">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Pre Jar Stubs Build Target                                     -->
+	<!-- ============================================================== -->
+	<target name="preJarStubs">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Post Jar Stubs Build Target                                    -->
+	<!-- ============================================================== -->
+	<target name="postJarStubs">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Pre Compile Build Target                                       -->
+	<!-- ============================================================== -->
+	<target name="preCompile">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Post Compile Build Target                                       -->
+	<!-- ============================================================== -->
+	<target name="postCompile">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Pre Jar Build Target                                       -->
+	<!-- ============================================================== -->
+	<target name="preJar">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Post Jar Build Target                                          -->
+	<!-- ============================================================== -->
+	<target name="postJar">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Pre Compile Tests Build Target                                 -->
+	<!-- ============================================================== -->
+	<target name="preCompileTests">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Post Compile Tests Build Target                                -->
+	<!-- ============================================================== -->
+	<target name="postCompileTests">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Pre Jar Tests Build Target                                     -->
+	<!-- ============================================================== -->
+	<target name="preJarTests">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Post Jar Tests Build Target                                    -->
+	<!-- ============================================================== -->
+	<target name="postJarTests">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Pre Clean Target                                               -->
+	<!-- ============================================================== -->
+	<target name="preClean">
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Post Clean Target                                              -->
+	<!-- ============================================================== -->
+	<target name="postClean">
+
+	</target>
+
+
+	<!-- ============================================================== -->
+	<!-- Call any tests.                                                -->
+	<!-- ============================================================== -->
+	<target name="test" depends="checkGlobus" description="Runs the service's tests.">
+		<echo message="Test results dir: ${junit.results.dir}" />
+		<mkdir dir="${junit.results.dir}" />
+		<junit dir="${basedir}" printsummary="yes" showoutput="true">
+			<classpath refid="test.run.classpath" />
+			<formatter type="xml" />
+			<batchtest fork="yes" todir="${junit.results.dir}">
+				<fileset dir="${test.src.dir}">
+					<include name="**/Test*.java" />
+					<include name="**/*TestCase.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+        <target name="war" depends="all,setDeploymentProperties">
+	
+			<!-- deploy service to tomcat -->
+			<echo message="Deploying service ${service.deployment.path} under Tomcat at ${tomcat.dir}" />
+	
+			<!-- PRC was <property name="webapp.deploy.dir" value="${dist.dir}/c3d" /> -->
+			<property name="webapp.deploy.dir" value="${dist.dir}/ClinicalConnector" />
+			<property name="webapp.deploy.lib.dir" value="${webapp.deploy.dir}/WEB-INF/lib" />
+			<property name="webapp.deploy.schema.dir" value="${webapp.deploy.dir}/share/schema" />
+			<property name="webapp.deploy.etc.dir" value="${webapp.deploy.dir}/WEB-INF/etc/" />
+	
+			<property name="service.deployment.dir" value="${webapp.deploy.etc.dir}/${service.deployment.dir.name}" />
+			<!-- prepare the deployment directory -->
+			<mkdir dir="${webapp.deploy.dir}" />
+			<mkdir dir="${webapp.deploy.lib.dir}" />
+			<mkdir dir="${webapp.deploy.schema.dir}" />
+			<mkdir dir="${webapp.deploy.etc.dir}" />
+			<mkdir dir="${service.deployment.dir}" />
+			<!-- prepare the server-config file -->
+	
+			<copy todir="${webapp.deploy.dir}" failonerror="false">
+				<fileset dir="${templates.dir}/war" />
+			</copy>
+	
+	
+			<mkdir dir="tmp" />
+	
+			<runtarget target="preDeployTomcat" />
+			<runtarget target="deployWebApp" />
+	
+			<copy todir="${webapp.deploy.dir}">
+				<fileset dir="${src.dir}">
+					<include name="**/*.jsp" />
+				</fileset>
+			</copy>
+	
+	
+			<!-- PRC was <zip destfile="${dist.dir}/clinicalConnector.war" basedir="${dist.dir}/c3d" /> -->
+			<!-- <zip destfile="${dist.dir}/clinicalConnector.war" basedir="${dist.dir}/clinicalConnector" /> -->
+	
+	</target>
+
+</project>

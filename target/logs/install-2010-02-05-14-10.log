@@ -1,0 +1,250 @@
+
+validate:pre:build:
+     [echo] Checking for existence of GLOBUS_LOCATION envrironment variable.
+     [echo] wscore.relative.dir = ws-core-4.0.3
+     [echo] GLOBUS_LOCATION is set to C:\globus\ws-core-4.0.3 nothing needs to be done.
+
+clean:
+   [delete] Deleting directory C:\CC\software\target\dist
+   [delete] Deleting directory C:\CC\software\target\temp
+
+init:
+     [echo]  ______   ______   _______ 
+     [echo] (____  \ (______) (_______)
+     [echo]  ____)  ) _     _  _______ 
+     [echo] |  __  ( | |   | ||  ___  |
+     [echo] | |__)  )| |__/ / | |   | |
+     [echo] |______/ |_____/  |_|   |_|
+    [mkdir] Created dir: C:\CC\software\target\dist
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\webapps
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\common
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\tools
+    [mkdir] Created dir: C:\CC\software\target\temp
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\db\db-install
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\db\db-upgrade
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\dll
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\conf
+
+build:secureTomcatContainer:
+
+deploySecureTomcat:
+
+_baseTomcatDeploy:
+     [copy] Copying 111 files to C:\CC\software\target\dist\exploded\webapps
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\webapps\WEB-INF
+     [copy] Copying 39 files to C:\CC\software\target\dist\exploded\webapps\WEB-INF
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\webapps\WEB-INF\classes
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps\WEB-INF\classes
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps\WEB-INF\classes
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\webapps\WEB-INF\lib
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps\WEB-INF
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\common\endorsed
+     [copy] Copying 54 files to C:\CC\software\target\dist\exploded\webapps\WEB-INF\lib
+     [copy] Copying 9 files to C:\CC\software\target\dist\exploded\common\lib
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\server\lib
+
+build:C3DGridService:
+
+BUILD FAILED
+
+C:\CC\software\build\build.xml:343: The following error occurred while executing this line:
+C:\CC\software\C3DGridService\build.xml:27: The following error occurred while executing this line:
+C:\CC\software\C3DGridService\dev-build.xml:208: Element type "copy" must be followed by either attribute specifications, ">" or "/>".
+	at org.apache.tools.ant.ProjectHelper.addLocationToBuildException(ProjectHelper.java:541)
+	at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:369)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:288)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:585)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:105)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:357)
+	at org.apache.tools.ant.Target.performTasks(Target.java:385)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1329)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1298)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1181)
+	at org.apache.tools.ant.Main.runBuild(Main.java:698)
+	at org.apache.tools.ant.Main.startAnt(Main.java:199)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:257)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:104)
+Caused by: C:\CC\software\C3DGridService\build.xml:27: The following error occurred while executing this line:
+C:\CC\software\C3DGridService\dev-build.xml:208: Element type "copy" must be followed by either attribute specifications, ">" or "/>".
+	at org.apache.tools.ant.ProjectHelper.addLocationToBuildException(ProjectHelper.java:541)
+	at org.apache.tools.ant.taskdefs.ImportTask.execute(ImportTask.java:148)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:288)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:585)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:105)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:357)
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:140)
+	at org.apache.tools.ant.ProjectHelper.configureProject(ProjectHelper.java:96)
+	at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:367)
+	... 16 more
+Caused by: C:\CC\software\C3DGridService\dev-build.xml:208: Element type "copy" must be followed by either attribute specifications, ">" or "/>".
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:225)
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:128)
+	at org.apache.tools.ant.taskdefs.ImportTask.execute(ImportTask.java:146)
+	... 26 more
+Caused by: org.xml.sax.SAXParseException: Element type "copy" must be followed by either attribute specifications, ">" or "/>".
+	at org.apache.xerces.util.ErrorHandlerWrapper.createSAXParseException(Unknown Source)
+	at org.apache.xerces.util.ErrorHandlerWrapper.fatalError(Unknown Source)
+	at org.apache.xerces.impl.XMLErrorReporter.reportError(Unknown Source)
+	at org.apache.xerces.impl.XMLErrorReporter.reportError(Unknown Source)
+	at org.apache.xerces.impl.XMLScanner.reportFatalError(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:209)
+	... 28 more
+--- Nested Exception ---
+C:\CC\software\C3DGridService\build.xml:27: The following error occurred while executing this line:
+C:\CC\software\C3DGridService\dev-build.xml:208: Element type "copy" must be followed by either attribute specifications, ">" or "/>".
+	at org.apache.tools.ant.ProjectHelper.addLocationToBuildException(ProjectHelper.java:541)
+	at org.apache.tools.ant.taskdefs.ImportTask.execute(ImportTask.java:148)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:288)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:585)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:105)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:357)
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:140)
+	at org.apache.tools.ant.ProjectHelper.configureProject(ProjectHelper.java:96)
+	at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:367)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:288)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:585)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:105)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:357)
+	at org.apache.tools.ant.Target.performTasks(Target.java:385)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1329)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1298)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1181)
+	at org.apache.tools.ant.Main.runBuild(Main.java:698)
+	at org.apache.tools.ant.Main.startAnt(Main.java:199)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:257)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:104)
+Caused by: C:\CC\software\C3DGridService\dev-build.xml:208: Element type "copy" must be followed by either attribute specifications, ">" or "/>".
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:225)
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:128)
+	at org.apache.tools.ant.taskdefs.ImportTask.execute(ImportTask.java:146)
+	... 26 more
+Caused by: org.xml.sax.SAXParseException: Element type "copy" must be followed by either attribute specifications, ">" or "/>".
+	at org.apache.xerces.util.ErrorHandlerWrapper.createSAXParseException(Unknown Source)
+	at org.apache.xerces.util.ErrorHandlerWrapper.fatalError(Unknown Source)
+	at org.apache.xerces.impl.XMLErrorReporter.reportError(Unknown Source)
+	at org.apache.xerces.impl.XMLErrorReporter.reportError(Unknown Source)
+	at org.apache.xerces.impl.XMLScanner.reportFatalError(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:209)
+	... 28 more
+--- Nested Exception ---
+C:\CC\software\C3DGridService\dev-build.xml:208: Element type "copy" must be followed by either attribute specifications, ">" or "/>".
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:225)
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:128)
+	at org.apache.tools.ant.taskdefs.ImportTask.execute(ImportTask.java:146)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:288)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:585)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:105)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:357)
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:140)
+	at org.apache.tools.ant.ProjectHelper.configureProject(ProjectHelper.java:96)
+	at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:367)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:288)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:585)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:105)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:357)
+	at org.apache.tools.ant.Target.performTasks(Target.java:385)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1329)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1298)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1181)
+	at org.apache.tools.ant.Main.runBuild(Main.java:698)
+	at org.apache.tools.ant.Main.startAnt(Main.java:199)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:257)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:104)
+Caused by: org.xml.sax.SAXParseException: Element type "copy" must be followed by either attribute specifications, ">" or "/>".
+	at org.apache.xerces.util.ErrorHandlerWrapper.createSAXParseException(Unknown Source)
+	at org.apache.xerces.util.ErrorHandlerWrapper.fatalError(Unknown Source)
+	at org.apache.xerces.impl.XMLErrorReporter.reportError(Unknown Source)
+	at org.apache.xerces.impl.XMLErrorReporter.reportError(Unknown Source)
+	at org.apache.xerces.impl.XMLScanner.reportFatalError(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:209)
+	... 28 more
+--- Nested Exception ---
+org.xml.sax.SAXParseException: Element type "copy" must be followed by either attribute specifications, ">" or "/>".
+	at org.apache.xerces.util.ErrorHandlerWrapper.createSAXParseException(Unknown Source)
+	at org.apache.xerces.util.ErrorHandlerWrapper.fatalError(Unknown Source)
+	at org.apache.xerces.impl.XMLErrorReporter.reportError(Unknown Source)
+	at org.apache.xerces.impl.XMLErrorReporter.reportError(Unknown Source)
+	at org.apache.xerces.impl.XMLScanner.reportFatalError(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:209)
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:128)
+	at org.apache.tools.ant.taskdefs.ImportTask.execute(ImportTask.java:146)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:288)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:585)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:105)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:357)
+	at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:140)
+	at org.apache.tools.ant.ProjectHelper.configureProject(ProjectHelper.java:96)
+	at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:367)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:288)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:585)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:105)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:357)
+	at org.apache.tools.ant.Target.performTasks(Target.java:385)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1329)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1298)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1181)
+	at org.apache.tools.ant.Main.runBuild(Main.java:698)
+	at org.apache.tools.ant.Main.startAnt(Main.java:199)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:257)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:104)

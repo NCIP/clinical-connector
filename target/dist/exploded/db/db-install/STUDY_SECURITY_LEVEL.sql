@@ -1,0 +1,10 @@
+
+CREATE TABLE STUDY_SECURITY_LEVEL
+(
+  STUDY          VARCHAR2(15 BYTE)              NOT NULL,
+  ACCESS_METHOD  VARCHAR2(10 BYTE)              NOT NULL
+)
+/
+
+
+

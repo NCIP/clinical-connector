@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:enrollPatient="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.enrollPatient"
+	xmlns:bridg="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg"
+	targetNamespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.enrollPatient"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import schemaLocation="bridg.xsd"
+		namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg" />
+	<xs:element name="EnrollPatientRequest" nillable="true"
+		type="enrollPatient:EnrollPatientRequest" />
+	<xs:complexType name="EnrollPatientRequest">
+		<xs:sequence>
+			<xs:element name="studyProtocol" nillable="true"
+				type="bridg:StudyProtocol" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="EnrollPatientResponse" nillable="true"
+		type="enrollPatient:EnrollPatientResponse" />
+	<xs:complexType name="EnrollPatientResponse">
+		<xs:sequence>
+			<xs:element name="studyProtocol" nillable="true"
+				type="bridg:StudyProtocol" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>

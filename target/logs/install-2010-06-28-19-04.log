@@ -1,0 +1,1058 @@
+
+validate:pre:build:
+     [echo] Checking for existence of GLOBUS_LOCATION envrironment variable.
+     [echo] wscore.relative.dir = ws-core-4.0.3
+     [echo] GLOBUS_LOCATION is set to C:\globus\ws-core-4.0.3 nothing needs to be done.
+
+clean:
+   [delete] Deleting directory C:\CC\software\target\dist
+   [delete] Deleting directory C:\CC\software\target\temp
+
+init:
+     [echo]  ______   ______   _______ 
+     [echo] (____  \ (______) (_______)
+     [echo]  ____)  ) _     _  _______ 
+     [echo] |  __  ( | |   | ||  ___  |
+     [echo] | |__)  )| |__/ / | |   | |
+     [echo] |______/ |_____/  |_|   |_|
+    [mkdir] Created dir: C:\CC\software\target\dist
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\webapps
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\common
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\tools
+    [mkdir] Created dir: C:\CC\software\target\temp
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\db\db-install
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\db\db-upgrade
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\dll
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\conf
+
+build:secureTomcatContainer:
+
+deploySecureTomcat:
+
+_baseTomcatDeploy:
+     [copy] Copying 111 files to C:\CC\software\target\dist\exploded\webapps
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\webapps\WEB-INF
+     [copy] Copying 39 files to C:\CC\software\target\dist\exploded\webapps\WEB-INF
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\webapps\WEB-INF\classes
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps\WEB-INF\classes
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps\WEB-INF\classes
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\webapps\WEB-INF\lib
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps\WEB-INF
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\common\endorsed
+     [copy] Copying 54 files to C:\CC\software\target\dist\exploded\webapps\WEB-INF\lib
+     [copy] Copying 9 files to C:\CC\software\target\dist\exploded\common\lib
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\server\lib
+
+build:C3DGridService:
+Trying to override old definition of task propertycopy
+Trying to override old definition of task shellscript
+Trying to override old definition of task pathtofileset
+Trying to override old definition of task runtarget
+Trying to override old definition of task remoteant
+Trying to override old definition of task propertyregex
+Trying to override old definition of task assert
+Trying to override old definition of task math
+Trying to override old definition of task trycatch
+Trying to override old definition of task antserver
+Trying to override old definition of task antcallback
+Trying to override old definition of task compilewithwalls
+Trying to override old definition of task outofdate
+Trying to override old definition of task osfamily
+Trying to override old definition of task stopwatch
+Trying to override old definition of task throw
+Trying to override old definition of task antclipse
+Trying to override old definition of task urlencode
+Trying to override old definition of task timestampselector
+Trying to override old definition of task foreach
+Trying to override old definition of task if
+Trying to override old definition of task propertyselector
+Trying to override old definition of task sortlist
+Trying to override old definition of task antfetch
+Trying to override old definition of task post
+Trying to override old definition of task forget
+Trying to override old definition of task limit
+Trying to override old definition of task switch
+Trying to override old definition of task relentless
+Trying to override old definition of task var
+Trying to override old definition of task inifile
+Trying to override old definition of task verifydesign
+Trying to override old definition of task for
+
+setGlobus:
+
+checkGlobus:
+     [echo] Globus: C:\globus\ws-core-4.0.3
+
+defineClasspaths:
+
+defineExtendedClasspaths:
+
+init:
+
+preInit:
+
+postInit:
+
+stubs:
+
+preStubs:
+     [echo] Generating stubs for C3DGridService.
+
+setGlobus:
+
+checkGlobus:
+     [echo] Globus: C:\globus\ws-core-4.0.3
+
+defineClasspaths:
+
+defineExtendedClasspaths:
+
+init:
+
+preInit:
+
+postInit:
+
+serviceGenerateBindings:
+
+bindingUptodate:
+
+generateBinding:
+
+merge:
+
+mergePackageMapping:
+     [echo] Merging C:\CC\software\C3DGridService\namespace2package.mappings
+
+serviceStubs:
+
+generateStubs:
+     [echo]  Generating stubs from C3DGridService_service.wsdl
+     [java] {http://schemas.xmlsoap.org/ws/2004/03/addressing}Action already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotificationType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>OldValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>NewValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpressionType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpression already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetResourceProperty already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceUnknownFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceUnknownFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidResourcePropertyQNameFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidResourcePropertyQNameFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InsertType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Insert already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UpdateType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Update already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}DeleteType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Delete already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidSetResourcePropertiesRequestContentFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidSetResourcePropertiesRequestContentFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnableToModifyResourcePropertyFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnableToModifyResourcePropertyFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertyRequestFailedFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertyRequestFailedFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnknownQueryExpressionDialectFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnknownQueryExpressionDialectFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidQueryExpressionFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidQueryExpressionFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryEvaluationErrorFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryEvaluationErrorFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryEvaluationErrorFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidSetResourcePropertiesRequestContentFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}UnknownQueryExpressionDialectFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}ResourceUnknownFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourcePropertyRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertyRequestFailedFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidQueryExpressionFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidResourcePropertyQNameFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}UnableToModifyResourcePropertyFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourceProperty already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotificationType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>OldValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>NewValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpressionType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpression already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd}CurrentTime already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd}TerminationTime already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd}TerminationNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd}>TerminationNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotificationType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>OldValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>NewValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpressionType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpression already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetResourceProperty already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceUnknownFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceUnknownFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidResourcePropertyQNameFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidResourcePropertyQNameFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InsertType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Insert already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UpdateType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Update already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}DeleteType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Delete already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidSetResourcePropertiesRequestContentFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidSetResourcePropertiesRequestContentFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnableToModifyResourcePropertyFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnableToModifyResourcePropertyFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertyRequestFailedFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertyRequestFailedFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnknownQueryExpressionDialectFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnknownQueryExpressionDialectFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidQueryExpressionFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidQueryExpressionFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryEvaluationErrorFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryEvaluationErrorFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryEvaluationErrorFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidSetResourcePropertiesRequestContentFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}UnknownQueryExpressionDialectFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}ResourceUnknownFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourcePropertyRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertyRequestFailedFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidQueryExpressionFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidResourcePropertyQNameFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}UnableToModifyResourcePropertyFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourceProperty already exists
+
+stubGenerationPostProcessor:
+Warning: Reference tasks.run.classpath has not been set at runtime, but was found during
+build file parsing, attempting to resolve. Future versions of Ant may support
+ referencing ids defined in non-executed targets.
+Warning: Reference tasks.run.extended.classpath has not been set at runtime, but was found during
+build file parsing, attempting to resolve. Future versions of Ant may support
+ referencing ids defined in non-executed targets.
+
+postStubs:
+
+compileStubs:
+
+preCompileStubs:
+    [javac] Compiling 226 source files to C:\CC\software\C3DGridService\build\stubs-C3DGridService\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+
+postCompileStubs:
+
+jarStubs:
+
+preJarStubs:
+      [jar] Building jar: C:\CC\software\C3DGridService\build\lib\C3DGridService-stubs.jar
+
+postJarStubs:
+
+compile:
+
+preCompile:
+
+postCompile:
+
+jar:
+
+preJar:
+
+postJar:
+
+compileTests:
+
+preCompileTests:
+
+postCompileTests:
+
+jarTests:
+
+preJarTests:
+      [jar] Warning: skipping jar archive C:\CC\software\C3DGridService\build\lib\C3DGridService-tests.jar because no files were included.
+
+postJarTests:
+
+jars:
+
+all:
+
+setDeploymentProperties:
+
+war:
+     [echo] Deploying service cagrid/C3DGridService under Tomcat at C:\Tomcat\apache-tomcat-5.5.27
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\webapps\WEB-INF\etc\cagrid_C3DGridService
+     [copy] Copying 16 files to C:\CC\software\target\dist\exploded\webapps
+    [mkdir] Created dir: C:\CC\software\C3DGridService\tmp
+
+preDeployTomcat:
+
+setDeploymentProperties:
+
+deployWebApp:
+
+setGlobus:
+
+checkGlobus:
+     [echo] Globus: C:\globus\ws-core-4.0.3
+
+defineClasspaths:
+
+defineExtendedClasspaths:
+
+init:
+
+preInit:
+
+postInit:
+
+prepareDeploymentTmp:
+     [copy] Copying 151 files to C:\CC\software\C3DGridService\build\lib
+     [copy] Copying 1 file to C:\CC\software\C3DGridService\tmp
+     [copy] Copying 1 file to C:\CC\software\C3DGridService\tmp
+    [mkdir] Created dir: C:\CC\software\C3DGridService\tmp\etc
+     [copy] Copying 4 files to C:\CC\software\C3DGridService\tmp\etc
+[createDeploymentFile] WARN   isAttachmentSupported, Unable to find required classes (javax.activation.DataHandler and javax.mail.internet.MimeMultipart). Attachment support is disabled.
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps\WEB-INF\etc\cagrid_C3DGridService
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps\WEB-INF\etc\cagrid_C3DGridService
+     [copy] Copying 5 files to C:\CC\software\target\dist\exploded\webapps\WEB-INF\etc\cagrid_C3DGridService
+   [delete] Deleting directory C:\CC\software\C3DGridService\tmp
+     [copy] Copying 311 files to C:\CC\software\target\dist\exploded\webapps\WEB-INF\lib
+     [copy] Copying 15 files to C:\CC\software\target\dist\exploded\webapps\share\schema\C3DGridService
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps
+
+build:RegConService:
+Trying to override old definition of task propertycopy
+Trying to override old definition of task shellscript
+Trying to override old definition of task pathtofileset
+Trying to override old definition of task runtarget
+Trying to override old definition of task remoteant
+Trying to override old definition of task propertyregex
+Trying to override old definition of task assert
+Trying to override old definition of task math
+Trying to override old definition of task trycatch
+Trying to override old definition of task antserver
+Trying to override old definition of task antcallback
+Trying to override old definition of task compilewithwalls
+Trying to override old definition of task outofdate
+Trying to override old definition of task osfamily
+Trying to override old definition of task stopwatch
+Trying to override old definition of task throw
+Trying to override old definition of task antclipse
+Trying to override old definition of task urlencode
+Trying to override old definition of task timestampselector
+Trying to override old definition of task foreach
+Trying to override old definition of task if
+Trying to override old definition of task propertyselector
+Trying to override old definition of task sortlist
+Trying to override old definition of task antfetch
+Trying to override old definition of task post
+Trying to override old definition of task forget
+Trying to override old definition of task limit
+Trying to override old definition of task switch
+Trying to override old definition of task relentless
+Trying to override old definition of task var
+Trying to override old definition of task inifile
+Trying to override old definition of task verifydesign
+Trying to override old definition of task for
+
+setGlobus:
+
+checkGlobus:
+     [echo] Globus: C:\globus\ws-core-4.0.3
+
+defineClasspaths:
+
+defineExtendedClasspaths:
+
+init:
+
+preInit:
+
+postInit:
+
+stubs:
+
+preStubs:
+     [echo] Generating stubs for RegistrationConsumer.
+
+setGlobus:
+
+checkGlobus:
+     [echo] Globus: C:\globus\ws-core-4.0.3
+
+defineClasspaths:
+
+defineExtendedClasspaths:
+
+init:
+
+preInit:
+
+postInit:
+
+serviceGenerateBindings:
+
+bindingUptodate:
+
+generateBinding:
+
+merge:
+
+mergePackageMapping:
+     [echo] Merging C:\CC\software\RegistrationConsumerGridService\namespace2package.mappings
+
+serviceStubs:
+
+generateStubs:
+     [echo]  Generating stubs from RegistrationConsumer_service.wsdl
+     [java] {http://schemas.xmlsoap.org/ws/2004/03/addressing}Action already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotificationType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>OldValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>NewValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpressionType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpression already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetResourceProperty already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceUnknownFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceUnknownFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidResourcePropertyQNameFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidResourcePropertyQNameFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InsertType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Insert already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UpdateType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Update already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}DeleteType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Delete already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidSetResourcePropertiesRequestContentFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidSetResourcePropertiesRequestContentFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnableToModifyResourcePropertyFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnableToModifyResourcePropertyFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertyRequestFailedFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertyRequestFailedFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnknownQueryExpressionDialectFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnknownQueryExpressionDialectFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidQueryExpressionFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidQueryExpressionFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryEvaluationErrorFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryEvaluationErrorFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryEvaluationErrorFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidSetResourcePropertiesRequestContentFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}UnknownQueryExpressionDialectFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}ResourceUnknownFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourcePropertyRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertyRequestFailedFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidQueryExpressionFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidResourcePropertyQNameFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}UnableToModifyResourcePropertyFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourceProperty already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotificationType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>OldValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>NewValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpressionType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpression already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd}CurrentTime already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd}TerminationTime already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd}TerminationNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd}>TerminationNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotificationType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>OldValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>NewValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpressionType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpression already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetResourceProperty already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceUnknownFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceUnknownFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidResourcePropertyQNameFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidResourcePropertyQNameFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InsertType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Insert already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UpdateType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Update already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}DeleteType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Delete already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidSetResourcePropertiesRequestContentFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidSetResourcePropertiesRequestContentFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnableToModifyResourcePropertyFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnableToModifyResourcePropertyFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertyRequestFailedFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertyRequestFailedFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnknownQueryExpressionDialectFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnknownQueryExpressionDialectFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidQueryExpressionFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidQueryExpressionFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryEvaluationErrorFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryEvaluationErrorFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryEvaluationErrorFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidSetResourcePropertiesRequestContentFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}UnknownQueryExpressionDialectFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}ResourceUnknownFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourcePropertyRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertyRequestFailedFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidQueryExpressionFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidResourcePropertyQNameFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}UnableToModifyResourcePropertyFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourceProperty already exists
+
+stubGenerationPostProcessor:
+Warning: Reference tasks.run.classpath has not been set at runtime, but was found during
+build file parsing, attempting to resolve. Future versions of Ant may support
+ referencing ids defined in non-executed targets.
+Warning: Reference tasks.run.extended.classpath has not been set at runtime, but was found during
+build file parsing, attempting to resolve. Future versions of Ant may support
+ referencing ids defined in non-executed targets.
+
+postStubs:
+
+compileStubs:
+
+preCompileStubs:
+    [javac] Compiling 59 source files to C:\CC\software\RegistrationConsumerGridService\build\stubs-RegistrationConsumer\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+
+postCompileStubs:
+
+jarStubs:
+
+preJarStubs:
+      [jar] Building jar: C:\CC\software\RegistrationConsumerGridService\build\lib\RegistrationConsumer-stubs.jar
+
+postJarStubs:
+
+compile:
+
+preCompile:
+
+postCompile:
+
+jar:
+
+preJar:
+
+postJar:
+
+compileTests:
+
+preCompileTests:
+
+postCompileTests:
+
+jarTests:
+
+preJarTests:
+
+postJarTests:
+
+jars:
+
+all:
+
+setDeploymentProperties:
+
+war:
+     [echo] Deploying service cagrid/RegistrationConsumer under Tomcat at C:\Tomcat\apache-tomcat-5.5.27
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\webapps\WEB-INF\etc\cagrid_RegistrationConsumer
+     [copy] Warning: C:\CC\software\RegistrationConsumerGridService\templates\war not found.
+    [mkdir] Created dir: C:\CC\software\RegistrationConsumerGridService\tmp
+
+preDeployTomcat:
+
+setDeploymentProperties:
+
+deployWebApp:
+
+setGlobus:
+
+checkGlobus:
+     [echo] Globus: C:\globus\ws-core-4.0.3
+
+defineClasspaths:
+
+defineExtendedClasspaths:
+
+init:
+
+preInit:
+
+postInit:
+
+prepareDeploymentTmp:
+     [copy] Copying 24 files to C:\CC\software\RegistrationConsumerGridService\build\lib
+     [copy] Copying 1 file to C:\CC\software\RegistrationConsumerGridService\tmp
+     [copy] Copying 1 file to C:\CC\software\RegistrationConsumerGridService\tmp
+    [mkdir] Created dir: C:\CC\software\RegistrationConsumerGridService\tmp\etc
+     [copy] Copying 3 files to C:\CC\software\RegistrationConsumerGridService\tmp\etc
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps\WEB-INF\etc\cagrid_RegistrationConsumer
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps\WEB-INF\etc\cagrid_RegistrationConsumer
+     [copy] Copying 4 files to C:\CC\software\target\dist\exploded\webapps\WEB-INF\etc\cagrid_RegistrationConsumer
+   [delete] Deleting directory C:\CC\software\RegistrationConsumerGridService\tmp
+     [copy] Copying 53 files to C:\CC\software\target\dist\exploded\webapps\WEB-INF\lib
+     [copy] Copying 7 files to C:\CC\software\target\dist\exploded\webapps\share\schema\RegistrationConsumer
+
+build:LoadLabService:
+Trying to override old definition of task propertycopy
+Trying to override old definition of task shellscript
+Trying to override old definition of task pathtofileset
+Trying to override old definition of task runtarget
+Trying to override old definition of task remoteant
+Trying to override old definition of task propertyregex
+Trying to override old definition of task assert
+Trying to override old definition of task math
+Trying to override old definition of task trycatch
+Trying to override old definition of task antserver
+Trying to override old definition of task antcallback
+Trying to override old definition of task compilewithwalls
+Trying to override old definition of task outofdate
+Trying to override old definition of task osfamily
+Trying to override old definition of task stopwatch
+Trying to override old definition of task throw
+Trying to override old definition of task antclipse
+Trying to override old definition of task urlencode
+Trying to override old definition of task timestampselector
+Trying to override old definition of task foreach
+Trying to override old definition of task if
+Trying to override old definition of task propertyselector
+Trying to override old definition of task sortlist
+Trying to override old definition of task antfetch
+Trying to override old definition of task post
+Trying to override old definition of task forget
+Trying to override old definition of task limit
+Trying to override old definition of task switch
+Trying to override old definition of task relentless
+Trying to override old definition of task var
+Trying to override old definition of task inifile
+Trying to override old definition of task verifydesign
+Trying to override old definition of task for
+
+setGlobus:
+
+checkGlobus:
+     [echo] Globus: C:\globus\ws-core-4.0.3
+
+defineClasspaths:
+
+defineExtendedClasspaths:
+
+init:
+
+preInit:
+
+postInit:
+
+stubs:
+
+preStubs:
+     [echo] Generating stubs for LoadLabService.
+
+setGlobus:
+
+checkGlobus:
+     [echo] Globus: C:\globus\ws-core-4.0.3
+
+defineClasspaths:
+
+defineExtendedClasspaths:
+
+init:
+
+preInit:
+
+postInit:
+
+serviceGenerateBindings:
+
+bindingUptodate:
+
+generateBinding:
+
+merge:
+
+mergePackageMapping:
+     [echo] Merging C:\CC\software\LoadLabService\namespace2package.mappings
+
+serviceStubs:
+
+generateStubs:
+     [echo]  Generating stubs from LoadLabService_service.wsdl
+     [java] {http://schemas.xmlsoap.org/ws/2004/03/addressing}Action already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotificationType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>OldValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>NewValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpressionType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpression already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetResourceProperty already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceUnknownFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceUnknownFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidResourcePropertyQNameFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidResourcePropertyQNameFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InsertType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Insert already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UpdateType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Update already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}DeleteType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Delete already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidSetResourcePropertiesRequestContentFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidSetResourcePropertiesRequestContentFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnableToModifyResourcePropertyFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnableToModifyResourcePropertyFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertyRequestFailedFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertyRequestFailedFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnknownQueryExpressionDialectFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnknownQueryExpressionDialectFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidQueryExpressionFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidQueryExpressionFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryEvaluationErrorFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryEvaluationErrorFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryEvaluationErrorFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidSetResourcePropertiesRequestContentFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}UnknownQueryExpressionDialectFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}ResourceUnknownFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourcePropertyRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertyRequestFailedFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidQueryExpressionFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidResourcePropertyQNameFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}UnableToModifyResourcePropertyFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourceProperty already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotificationType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>OldValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>NewValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpressionType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpression already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd}CurrentTime already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd}TerminationTime already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd}TerminationNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd}>TerminationNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotificationType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>OldValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>ResourcePropertyValueChangeNotificationType>NewValue already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourcePropertyValueChangeNotification already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpressionType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryExpression already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetResourceProperty already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceUnknownFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}ResourceUnknownFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidResourcePropertyQNameFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidResourcePropertyQNameFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InsertType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Insert already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UpdateType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Update already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}DeleteType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}Delete already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidSetResourcePropertiesRequestContentFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidSetResourcePropertiesRequestContentFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnableToModifyResourcePropertyFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnableToModifyResourcePropertyFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertyRequestFailedFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}SetResourcePropertyRequestFailedFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}>QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnknownQueryExpressionDialectFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}UnknownQueryExpressionDialectFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidQueryExpressionFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}InvalidQueryExpressionFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryEvaluationErrorFaultType already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd}QueryEvaluationErrorFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryEvaluationErrorFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidSetResourcePropertiesRequestContentFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}UnknownQueryExpressionDialectFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}ResourceUnknownFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourcePropertyRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertyRequestFailedFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidQueryExpressionFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}InvalidResourcePropertyQNameFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}UnableToModifyResourcePropertyFault already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourcePropertiesResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourcePropertyResponse already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourcePropertiesRequest already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}QueryResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}SetResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetMultipleResourceProperties already exists
+     [java] {http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl}GetResourceProperty already exists
+
+stubGenerationPostProcessor:
+Warning: Reference tasks.run.classpath has not been set at runtime, but was found during
+build file parsing, attempting to resolve. Future versions of Ant may support
+ referencing ids defined in non-executed targets.
+Warning: Reference tasks.run.extended.classpath has not been set at runtime, but was found during
+build file parsing, attempting to resolve. Future versions of Ant may support
+ referencing ids defined in non-executed targets.
+
+postStubs:
+
+compileStubs:
+
+preCompileStubs:
+    [javac] Compiling 40 source files to C:\CC\software\LoadLabService\build\stubs-LoadLabService\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+
+postCompileStubs:
+
+jarStubs:
+
+preJarStubs:
+      [jar] Building jar: C:\CC\software\LoadLabService\build\lib\LoadLabService-stubs.jar
+
+postJarStubs:
+
+compile:
+
+preCompile:
+
+postCompile:
+
+jar:
+
+preJar:
+
+postJar:
+
+compileTests:
+
+preCompileTests:
+
+postCompileTests:
+
+jarTests:
+
+preJarTests:
+      [jar] Warning: skipping jar archive C:\CC\software\LoadLabService\build\lib\LoadLabService-tests.jar because no files were included.
+
+postJarTests:
+
+jars:
+
+all:
+
+setDeploymentProperties:
+
+war:
+     [echo] Deploying service cagrid/LoadLabService under Tomcat at C:\Tomcat\apache-tomcat-5.5.27
+    [mkdir] Created dir: C:\CC\software\target\dist\exploded\webapps\WEB-INF\etc\cagrid_LoadLabService
+     [copy] Warning: C:\CC\software\LoadLabService\templates\war not found.
+    [mkdir] Created dir: C:\CC\software\LoadLabService\tmp
+
+preDeployTomcat:
+
+setDeploymentProperties:
+
+deployWebApp:
+
+setGlobus:
+
+checkGlobus:
+     [echo] Globus: C:\globus\ws-core-4.0.3
+
+defineClasspaths:
+
+defineExtendedClasspaths:
+
+init:
+
+preInit:
+
+postInit:
+
+prepareDeploymentTmp:
+     [copy] Copying 23 files to C:\CC\software\LoadLabService\build\lib
+     [copy] Copying 1 file to C:\CC\software\LoadLabService\tmp
+     [copy] Copying 1 file to C:\CC\software\LoadLabService\tmp
+    [mkdir] Created dir: C:\CC\software\LoadLabService\tmp\etc
+     [copy] Copying 4 files to C:\CC\software\LoadLabService\tmp\etc
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps\WEB-INF\etc\cagrid_LoadLabService
+     [copy] Copying 1 file to C:\CC\software\target\dist\exploded\webapps\WEB-INF\etc\cagrid_LoadLabService
+     [copy] Copying 5 files to C:\CC\software\target\dist\exploded\webapps\WEB-INF\etc\cagrid_LoadLabService
+   [delete] Deleting directory C:\CC\software\LoadLabService\tmp
+     [copy] Copying 52 files to C:\CC\software\target\dist\exploded\webapps\WEB-INF\lib
+     [copy] Copying 12 files to C:\CC\software\target\dist\exploded\webapps\share\schema\LoadLabService
+
+build:all:
+      [zip] Building zip: C:\CC\software\target\dist\exploded\webapps\clinicalConnector.war
+
+dist:tools:retrieve:tomcat:
+
+dist:tools:retrieve:cagrid:
+      [get] Getting: http://gforge.nci.nih.gov/svnroot/commonlibrary/trunk/techstack-2007/os-independent/cagrid-wscore-4.0.3-appserver-libs.zip
+      [get] To: C:\CC\software\build\cagrid-wscore-4.0.3-appserver-libs.zip
+      [get] Getting: http://gforge.nci.nih.gov/svnroot/commonlibrary/trunk/techstack-2007/os-independent/cagrid-wscore-4.0.3-appserver-base-war.zip
+      [get] To: C:\CC\software\build\cagrid-wscore-4.0.3-appserver-base-war.zip
+
+dist:tools:retrieve:sync-gts:
+    [unzip] Expanding: C:\CC\software\target\download\gaards-syncgts-1.3-bin.zip into C:\CC\software\target\dist\exploded\sync-gts
+     [echo] Checking out https://ncisvn.nci.nih.gov/svn/cagrid/branches/caGrid-1_3_release/cagrid-1-0/caGrid/repository/caGrid/target_grid   to C:\CC\software\target\cagrid-target.
+      [svn] <Checkout> started ...
+      [svn] <Checkout> finished.
+     [copy] Copying 52 files to C:\CC\software\target\dist\exploded\sync-gts\cagrid-target
+
+dist:tools:retrieve:
+
+dist:installer:prep:
+     [copy] Copying 6 files to C:\CC\software\target\dist\exploded\db\db-install
+     [copy] Copying 2 files to C:\CC\software\target\dist\exploded\db\db-upgrade
+     [copy] Copying 4 files to C:\CC\software\target\dist\exploded\dll
+     [copy] Copying 2 files to C:\CC\software\target\dist\exploded\conf
+     [copy] Copying 241 files to C:\CC\software\target\dist\exploded\templates
+     [echo] Copying build and property files
+     [copy] Copying 5 files to C:\CC\software\target\dist\exploded
+     [move] Moving 1 file to C:\CC\software\target\dist\exploded
+     [echo] Copying bda-utils dir
+     [copy] Copying 159 files to C:\CC\software\target\dist\exploded\bda-utils
+     [echo] Copying common dir
+     [copy] Copying 5 files to C:\CC\software\target\dist\exploded\common
+     [echo] Copying tools dir
+     [copy] Copying 4 files to C:\CC\software\target\dist\exploded\tools
+     [copy] Copying 3 files to C:\CC\software\target\dist\exploded\tools
+     [echo] tools.dist.dir=C:\CC\software\target\dist/exploded/tools
+
+dist:installer:
+      [zip] Building zip: C:\CC\software\target\dist\clinConn_install_2.2m2.1.zip
+
+BUILD SUCCESSFUL
