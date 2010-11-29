@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="ClinicalConnector" targetNamespace="http://gov.nci.nih.clinicalconnector/ClinicalConnector/service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:binding="http://gov.nci.nih.clinicalconnector/ClinicalConnector/bindings" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:import namespace="http://gov.nci.nih.clinicalconnector/ClinicalConnector/bindings" location="ClinicalConnector_bindings.wsdl"/>
-  <wsdl:service name="ClinicalConnectorService">
-    <wsdl:port name="ClinicalConnectorPortTypePort" binding="binding:ClinicalConnectorPortTypeSOAPBinding">
-      <soap:address location="http://localhost:8080/wsrf/services/"/>
-    </wsdl:port>
-  </wsdl:service>
-</wsdl:definitions>
