@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:loadLabs="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.loadlabs" xmlns:bridg="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg" xmlns:cdt="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.cdt" targetNamespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.loadlabs" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg" schemaLocation="bridg.xsd"/>
+	<xs:import namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.cdt" schemaLocation="cdt.xsd"/>
+	<xs:element name="LoadLabsRequest" type="loadLabs:LoadLabsRequest" nillable="true"/>
+	<xs:complexType name="LoadLabsRequest">
+		<xs:sequence>
+			<xs:element name="studyProtocol" type="bridg:StudyProtocol" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LoadLabsResponse" type="loadLabs:LoadLabsResponse" nillable="true"/>
+	<xs:complexType name="LoadLabsResponse">
+		<xs:sequence>
+			<xs:element name="ack" type="cdt:CD" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

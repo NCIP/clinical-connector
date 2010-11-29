@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+	<!--
+		Portions of this file Copyright 1999-2005 University of Chicago
+		Portions of this file Copyright 1999-2005 The University of Southern
+		California. This file or a portion of this file is licensed under the
+		terms of the Globus Toolkit Public License, found at
+		http://www.globus.org/toolkit/download/license.html. If you
+		redistribute this file, with or without modifications, you must
+		include this notice in the file.
+	-->
+
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web
+Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+	<display-name>WSRF Container Servlet</display-name>
+
+	  <servlet>
+    <servlet-name>Start Auto Sync GTS</servlet-name>
+    <servlet-class>
+      org.cagrid.gaards.websso.client.utils.StartSyncGTSServlet
+    </servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+      <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/securityConfiguration.xml
+            /WEB-INF/classes/applicationContext.xml
+        </param-value>
+    </context-param>
+ <listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+    <!-- PRC added this STRUTS filter 06/14/2010 -->
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+    </filter>
+    <!-- PRC added this STRUTS filter-Mapping 06/14/2010 -->
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/capture/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/hotLink/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>CAS Authentication Filter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetBeanName</param-name>
+            <param-value>casAuthenticationFilter</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>CAS Validation Filter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetBeanName</param-name>
+            <param-value>casValidationFilter</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>caGRID WebSSO Attribute Loader Filter</filter-name>
+        <filter-class>org.cagrid.gaards.websso.client.filter.CaGridWebSSOAttributeLoaderFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>caGRID WebSSO Delegation Lookup Filter</filter-name>
+        <filter-class>org.cagrid.gaards.websso.client.filter.CaGridWebSSODelegationLookupFilter</filter-class>
+        <init-param>
+            <param-name>certificate-file-path</param-name>
+            <param-value>C:/softwares/caGrid/certs/ccts_dev_gts_host_cert.pem</param-value>
+        </init-param>
+        <init-param>
+            <param-name>key-file-path</param-name>
+            <param-value>C:/softwares/caGrid/certs/ccts_dev_gts_host_key.pem</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CAS Authentication Filter</filter-name>
+        <url-pattern>/hotLink/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>CAS Validation Filter</filter-name>
+        <url-pattern>/hotLink/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>caGRID WebSSO Attribute Loader Filter</filter-name>
+        <url-pattern>/hotLink/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>caGRID WebSSO Delegation Lookup Filter</filter-name>
+        <url-pattern>/hotLink/*</url-pattern>
+    </filter-mapping>
+	<listener>
+		<listener-class>org.apache.axis.transport.http.AxisHTTPSessionListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>WSRFServlet</servlet-name>
+		<display-name>WSRF Container Servlet</display-name>
+		<servlet-class> org.globus.wsrf.container.AxisServlet </servlet-class>
+		<load-on-startup>true</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WSRFServlet</servlet-name>
+		<url-pattern>/servlet/AxisServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WSRFServlet</servlet-name>
+		<url-pattern>*.jws</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WSRFServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	<session-config>
+    <!-- Default to 5 minute session timeouts -->
+		<session-timeout>5</session-timeout>
+	</session-config>
+	<mime-mapping>
+		<extension>wsdl</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xsd</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<taglib>
+		<taglib-uri>http://jakarta.apache.org/taglibs/response-1.0</taglib-uri>
+		<taglib-location>/WEB-INF/taglibs-response.tld</taglib-location>
+	</taglib>
+</web-app>

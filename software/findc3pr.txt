@@ -1,0 +1,55 @@
+Binary file ./.svn/text-base/RegistrationConsumerImpl.zip.svn-base matches
+./build/.svn/text-base/DEVinstall.properties.svn-base:database.user=c3pr
+./build/.svn/text-base/DEVupgrade.properties.svn-base:database.user=c3pr
+./build/.svn/text-base/install.properties_orig.svn-base:database.user=c3pr
+./build/.svn/text-base/upgrade.properties_orig.svn-base:database.user=c3pr
+./build/DEVinstall.properties:database.user=c3pr
+./build/DEVupgrade.properties:database.user=c3pr
+./build/install.properties_orig:database.user=c3pr
+./build/upgrade.properties_orig:database.user=c3pr
+./C3DGridService/build/classes/gov/nih/nci/cdmsconnector/domain/adapter/ccts/CCTSAdapter.java:			// c3pr -- Registration. studyRef. Identifier.value
+./C3DGridService/src/gov/nih/nci/cdmsconnector/domain/adapter/ccts/.svn/text-base/CCTSAdapter.java.svn-base:			// c3pr -- Registration. studyRef. Identifier.value
+./C3DGridService/src/gov/nih/nci/cdmsconnector/domain/adapter/ccts/CCTSAdapter.java:			// c3pr -- Registration. studyRef. Identifier.value
+./C3DGridService/templates/conf/c3d/.svn/text-base/c3dgridservice.properties.svn-base:c3dds.dbusername=c3pr
+./C3DGridService/templates/conf/c3d/.svn/text-base/login.config.svn-base:user="c3pr"
+./C3DGridService/templates/conf/c3d/.svn/text-base/login.config.svn-base:user="c3pr"
+./C3DGridService/templates/conf/c3d/.svn/text-base/registerConsumer_gridservice.properties.svn-base:regconsds.dbusername=c3pr
+./C3DGridService/templates/conf/c3d/c3dgridservice.properties:c3dds.dbusername=c3pr
+./C3DGridService/templates/conf/c3d/login.config:user="c3pr"
+./C3DGridService/templates/conf/c3d/login.config:user="c3pr"
+./C3DGridService/templates/conf/c3d/registerConsumer_gridservice.properties:regconsds.dbusername=c3pr
+./C3DGridService/templates/conf/Catalina/localhost/.svn/text-base/clinicalConnector.xml.svn-base:                        <value>c3pr</value>
+./C3DGridService/templates/conf/Catalina/localhost/.svn/text-base/clinicalConnector.xml.svn-base:                        <value>c3pr</value>
+./C3DGridService/templates/conf/Catalina/localhost/clinicalConnector.xml:                        <value>c3pr</value>
+./C3DGridService/templates/conf/Catalina/localhost/clinicalConnector.xml:                        <value>c3pr</value>
+./C3DGridService/templates/war/WEB-INF/classes/.svn/text-base/c3d.csm.new.hibernate.cfg.xml.svn-base:<property name="hibernate.connection.username">c3pr</property>
+./C3DGridService/templates/war/WEB-INF/classes/c3d.csm.new.hibernate.cfg.xml:<property name="hibernate.connection.username">c3pr</property>
+./C3DGridService/templates/WEB-INF/classes/.svn/text-base/c3d.csm.new.hibernate.cfg.xml.svn-base:<property name="hibernate.connection.username">c3pr</property>
+./C3DGridService/templates/WEB-INF/classes/.svn/text-base/c3dgridservice.properties.svn-base:c3dds.dbusername=c3pr
+./C3DGridService/templates/WEB-INF/classes/.svn/text-base/login.config.svn-base:user="c3pr"
+./C3DGridService/templates/WEB-INF/classes/.svn/text-base/login.config.svn-base:user="c3pr"
+./C3DGridService/templates/WEB-INF/classes/.svn/text-base/registerConsumer_gridservice.properties.svn-base:regconsds.dbusername=c3pr
+./C3DGridService/templates/WEB-INF/classes/c3d.csm.new.hibernate.cfg.xml:<property name="hibernate.connection.username">c3pr</property>
+./C3DGridService/templates/WEB-INF/classes/c3dgridservice.properties:c3dds.dbusername=c3pr
+./C3DGridService/templates/WEB-INF/classes/login.config:user="c3pr"
+./C3DGridService/templates/WEB-INF/classes/login.config:user="c3pr"
+./C3DGridService/templates/WEB-INF/classes/registerConsumer_gridservice.properties:regconsds.dbusername=c3pr
+./C3DGridService/webapps/conf/c3d/c3dgridservice.properties:c3dds.dbusername=c3pr
+./C3DGridService/webapps/conf/c3d/login.config:user="c3pr"
+./C3DGridService/webapps/conf/c3d/login.config:user="c3pr"
+./C3DGridService/webapps/conf/c3d/registerConsumer_gridservice.properties:regconsds.dbusername=c3pr
+./C3DGridService/webapps/conf/Catalina/localhost/c3d.xml:                        <value>c3pr</value>
+./C3DGridService/webapps/conf/Catalina/localhost/c3d.xml:                        <value>c3pr</value>
+./C3DGridService/webapps/conf/Catalina/localhost/clinicalConnector.xml:                        <value>c3pr</value>
+./C3DGridService/webapps/conf/Catalina/localhost/clinicalConnector.xml:                        <value>c3pr</value>
+./C3DGridService/webapps/conf/Catalina/localhost/upt.xml:			<value>c3pr</value>
+./findc3pr.txt:./build/.svn/text-base/DEVinstall.properties.svn-base:database.user=c3pr
+./findc3pr.txt:./build/.svn/text-base/DEVupgrade.properties.svn-base:database.user=c3pr
+./findc3pr.txt:./build/.svn/text-base/install.properties_orig.svn-base:database.user=c3pr
+./findc3pr.txt:./build/.svn/text-base/upgrade.properties_orig.svn-base:database.user=c3pr
+./findc3pr.txt:./build/DEVinstall.properties:database.user=c3pr
+./findc3pr.txt:./build/DEVupgrade.properties:database.user=c3pr
+./findc3pr.txt:./build/install.properties_orig:database.user=c3pr
+./findc3pr.txt:./build/upgrade.properties_orig:database.user=c3pr
+./findc3pr.txt:./C3DGridService/build/classes/gov/nih/nci/cdmsconnector/domain/adapter/ccts/CCTSAdapter.java:			// c3pr -- Registration. studyRef. Identifier.value
+Binary file ./RegistrationConsumerImpl.zip matches
