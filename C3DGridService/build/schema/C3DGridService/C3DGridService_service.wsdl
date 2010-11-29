@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="C3DGridService" targetNamespace="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:binding="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/bindings" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:import namespace="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/bindings" location="C3DGridService_bindings.wsdl"/>
-  <wsdl:service name="C3DGridService">
-    <wsdl:port name="C3DGridServicePortTypePort" binding="binding:C3DGridServicePortTypeSOAPBinding">
-      <soap:address location="http://localhost:8080/wsrf/services/"/>
-    </wsdl:port>
-  </wsdl:service>
-</wsdl:definitions>
