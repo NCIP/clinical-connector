@@ -1,0 +1,46 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:clin1="http://clinicalconnector.nci.nih.gov" xmlns:uri="uri:iso.org:21090">
+   <soap:Header/>
+   <soap:Body>
+            <clin1:RegisterSubjectRequest>
+
+               <clin1:studySubject>
+
+                  <clin1:birthDate xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:TS" value="19801212"/>
+                  <clin1:identifier xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:II" root="2.16.840.1.113883.3.26.7.5" extension="999e988" identifierName="COOPERATIVE_GROUP_IDENTIFIER" displayable="false"/>
+                  <clin1:name xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:EN.PN">
+                          <ns1:part value="C" type="FAM" qualifier="IN"/>
+                          <ns1:part value="R" type="GIV" qualifier="IN"/> 
+                  </clin1:name>
+                  <clin1:raceCode  xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:CD" code="White"/>
+                  <clin1:sexCode xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:CD" code="Male"/>
+                  <clin1:studyIdentifier xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:II" root="2.16.840.1.113883.3.26.7.2" extension="SMOKE_TEST" identifierName="Study Identifier" displayable="false"/>
+
+
+                  <clin1:studySiteIdentifier xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:II" root="2.16.840.1.113883.3.26.7.3" extension="NCI" identifierName="Study Site Identifier" displayable="false"/>
+               </clin1:studySubject>
+
+               <clin1:performedSubjectMilestone>
+
+                  <clin1:informedConsentDate xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:TS" value="20100223"/>
+                  <clin1:registrationDate xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:TS" value="20100223"/>
+                  <clin1:registrationSiteIdentifier xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:II" root="2.16.840.1.113883.3.26.7.4" extension="NCIC" identifierName="nciInstituteCode" displayable="false"/>
+               </clin1:performedSubjectMilestone>
+
+               <!--Optional:-->
+
+               <clin1:scheduledEpoch>
+                  <clin1:description xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:ST" value=""/>
+                  <clin1:name xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:ST" value="Epoch 1"/>
+                  <clin1:scheduledStartDate xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:TS" value="20100223"/>
+                  <clin1:typeCode xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:CD" code=""/>
+               </clin1:scheduledEpoch>
+               <clin1:scheduledArm>
+                   <clin1:description xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:ST" value=""/>
+                   <clin1:name xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:ST" value="Arm A"/>
+                   <clin1:typeCode xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:CD" code=""/>
+               </clin1:scheduledArm>
+
+            </clin1:RegisterSubjectRequest>
+   </soap:Body>
+</soap:Envelope>
+

@@ -1,0 +1,355 @@
+{scrollbar}
+
+h2. {page-info:title}
+
+This chapter presents the flow of administrative tasks within the caBIG{~}^®^~ Clinical Connector (Clinical Connector) that caBIG{~}^®^~ Clinical Trials Suite (the Suite) administrators need to perform.
+
+This chapter includes the following topics.
+{toc:minLevel=3}
+
+h3. Creating a Study in caBIG Clinical Connector
+
+Creating a study in Clinical Connector involves the creation of the electronic case report forms for the collection of data, defining study intervals and events, creating study sites and investigator, and create patient positions. See "[Creating a Study|https://wiki.nci.nih.gov/x/PpB-AQ#7-AdministeringcaBIGClinicalConnectorv2.2-CreatingaStudyincaBIGClinicalConnector]" for information about creating a study in Clinical Connector.
+
+h4. Special Considerations for caBIG Clinical Connector Studies
+
+A Site in caBIG Clinical Connector is an Organization in C3PR, so when setting Sites in caBIG Clinical Connector, use the NCI Institution Code of the Organization as the Site Code. This ensures that a patient is registered to the correct Site in caBIG Clinical Connector.
+
+h4. Disabling caBIG Clinical Connector Integration
+
+If it is not recommended to integrate with caBIG Clinical Connector, but you could choose to disable broadcasting to it through caBIG Integration Hub.
+
+h5. Remove Routing to a Target Grid Service
+
+To remove routing to a target grid service, change the recipients list of the message type for which the target no longer wants to receive messages. Each recipient list is configured in a separate file.
+
+* [caBIG Integration Hub, Routing Configuration Files|https://cabig-kc.nci.nih.gov/CTMS/KC/index.php/CaBIG_Integration_Hub_Routing_Configuration_Files_and_Templates]describes the contents of each xml file for the EIP service unit. It can be used to determine which file contains the configuration for a particular message type.
+
+These files are located in the {{caXchange-installation-dir/conf/caXchangeConf/eip/}} folder. For example, the configuration for REGISTER_SUBJECT message type is in the {{registerSubjectRecipients.xml}} file. This configuration is as follows:
+{code}
+<beans xmlns:eip="http://servicemix.apache.org/eip/1.0"
+xmlns:caxchange="http://nci.nih.gov/caXchange">
+
+<eip:caxchange-static-recipient-list service="caxchange:registerSubjectRecipients" endpoint="registerSubjectRecipientsEndpoint">
+<eip:recipients>
+<eip:exchange-target service="caxchange:pscRegisterSubjectRouter" />
+<eip:exchange-target service="caxchange:caaersRegisterSubjectRouter" />
+
+<eip:exchange-target service="caxchange:ctomRegisterSubjectRouter" />
+<eip:exchange-target service="caxchange:c3DRegisterSubjectRouter" />
+</eip:recipients>
+<eip:targetServiceIdentifiers>
+
+<value>psc</value>
+<value>caAERS</value>
+<value>LabViewer</value>
+<value>C3D</value>
+
+</eip:targetServiceIdentifiers>
+</eip:caxchange-static-recipient-list>
+</beans>
+{code}
+To remove caBIG Clinical Connector as a recipient for the REGISTER_SUBJECT message, comment out the caBIG Clinical Connector as a recipient in this file. The edited xml will be as follows:
+{code}
+<beans xmlns:eip="[http://servicemix.apache.org/eip/1.0]"
+xmlns:caxchange="[http://nci.nih.gov/caXchange]">
+
+<eip:caxchange-static-recipient-list service="caxchange:registerSubjectRecipients"   endpoint="registerSubjectRecipientsEndpoint">
+<eip:recipients>
+<eip:exchange-target service="caxchange:pscRegisterSubjectRouter" />
+<eip:exchange-target service="caxchange:caaersRegisterSubjectRouter" />
+<eip:exchange-target service="caxchange:ctomRegisterSubjectRouter" />
+*<\!--<eip:exchange-target service="caxchange:c3DRegisterSubjectRouter" /> \-->*
+
+</eip:recipients>
+<eip:targetServiceIdentifiers>
+<value>psc</value>
+<value>caAERS</value>
+<value>LabViewer</value>
+
+ *<\!-\-   <value>C3D</value> \-->*
+</eip:targetServiceIdentifiers>
+</eip:caxchange-static-recipient-list>
+</beans>
+{code}
+Once the changes are complete, the changes need to be pushed to ServiceMix. This is done using the following steps:
+# Stop ServiceMix.
+# Update the routing configuration to ServiceMix using the following command in the
+*{_}caXchange-installation-dir{_}* directory: ant update-routing-configuration
+# Start ServiceMix.
+\\
+
+h3. caBIG Clinical Connector Services
+
+This chapter provides a basic set of instructions for managing the caBIG Clinical Connector. Topics include basic setup configuration for DCAPI processing related to the Enroll Patient service; configuration options of the AutoLoader in support of the Load Lab service; and configuration options in support of the E-mail alert system.
+|| Service Name \\ || Description \\ ||
+| Enroll  Patient Service | This service accepts a request to enroll a patient into an existing  study in C3D.  The service will acquire a Clinical Connector patient position for the requested Study and Site, update patient related data elements in the C3D Patient Positions table, import data values to specific C3D Questions within the C3D Study related to the patient, and return the C3D Patient Position Identifier through the received message. \\
+These functions are made possible by leveraging the DCAPI services  provided as part of the Oracle Clinical installation.  To successfully  interact with this service, some configuration is required, and will  be covered later in this document. |
+| Load  Lab Service | This service accepts a request of patient laboratory test results and loads them into C3D. This service accepts groups of records in a single  request, validates the data for completeness, prepares the data for  processing, and submits the data to the C3D Lab Loader Utility for final  batch processing and loading. This service runs asynchronous to the  Load Lab request and therefore provides a mechanism for alerting user of  issues. \\
+Due to the complexities surrounding Lab Test Result processing and  the need to leverage the C3D Lab Loader to perform the actual loading of data to C3D, this service does require configuration. For more  information about the configuration, see h4. AutoLoader (Lab Loads) |
+| Is  Valid Study Service | This simple service accepts a request to validate the existence of a  study identifier within the C3D CDMS.  The service returns a Boolean  response.  There is no additional setup or configuration required for  this service. |
+| Get  Study CDEs Service | This service accepts a study identifier and returns the Common Data  Element Identifier (CDE Id) and Version for each data element question  used within the specified study.  The service also returns the e-CRF context  information related to each question. \\
+To successfully  interact with this services, some configuration is required, and will  be covered later in this document. \\ |
+| Get  Study CDE Data Service | This service accepts a study identifier and CDE Id and Version and  returns the associated study data for the element, where ever it occurs  within the Study.  The service also returns the e-CRF context  information related to each data point returned. \\
+To successfully  interact with this service, some configuration is required, as well as C3D User Id registration.&nbsp; These topics will  be covered later in this document. \\ |
+| E-Mail  Alerts | This is not a service available through the Clinical Connector, but instead is a utility used by the Connector to alert users and/or support staff of issues during the processing of service requests. Currently, only the Load Lab service takes advantage of this utility, because of the asynchronous nature of the Load Lab service. The configuration of this utility, known as the C3D Mailer, is explained below. |
+
+h3. caBIG Clinical Connector Configurations
+
+
+h4. Database Connectivity Configurations
+
+There are two configuration files, containing database connectivity parameters, present for the caBIG Clinical Connector. The values for these parameters are initially created during the installation process; where the installation files "update.properties" and "install.properties" contain site specific installation values. These installation files are found in the directory where the caBIG Clinical Connector package was unloaded and installed from.
+
+After installation, the database connectivity parameters will be located in the following files:
+* %CATALINA_HOME\conf\c3d\c3dgridservice.properties
+* %CATALINA_HOME\conf\c3d\registerConsumer_gridservice.properties
+
+The following table describes each of the database connectivity parameters and provides a sample value.  Although these files can be directly altered, it is recommended that the values for these parameters be maintained in the installation property files mentioned above.  Included in the table below, is the installation property variable name that is used to maintain the database connectivity parameter.
+{info:title=Note}The files contain additional configuration parameters, which are described in subsequent sections below.
+{info}
+
+h5. c3dgridservice.properties Parameters
+
+|| Parameter Name || Description || Sample Value || Property Name ||
+| c3dds.db | The url for the target database | jdbc:oracle:thin:@cbiodb2.nci.nih.gov:1521:ocdev | database.url |
+| c3dds.dbdriverClassName | The fully qualified jdbc driver name that the C3D Grid Service will utilize | oracle.jdbc.driver.OracleDriver | n/a |
+| c3dds.dbusername | A user name for the database user | c3pr (the schema of the Connector DB objects) | database.user |
+| c3dds.dbpassword | The password for the database user | Cdda#jal | database.password |
+
+h5. registerConsumer_gridservice.properties Parameters
+
+|| Parameter Name || Description || Sample Value || Property Name ||
+| regconsds.dburl | The url for the target database | jdbc:oracle:thin:@cbiodb2.nci.nih.gov:1521:ocdev | database.url |
+| regconsds.dbdriverClassName | The fully qualified jdbc driver name that the C3D Grid Service will utilize | oracle.jdbc.driver.OracleDriver | n/a |
+| regconsds.dbusername | A user name for the database user | c3pr (the schema of the Connector DB objects) | database.user |
+| regconsds.dbpassword | The password for the database user | Cdda#jal | database.password |
+
+h4. CSM Authorization Configuration
+
+CSM Authorization has been modified for caBIG Clinical Connector v2.2.&nbsp; The Connector now uses the Unified Security Model provided by the caBIG Clinical Trials Suite.The Untified model uses a system of user provissioned Roles.&nbsp; The Connector incorporates this methodology for the Register Subject and Load Labs Services and allows each servises CSM behavoir to be configurable through a parameter contained in the property file located at %CATALINA_HOME%\conf\c3d\c3dgridservice.properties . The table below shows each of the services, its related paramater name, a brief description, and the installed default value.&nbsp; It is recommened that the default value not be changed.
+{info:title=Note}Grid Authentication is still required regardless of the use of CSM Authorization.
+{info}
+
+h5. c3dgridservice.properties CSM Authorization Role Parameters
+
+|| Service Name || Description || Variable Value || Default Value ||
+| Enroll Patient Service | Patient enrollment to C3D service. | csm.enroll.role | registrar |
+| Load Labs Service | Patient Laboratory Result Load to C3D service. | csm.lab.role | lab_data_user |
+
+h4. C3D E-Mail Alert Configuration
+
+The Oracle based, C3D Mailer Utility, which is used to send e-mail alerts for the Clinical Connector, consists of three tables and one PL/SQL package.  In general, the C3D Mailer Utility uses the Oracle provided SMTP_UTIL PL/SQL package to simplify the sending of e-mails from inside the database instance server.  This utility is included in the installation package provided for the Clinical Connector.
+|| Object Name || Description ||
+| C3D_MAIL_ARCHIVE | This table retains a copy of each e-mail sent by the C3D Mailer.  The information retained includes, originating utility, type of alert, the recipient address, e-mail subject, e-mail text and the date the e-mail was initiated. |
+| C3D_MAIL_CTL | This table contains a list of the recipients for each e-mail severity type, for each utility that can be have e-mails sent. Also contained in this table, is the Mail Server definition. |
+| C3D_MAIL_MESSAGE_CTL | This table contains the message templates for each of the e-mail types for each utility using the C3D Mail utility.  There are four templates, OPENING, BODY, CLOSING and POSTSCRIPT. |
+| C3D_UTIL_MAILER | This is the PL/SQL package that builds and sends e-mails. |
+
+h5. Mailer Utility Configuration
+
+There are three configuration records within the C3D_MAIL_CTL control table that are delivered with the utility that control the e-mail system.  These control records must be set to installation specific values before alerts can be sent.
+
+*MAILSERVER* \- This variable is used to identify the SMTP Mail Service name for the installation instance. The value for this control record can be set by inserting a record into the C3D_MAIL_CTL table for the Alert Type "MAILSERVER" and Utility "C3D_MAILER". The following SQL scripts can be used to create this record or update it, if it already exists but is set to the wrong value.
+* *{_}{+}Insert Statement{+}{_}*
+Insert into C3D_MAIL_CTL (UTIL_CODE, CALERT_TYPE, TO_ADDRESS)
+select 'C3D_MAILER', 'MAILSERVER', '&Your_Mail_Server_Name'
+from dual
+where not exists (select 'X' from C3D_MAIL_CTL
+where UTIL_CODE = 'C3D_MAILER'
+and ALERT_TYPE = 'MAILSERVER');
+
+* *{_}{+}Update statement:+{_}*
+Update C3D_MAIL_CTL
+set TO_ADDRESS = '&Your_Mail_Server_Name'
+where UTIL_CODE = 'C3D_MAILER'
+and ALERT_TYPE = 'MAILSERVER';
+
+*MAILFROM* \- This variable is used to identify the e-mail address from which each e-mail is to be sent.  The value for this control record can be set by inserting a record into the C3D_MAIL_CTL table for the Alert Type "MAILFROM" and Utility "C3D_MAILER". The following SQL scripts can be used to create this record or update it, if it already exists but is set to the wrong value.
+* *{_}{+}Insert Statement{+}{_}*
+Insert into C3D_MAIL_CTL (UTIL_CODE, CALERT_TYPE, TO_ADDRESS)
+select 'C3D_MAILER', 'MAILFROM', '&Your_From_EMail_Address'
+from dual
+where not exists (select 'X' from C3D_MAIL_CTL
+where UTIL_CODE = 'C3D_MAILER'
+and ALERT_TYPE = 'MAILFROM');
+
+* *{_}{+}Update statement:+{_}*
+Update C3D_MAIL_CTL
+set TO_ADDRESS = '&Your_From_EMail_Address'
+where UTIL_CODE = 'C3D_MAILER'
+and ALERT_TYPE = 'MAILFROM';
+\\
+
+*CONTACT* \- This variable is used to identify the e-mail address to be used for contact purposes.  This variable is used in conjunction with the POSTSCRIPT message template.  This is an OPTIONAL variable.  The value associated with this variable will be substituted into the POSTSCRIPT message template for each occurrence of the tag "#CONTACT#".  The value for this control record can be set by inserting a record into the C3D_MAIL_CTL table for the Alert Type "CONTACT" and Utility "C3D_MAILER". The following SQL scripts can be used to create this record or update it, if it already exists but is set to the wrong value.
+* *{_}{+}Insert Statement{+}{_}*
+Insert into C3D_MAIL_CTL (UTIL_CODE, CALERT_TYPE, TO_ADDRESS)
+select 'C3D_MAILER', 'CONTACT', '&Your_Contact_EMail_Address'
+from dual
+where not exists (select 'X' from C3D_MAIL_CTL
+where UTIL_CODE = 'C3D_MAILER'
+and ALERT_TYPE = 'CONTACT');
+
+* *{_}{+}Update statement:+{_}*
+Update C3D_MAIL_CTL
+set TO_ADDRESS = '&Your_Contact_EMail_Address'
+where UTIL_CODE = 'C3D_MAILER'
+and ALERT_TYPE = 'CONTACT';
+
+h5. Mailer Alert Types
+
+Alert types are used to associate e-mail recipients to e-mail message templates. The use of each alert type is programmatically determined within each individual C3D Utility.  When triggered, the C3D Mailer Utility uses the associations to build and send e-mail messages of the appropriate level to the appropriate recipients.  The following alert types are available in the C3D Mailer:
+|| Alert Type || Description ||
+| SUCCESS | This alert type is used to designate that a correct event has occurred.  This can be used to alert users that the process has completed without incident. |
+| WARNING | This alert type is used to designate that an event has encountered a minor issue.  This can be used when there is a non-severe issue during processing |
+| FAILURE | This alert type is used to designate that an error has occurred during processing.  This is typically used when unexpected exceptions occur. |
+
+h5. Mailer Message Template Types
+
+Message Template Types are used to build an e-mail message.  There are four template types, and simply put, these templates are wrapped around the alert text that is sent by the calling Utility to create a complete e-mail message. The four types are listed below, with a brief description.  Each of the types is optional, as the "alert text" generated by the C3D Utility is the primary information. The build order for a message is, OPENING + BODY + "alert text" + CLOSING +  POSTSCRIPT. The following message template types are available in the C3D Mailer:
+|| Alert Type || Description ||
+| OPENING | Similar to a standard letter, this is the beginning of the e-mail.  It is the first template used in building the complete e-mail message. |
+| BODY | Similar to a standard letter, this is the main text e-mail.  It is attached to the complete e-mail message after the OPENING, but before the alert text sent by the utility. |
+| CLOSING | Similar to a standard letter, this is the ending of the e-mail.  It is attached to the complete e-mail after the alert text sent by the utility. |
+| POSTSCRIPT | This template is added at the end of the e-mail message.  It has the added purpose of allowing the variable #CONTACT# to be included within its text.&nbsp; This variable acts as a place holder that can be substituted for the value associated with the Utility's CONTACT variable stored in the C3D_MAIL_CTL table. |
+{info:title=Note}The POSTSCRIPT message template type, installed with the C3D Mailer Utility, has additional special attributes.  It has the special GLOBAL Utility Code "ALL" as well as the special GLOBAL Alert Type Code "ALL".  This allows this one message template type to be used for ALL utilities for ALL alert types that do not specifically exist for a utility.
+{info}
+
+h5. Load Lab Service E-Mail Configuration
+
+The Load Lab Service uses the C3D Mailer Utility to send e-mail alerts during the processing of Lab Test submissions. The C3D Mailer Utility must be configured to accept these alerts and to ensure that the proper recipients are identified.&nbsp; The C3D Mailer requires that each C3D Utility have its own distinct code that is uses for configuration.  The Utility Code for the Load Lab Service is "AUTO_LOADER".  This value must be used when associating recipient alert types in C3D_MAIL_CTL and message template alert types in C3D_MAIL_MESSAGE_CTL.
+
+During the installation of the C3D Mailer Utility, several control records were added for the Load Lab Service in the C3D_MAIL_CTL control table.  These control records must be set to installation specific values before alerts can be successfully sent.
+
+h6. Load Lab Service Message Control Configuration Scripts
+
+*SUCCESS* \- This variable is used to identify the recipient who is to receive successful e-mail alerts. The value for this control record can be set by inserting a record into the C3D_MAIL_CTL table for the Alert Type "SUCCESS" and Utility Code "AUTO_LOADER". The following SQL scripts can be used to create this record or update it, if it already exists but is set to the wrong value.
+* *{_}{+}Insert Statement{+}{_}*
+Insert into C3D_MAIL_CTL (UTIL_CODE, CALERT_TYPE, TO_ADDRESS)
+select 'C3D_MAILER', 'MAILSERVER', '&Success_eMail_Address'
+from dual
+where not exists (select 'X' from C3D_MAIL_CTL
+where UTIL_CODE = 'AUTO_LOADER'
+and ALERT_TYPE = 'SUCESS');
+
+* *{_}{+}Update statement:+{_}*
+Update C3D_MAIL_CTL
+set TO_ADDRESS = '&Success_eMail_Address'
+where UTIL_CODE = 'AUTO_LOADER'
+and ALERT_TYPE = 'SUCCESS';
+
+*FAILURE* \- This variable is used to identify the recipient who is to receive unsuccessful e-mail alerts. The value for this control record can be set by inserting a record into the C3D_MAIL_CTL table for the Alert Type "SUCCESS" and Utility Code "AUTO_LOADER". The following SQL scripts can be used to create this record or update it, if it already exists but is set to the wrong value.
+* *{_}{+}Insert Statement{+}{_}*
+Insert into C3D_MAIL_CTL (UTIL_CODE, CALERT_TYPE, TO_ADDRESS)
+select 'C3D_MAILER', 'MAILSERVER', '&Failure_eMail_Address'
+from dual
+where not exists (select 'X' from C3D_MAIL_CTL
+where UTIL_CODE = 'AUTO_LOADER'
+and ALERT_TYPE = 'FAILURE');
+
+* *{_}{+}Update statement:+{_}*
+Update C3D_MAIL_CTL
+set TO_ADDRESS = '&Failure_eMail_Address'
+where UTIL_CODE = 'AUTO_LOADER'
+and ALERT_TYPE = 'FAILURE';
+
+*CONTACT* \- This variable is used to identify the e-mail address to be used for contact purpose.  This variable is used in conjunction with the POSTSCRIPT message template.  This is an OPTIONAL variable.  The value associated with this variable will be substituted into the POSTSCRIPT message template for each occurrence of the tag "#CONTACT#".  The value for this control record can be set by inserting a record into the C3D_MAIL_CTL table for the Alert Type "CONTACT" and Utility Code "C3D_MAILER". The following SQL scripts can be used to create this record or update it, if it already exists but is set to the wrong value.
+* *{_}{+}Insert Statement{+}{_}*
+Insert into C3D_MAIL_CTL (UTIL_CODE, CALERT_TYPE, TO_ADDRESS)
+select 'C3D_MAILER', 'CONTACT', '&AutoLoader_Contact_EMail_Address'
+from dual
+where not exists (select 'X' from C3D_MAIL_CTL
+where UTIL_CODE = 'AUTO_LOADER'
+and ALERT_TYPE = 'CONTACT');
+
+* *{_}{+}Update statement:+{_}*
+Update C3D_MAIL_CTL
+set TO_ADDRESS = '&AutoLoader_Contact_EMail_Address'
+where UTIL_CODE = 'AUTO_LOADER'
+and ALERT_TYPE = 'CONTACT';
+
+h5. Load Lab Service Processing Alert Types
+
+As previously stated, the Load Lab Service uses the C3D Mailer Utility to send alerts to recipients when specific events occur during the processing of lab data.  The following events, their corresponding Alert types and system event severity are used by the process to create the appropriate e-mail alerts accordingly:
+|| Event || Alert Type || System Severity ||
+| Completed submission of a batch of Lab Result Records for processing without errors. | SUCCESS | Successful completion |
+| Unexpected error during Batch submission | FAILURE | Severe Error |
+| Unexpected errors encountered during processing of batch records. | FAILURE | Severe Error |
+| Error creating batch record for the submitted Lab Records | FAILURE | Severe Error |
+| Invalid study associated with submitted Lab Records. | FAILURE | Severe Warning |
+| Error preparing lab records in the holding area. | FAILURE | Severe Error |
+| Error preparing lab records in the staging area. | FAILURE | Severe Error |
+| Error moving lab records from holding to staging area. | FAILUREFAILURE | Severe Error |
+| Error copying lab records from the staging area to the Lab Loader. | | Severe Error |
+| Error placing batch on hold queue | FAILURE | Error |
+{info:title=Note}C3D Mailer Utility must have a recipient defined for each of the Alert Types "SUCCCESS" and "FAILURE".
+{info}
+
+h4. Load Lab Service - AutoLoader Configuration
+
+The AutoLoader is a PL/SQL process called by the Load Lab Service used to process Lab Test Result&nbsp; data and transfer that data to the appropriate data location for  a patient and study.  The AutoLoader has several configuration options, this section will cover the basic configuration options for loading data.
+
+h5. AutoLoader Control Table
+
+The primary control table for AutoLoader configuration is NCI_LABS_MANUAL_LOAD_CTL.  This table hold the processing flow and data manipulation script used for each study to be loaded.  Below is a description of each of the controls.
+|| COLUMN || Description ||
+| STUDY | This column holds the C3D study identifier.  It is the only required field.  The Load Lab Service checks this table to ensure that the study is defined.  If the study is not defined, an exception will occur. |
+| HOLD_DATA_CHANGES | This is used to hold valid SQL or PL/SQL that is used to manipulate the data in the data HOLD table in the first step of the processing workflow.  It can be used to "clean" data or apply data defaults.  This works in conjunction with the AUTO_CHANGE_HOLD_DATA control. |
+| AUTO_CHANGE_HOLD_DATA | This is used to control the auto execution of script held in the HOLD_DATA_CHANGES control.  The value "Y" signifies that the code should be executed. |
+| AUTO_MOVE_TO_STAGE | This is used to control the movement of data from the HOLD area to the STAGE area.  A "Y" value signifies that the data should be moved. |
+| AUTO_CHANGE_STAGE_DATA | This is used to control the execution of script held in the STUDY_DATA_CHANGES control.  The value "Y" signifies that the code should be executed. |
+| AUTO_MOVE_TO_LOADER | This is used to control the movement of data from the STAGE area to the C3D Lab Loader area.  A "Y" value signifies that the data should be moved. |
+| AUTO_LOAD_TO_OC | This is used to control the execution of the C3D Lab Loader "LOAD" process.  A "Y" value signifies that the data should be processed with the "LOAD" option. |
+| STUDY_DATA_CHANGES | This is used to hold valid SQL or PL/SQL that is used to manipulate the data while it resides in the STAGE table.  It can be used to apply data changes or look-ups.  This works in conjunction with the AUTO_CHANGE_STAGE_DATA control. |
+| INBOUND_STUDY | This is used to hold an OPTIONAL Study Identifier.  This identified can be used to cross-reference the inbound study id to the C3D Study Identifier found in the STUDY control. |
+{info:title=Note}As part of the installation of the AutoLoader, a sample control record is inserted into NCI_LABS_MANUAL_LOAD_CTL.  This record also contains a sample PL/SQL processing block for the STAGE_DATA_CHANGES option.
+{info}
+
+h4. Enrollment Data Load Configurations
+
+There are two separate data load configurations used during the enrollment process.&nbsp; The first configuration pertains to the C3D Study Patient table PATIENT_POSITIONS, while the second configuration identifies individual e-crf data points within the study.
+
+h5. Patient Positions Data Configuration
+
+Boolean configuration parameters are used to determine whether or not data from the inbound Register Subject message is used to populate columns in the study patient table PATIENT_POSITIONS. &nbsp; The individual&nbsp; parameters are described below, and are contained in the configuration file "c3dgridservice.properties" located in the directory, %CATALINA_HOME\conf\c3d.&nbsp; By default, each of the three data elements is turned on, so that the data will populate, with the value "true".&nbsp; A value of "false" will cause the corresponding data value in the Subject Registration message to not load into the PATIENT_POSITIONS table.
+
+
+h5. Patient Position Data Load Parameters
+
+|| Data Element || Description || Parameter Name ||
+| Patient Birth Date | The date of birth of the patient. | enrollPatientManager.saveBirthDate.value |
+| Patient Gender | The gender of the patient | enrollPatientManager.saveGender.value |
+| Patient Initials | The patient's initials | enrollPatientManager.saveInitials.value |
+
+{info:title=Note}
+Enrollment Date is ALWAYS saved to the C3D PATIENT_POSITIONS table.&nbsp; If the Register Subject messages does not contain a value for Enrollment Date, then System Date will be used as the Enrollment date.
+
+
+As of v2.2, Consent Date does not have a configurable control.
+{info}
+
+h5. e-CRF Data Configuration
+
+Currently, there are seven data elements of the Register Subject message that are available for loading to Questions on a study's electronic Case Report Forms.&nbsp; Each Question of a Study's e-CRF has a unique identification code known as a Common Data Element Identifier (CDE Id).&nbsp; The relationship between an inbound data element of the Register Subject message and the CDE Id of a study Question is addressed by means of a reference code.&nbsp; There are seven Reference Codes that represent each of the seven loadable elements of the Register Subject message.&nbsp; To address the individuality of Study design, the database table STUDY_CDES_CTL is used to maintain both generic and study specific defintions for data element/Study Question relationships.&nbsp; Below is a description of the table:
+
+h5. e-CRF Data Load Table (STUDY_CDES_CTL)
+
+|| Table Column || Description ||
+| STUDY | The identifier of the study to be loaded to.&nbsp; The special value "ALL" represents a generic definition, that will be applied to every study, unless it is specific defined in the table. |
+| REFERENCE_CODE \\ | The reference code of the Register Subject data element. (see below) |
+| CDE | The Common Data Element Id and version.&nbsp; Note:&nbsp; The format of the CDE Id and Version is "CDE:####VERSION:###" i.e "CDE2003301VERSION:3.0" \\ |
+
+h5. Reference Codes for CDE Ids
+
+Below is a listing and description of the seven Reference Codes:
+
+|| Reference Code || Description ||
+| PT_ID_CDE | This code is used to signify Patient Identifier. |
+| CONSENT_DATE \\ | This code is used to signify patient consent date. |
+| NCI_INST_CD_CDE \\ | This code is used to signify the patient's institution of registration. \\ |
+| REG_DATE \\ | This code is used to signify the patient's date of registration.&nbsp; If this values is not passed as part of the Register Subject message, then today's date will be used. \\ |
+| PT_DOB \\ | This code is used to signify the patient's date of birth. \\ |
+| PT_GENDER \\ | This code is used to signify the patient's gender. \\ |
+| PT_INITS \\ | This code is used to signify the patient's initials. \\ |
+
+{scrollbar}

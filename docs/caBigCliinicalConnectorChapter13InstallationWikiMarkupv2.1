@@ -1,0 +1,259 @@
+{section}
+{column:width=20%}
+{panel:title=Contents}
+{toc:maxLevel=3}
+{panel}
+{scrollbar}
+{column}
+{column}
+The steps in this section assume the database has already been installed and that the Oracle database already exists for C3D according to those procedures.
+
+These steps also assume the grid installation process for C3D has been completed prior to beginning this installation - see Chapter 20, _Preparing to Install C3D Grid_.
+
+h2. Chapter 13 - Pre-Requisites for Installing Clinical Connector
+
+The Oracle Clinical Site Administrator must create the following Oracle Clinical Accounts with "Superuser" privileges for Oracle Clinical, and their corresponding underlying Oracle account must have Object Creation privileges:
+* C3DDCAPIUSER
+The Oracle Clinical Site Administrator must create the following Oracle Account.  This user must have sufficient privileges to enable it to create objects in the database:
+* C3PR
+The Oracle Clinical Site Administrator must provide the passwords for these newly created accounts in order to complete the C3D installation for the Suite.
+
+h2. {anchor:_Toc213981147}Step 1:  Unzip the Clinical Connector Grid Service Zip Package
+
+# If the caBIG{~}^®^~ Clinical Trials Suite 2.0 package was previously downloaded during the prerequisite phase, proceed to #3.&nbsp; Otherwise, download the multiple parts of the Suite distribution package. The parts can be downloaded using the following URL:
+[http://ncicb.nci.nih.gov/download/cctslicenseagreement.jsp]
+# Once downloaded, the parts should be unzipped to the same root folder. When all parts are unzipped, the root folder contains:
+|| Directory/File || Description ||
+| readme.txt | Points to all caBIG®Clinical Trials Suite  documentation |
+| /suite-installer | Contains the caBIG{~}^®^~ Clinical Trials Suite 2.0 installer and documentation. The Suite installer installs the caBIG Integration Hub, caAERS, PSC, C3PR and LabViewer |
+| /clinical_connector | Contains the Clinical Connector integration installation scripts and documentation |
+| /cagrid | Contains the caGrid 1.3 installer and documentation |
+# {color:}Locate the file ClinicalConnector_v2.1_distribution.zip in the folder /clinical_connector in the directories created during the unzipping of the{color} caBIG{~}^®^~ Clinical Trials Suite 2.0 {color:}distribution package.{color}
+# {color:#000000}Unzip the file{color} {color:}ClinicalConnector_v2.1_distribution.zip.{color}
+
+The following table describes the objects found within the Clinical Connector Deployment Zip file.
+|| Contents || Description ||
+| bda-utils | Macros for the NCI CBIIT Build and Deployment automation. You will not need to modify the contents in this directory |
+| common | Contains templates for the configuration files for Clinical Connector |
+| conf | Contains Clinical Connector configuration properties files |
+| db | Contains database scripts to create Clinical Connector database objects. |
+| dll | Contains Clinical Connector - DCAPI support files |
+| server | Tomcat specific support files |
+| sync-gts | Sync-gts specific support files |
+| templates | Contains additional template files that are modified via ant during the deployment process using variables found in install, update and project property files |
+| tools | Contains needed zip and support files for the installation, configuration and maintenance of Clinical Connector |
+| webapps | The Clinical Connector Grid Services |
+| build.xml | ANT Build file for installing Clinical Connector |
+| install.properties | Contains the properties used to run the ANT scripts for  the Clinical Connector  installation .  This is the file that would be modified to customize the installation. |
+| project.properties | This contains properties that are usually not required to be modified for the installation |
+| Properties.template | Description of all the properties used in the installation properties files |
+| upgrade.properties | Properties related to upgrading Clinical Connector. |
+
+h2. {anchor:_Toc213981148} Step 2: The Clinical Connector Build Script
+
+The Clinical Connector build scripts are developed using ant. The following table contains the description of most frequently used ant targets and a reference to the description of other available targets.
+|| Target || Description ||
+| install | * Installs Apache Tomcat \\
+* Deploys Clinical Connector Grid Services and support files \\
+* Starts Tomcat container |
+| upgrade | * Reads current Tomcat Installation \\
+* Updates current Tomcat container/installation \\
+* Deploys Clinical Connector Grid Services and support files \\
+* Starts Tomcat container |
+
+h2. {anchor:_Toc213981149}Step 3: installing Clinical Connector using the Ant build file
+
+# Edit both the install.properties and upgrade.properties files, located in the directory where the deployment package was "unzipped" (i.e. C:\clinconn).  Alter the properties mentioned in the table below and supply the appropriate values as deemed by your installation.
+|| Property || Description || Install/upgrade \\
+property file ||
+| database.system.url | The jdbc url representation of the database connection. | Both |
+| database.type | The type of database the Connector is attaching to. For a C3D instance, the value would be "oracle" | Both |
+| database.server | The database server name (i.e. "cbiodb2.nci.nih.gov") | Both |
+| database.port | The database port used for database connections, typically for oracle this value is "1521" | Both |
+| database.name | The database name, typically for Oracle this would be the TNSNAMES database name. | Both |
+| database.user | The database schema owner of the underlying objects for the connector.  For C3D, this would be the owner of the "AutoLoader" and DCAPI Control tables. | Both |
+| database.password | The password for the database schema above. \\
+Note: This value can be passed via install command-line so that the database password is not saved in a file (see below). \\ | Both |
+| database.url | The jdbc url representation of the the database connection. | Both |
+| tomcat.home | The directory where Apache Tomcat is currently deployed. | Upgrade only |
+| tomcat.grid.secure.cert.location | The location and name of the security CERT file | Both |
+| tomcat.grid.secure.key.location | The location and name of the security KEY file | Both |
+| grid.target | The name of the target caGrid used. | Both |
+| grid.index.url | The URL address of the caGrid used. | Both |
+| mail.smtp.server | The mail server address | Both |
+| dorian_service_url | The URL address for the Dorian Information Service | Both |
+| delegation_service_url | The URL address for the Dorian Delegation Service Information Service | Both |
+| authentication_service_url | The URL address for the Dorian Authentication Service List Service | Both |
+| clinicalconnector_host_identity | The Dorian Delegated Application List Host-Identity | Both |
+# Once the files have been edited and saved, open a command prompt into the directory where the deployment file was "unzipped" (i.e. C:\clinconn) and execute the following command at the command prompt:
+*C:\clinconn> ant \-Dproperties.file=upgrade.properties upgrade*
+# If the using the option of passing database password via command-line is used, execute the following command at the command prompt, where _password_ is the database password required:
+*C:\clinconn> ant \-Dproperties.file=upgrade.properties \-Ddatabase.password=*{*}{_}password{_}* *upgrade*
+
+h2. Step 4:  Unzip the Oracle DB Complete Install Zip file
+
+# On the Windows Server, create a folder called C:\C3DGS-DBComp.
+# Located the file C3DGridService_OracleCompleteInstall.zip in the database installation distribution directory C:\clinConn\db\db-install.
+# Unzip the C3DGridService_OracleCompleteInstall.zip file into the newly created folder from above.
+
+h2. Step 5:  Create Clinical Connector Database Objects
+
+# Open the Oracle SQL Plus Tool.  SQL Plus would have been installed as part of configuring Oracle on the Windows Server.
+# Login with the user C3PR using the correct password for C3PR and the Host name as defined in the TNSNAMES.ora file.
+# Once SQL*Plus is started, select *File / Open* and navigate to the directory where the SQL scripts unzipped to, C:\C3DGS-DBComp.
+# Select the file  C3DGridService_C3PRDBObjects.sql file and then select the *Open* button.
+The contents of "C3DGridService_C3PRDBObjects.sql" will be brought into SQL*Plus.
+# Press return or enter a "." (period) and return to display a normal SQL*Plus prompt.
+*Note*:If you receive an 'Illegal Get Command' error message and the window is returned to the SQL prompt, you may still proceed with the next step to execute the file.
+# Once the SQL prompt reappears, begin object creation for LoadLab by typing the following at the SQL prompt:
+{code:SQL}
+SQL> @C3DGridService_C3PRDBObjects.sql
+{code}
+# Once the SQL prompt reappears, review the log file "install_c3probjects.lst" in the "C3DGS-DBComp" directory for any errors.
+# If no errors are seen, Begin C3D Connector database object creation by reconnecting to Oracle using the userid for the C3D Lab Loader owner.
+# If you do not know the owner of the C3D Lab Loader, the following simple query can be used to determine ownership:
+{code:SQL}
+SQL> select owner from all_objects
+where object_name = 'NCI_LABS' and object_type = 'TABLE';
+{code}
+# Record the value of the Owner from the SQL command above for later use.
+# Exit the SQL*Plus tool.
+
+h2. Step 6:  Check/Install DB Mailer Utility
+
+# SQL*Plus would have been installed as part of configuring Oracle on the C3D server. Open SQL*Plus.
+Login with the C3D Lab Loader owner defining the correct password for this userid and the Host name as defined in the TNSNAMES.ora file.
+# Once SQL*Plus is started, select *File / Open* and navigate to the directory where the SQL scripts were unzipped to, C:\C3DGS-DBComp
+# Select the file Check_C3D_MAIL.sql file and then click the *Open* button.
+The contents of " Check_C3D_MAIL.sql " will be brought into SQL*Plus.
+# Press return or enter a "." (period) and return to display a normal SQL*Plus prompt.
+*Note*:If you receive an 'Illegal Get Command' error message and the window is returned to the SQL prompt, you may still proceed with the next step to execute the file.
+# Once the SQL prompt reappears, begin object creation for C3D by typing the following at the SQL prompt:
+{code:SQL}
+SQL> @Check_C3D_MAIL.sql
+{code}
+# Once the SQL prompt reappears, review the log file "Check_c3d_mail.lst" in the "C3DGS-DBComp" directory for any errors.
+If no errors are are encountered then the DB Mailer Utility already exists.  Skip to *Install the Auto Loader* below; otherwise continue with the next step.
+# Select *File / Open* and navigate to the directory where the SQL script were unzipped to, C:\C3DGS-DBComp.
+# Select the file Install_C3D_MAIL.sql file and then select the *Open* button
+The contents of " Install_C3D_MAIL.sql " will be brought into SQL*Plus.
+# Press return or enter a "." (period) and return to display a normal SQL prompt.
+*Note*:If you receive an 'Illegal Get Command' error message and the window is returned to the SQL prompt, you may still proceed with the next step to execute the file.
+# Once the SQL prompt reappears, begin object creation for C3D Mail by typing the following at the SQL prompt:
+{code:SQL}
+SQL> @Install_C3D_MAIL.sql
+{code}
+# Once the SQL prompt reappears, review the log file "Install_c3d_mail.lst" in the "C3DGS-DBComp" directory for any errors.
+
+h2. Step 7:  Install the Auto Loader
+
+# Once SQL*Plus is started, select *File / Open* and navigate to the directory where the SQL scripts were unzipped to, C:\C3DGS-DBComp
+# Select the file Install_AutoLoader.sql file and then select the *Open* button
+The contents of " Install_AutoLoader.sql " will be brought into SQL*Plus.
+# Press return or enter a "." (period) and return to display a normal SQL prompt.
+*Note*:If you receive an 'Illegal Get Command' error message and the window is returned to the SQL prompt, you may still proceed with the next step to execute the file.
+# Once the SQL prompt reappears, begin object creation for AutoLoader by typing the following at the SQL prompt:
+{code:SQL}
+SQL> @Install_AutoLoader.sql
+{code}
+# Once the SQL prompt reappears, review the log file " Install_AutoLoader.lst" in the "C3DGS-DBComp" directory for any errors.
+# At the SQL prompt type the following command to finalize installation:
+{code:SQL}
+SQL> GRANT DELETE, INSERT, SELECT, UPDATE ON NCI_LABS_MANUAL_LOAD_HOLD TO C3PR;
+{code}
+# Once the SQL prompt reappears, exit SQL*Plus.
+
+h2. Step 8:  Install CSM database objects under C3PR schema
+
+# Open the Oracle SQL Plus Tool. SQL Plus would have been installed as part of configuring Oracle on the Windows Server.
+# Login with the user C3PR using the correct password for C3PR and the Host name as defined in the TNSNAMES.ora file.
+# Once SQL*Plus is started, select File / Open and navigate to the directory where the SQL scripts unzipped to, C:\C3DGS-DBComp.
+# Select the file Install_c3d_csm.sql file and then select the Open button.
+The contents of "Install_c3d_csm.sql" will be brought into SQL*Plus.
+# Press return or enter a "." (period) and return to display a normal SQL*Plus prompt.
+Note:If you receive an 'Illegal Get Command' error message and the window is returned to the SQL prompt, you may still proceed with the next step to execute the file.
+# Once the SQL prompt reappears, begin object creation for CSM objects by typing the following at the SQL prompt:
+{code:SQL}
+SQL> @Install_c3d_csm.sql
+{code}
+# Once the SQL prompt reappears, review the log file "install_c3d_csm.lst" in the "C3DGS-DBComp" directory for any errors.
+# Exit the SQL*Plus tool.
+
+h2. Step 9:  Adjust objects for C3PR Schema
+
+# Login to SQL*Plus using the C3PR userid, password and the Host as defined in the TNSNAMES.ora file:
+# At the SQL prompt enter the following SQL commands to create synonyms to point to the C3D Lab Loader Utility tables:
+where *{_}OWNER{_}* is replaced with C3D Lab Loader Owner id.
+{code:SQL}
+SQL> CREATE SYNONYM NCI_LABS_MANUAL_LOAD_HOLD FOR OWNER.NCI_LABS_MANUAL_LOAD_HOLD;
+SQL> CREATE SYNONYM NCI_LABS_MANUAL_LOAD_CTL  FOR OWNER.NCI_LABS_MANUAL_LOAD_CTL;
+{code}
+
+h2. Step 10: Configure DB Mailer Utility
+
+# Remaining logged in as the C3PR user, at the SQL prompt, execute the following sql command:
+{code:sql}
+SQL> select * from C3D_MAIL_CTL Where UTIL_CODE = 'AUTO_LOADER' or UTIL_CODE = 'C3D_MAILER';
+{code}
+The returned results should contain at least these rows:
+|| UTIL_CODE || ALERT_TYPE || TO_ADDRESS ||
+| AUTO_LOADER | FAILURE | emailaddress@mail.server |
+| AUTO_LOADER | SUCCESS | emailaddress@mail.server |
+| C3D_MAILER | FAILURE | emailaddress@mail.server |
+| C3D_MAILER | WARNING | emailaddress@mail.server |
+| C3D_MAILER | MAILSERVER | MAILFWD.NIH.GOV |
+# To set e-mail alerts for the Auto Load and DB Mailer Utility, change the values in the TO_ADDRESS column to a valid email address for e-mail.  Use the sample SQL command below to update the the e-mail recipients to valid email address for your organization:
+{code:SQL}
+SQL> update C3D_MAIL_CTL
+set TO_ADDRESS='brownph2@mail.nih.gov'
+where UTIL_CODE = 'AUTO_LOADER';
+{code}
+# Set the correct value for the e-mail server by updating the TO_ADDRESS of the MAILSERVER row to the correct value for your organization:
+{code:SQL}
+SQL> update C3D_MAIL_CTL
+set TO_ADDRESS='validmailserver'
+where UTIL_CODE = 'C3D_MAILER' and ALERT_TYPE='MAILSERVER';
+{code}
+# Then perform the following to commit the changes:
+{code:SQL}
+SQL> commit;
+{code}
+
+h2. Step 11: Encrypt the Database Owner Passwords
+
+# Navigate to the Clinical Connector Deployment Tools directory, C:\clinConn\tools and open a DOS command prompt.
+# Execute the following command string to determine the encrypted password for the C3DDCAPIUSER:
+{code}
+C:\clinConn\tools> java StringEncrypter password_to_be_encrypted
+{code}
+where *{_}password_to_be_encrypted{_}* is replaced with the password defined for the C3DDCAPIUSER
+An Encrypted string is returned (i.e.)    ctKPvE/WrKXVEnWMuRjR2Q==
+# Make a note of this encrypted string for this userid.
+# Repeat for the C3PR user:
+{code}
+C:\clinConn\tools> java StringEncrypter password_to_be_encrypted
+{code}
+An Encrypted string is returned (i.e.)   YhF/D8rDC9w5chU/fQ44sw==
+# Make a note of this encrypted string for this userid.
+# Exit the command prompt window.
+# Open SQL*Plus and login with the C3PR userid, password and Host as defined in the tnsnames.ora file:
+# Modify the following sql to record into the database the value of the encrypted password obtained for the C3DDCAPIUSER above:
+{code:SQL}
+SQL> update DCAPI_USER_CREDENTIALS
+set PWORD='encryptedvaluefromabove', C3D_TNS_ENTRY='SQL*Net Connection String'
+where UNAME='C3DDCAPIUSER';
+{code}
+\*note:*The C3D_TNS_Entry is the Service_Name as it is defined in the tnsnames.ora file.
+Using the example DATA FROM ABOVE, the sql would look something like the following:
+{CODE:sql}
+SQL> update DCAPI_USER_CREDENTIALS
+set PWORD= 'ctKPvE/WrKXVEnWMuRjR2Q==', C3D_TNS_ENTRY='OCTRN.NCI.NIH.GOV'
+where UNAME='C3DDCAPIUSER';
+{CODE}
+# Commit these changes by performing the following:
+{CODE:sql}
+SQL>commit;
+{CODE}
+# Exit the SQL*Plus window
+{column}
+{section}

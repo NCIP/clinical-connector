@@ -1,0 +1,41 @@
+== Tool Overview ==
+
+[[Image:Clinical Connector Diagram small.jpg|400px|right]]The Clinical Connector provides a semantically integrated service layer via caGRID that allows C3D adopters to expose functions within C3D (Oracle Clinical). The exposed service layer uses a BRIDG based model and defines service operations that could be implemented by other CTMS systems. The first service allows external applications to load laboratory test result data into C3D study structures for registered patients. The second service allows external applications to enroll patients onto a C3D hosted study. Exposing additional C3D functionality is being planned. 
+
+== At a Glance Details ==
+
+* Version Number and Release Date: [https://gforge.nci.nih.gov/docman/view.php/365/20093/Clinical%20Connector_2.0_Release_Notes.docx Release 2.0 (December 2009)]
+* caBIG® Tool Bundle: CTMS 
+* Grid Enabled? Yes
+* Compatibility Level: Under Review
+* Installation Level: Intermediate - technical assistance may be required, download may require supporting infrastructure or software
+* System Requirements: Web-based Application; requires installation of code base
+
+== Presentations, Demos and Other Materials ==
+
+* [https://cabig.nci.nih.gov/tool_brochures/ClinConnFS_010410-508.pdf Clincial Connector Brochure]
+
+== Documentation and Training ==
+
+* [https://cabig-kc.nci.nih.gov/CTMS/KC/index.php/Clinical_Connector_Documentation Clinical Connector Documentation]
+
+== Forum for Questions about This Tool == 
+
+* [https://cabig-kc.nci.nih.gov/CTMS/forums/viewforum.php?f=26 End User forum]
+* [https://cabig-kc.nci.nih.gov/CTMS/forums/viewforum.php?f=27 Developer forum]
+
+== Installation/Downloads == 
+
+* [https://gforge.nci.nih.gov/frs/download.php/7904/ClinicalConnector_v2.0_distribution.zip Installation file] 
+* [https://wiki.nci.nih.gov/display/Suite/Chapter+13+-+Installing+Clinical+Connector Installation Guide]
+* [https://gforge.nci.nih.gov/docman/view.php/365/20093/Clinical%20Connector_2.0_Release_Notes.docx Clinical Connector v2.0 Release Notes]
+
+== Related Tools == 
+
+* [[caBIG® Clinical Trials Suite|caBIG<sup>&#174;</sup> Clinical Trials Suite]], [[C3PR]], [[caAERS]], [[PSC]], [[LabViewer]], [[CaBIG_Integration_Hub|caBIG<sup>&#174;</sup> Integration Hub (formerly caXchange)]]
+
+== Other Links and Support == 
+
+* [https://cabig.nci.nih.gov/workspaces/CTMS/?pid=primary.2006-10-24.9768040952&sid=ctmsws&status=True CTMS Workspace]
+* For application support, post on the end user forums, developers forms, or send email to [mailto:ncicb@pop.nci.nih.gov ncicb@pop.nci.nih.gov]
+* [[C3D Connector Project|Developer project page]]

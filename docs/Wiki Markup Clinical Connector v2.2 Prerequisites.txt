@@ -1,0 +1,91 @@
+{scrollbar}
+
+h2. {page-info:title}
+
+This chapter explains what software you must install on the Windows server before installing the caBIG{~}^®^~ Clinical Connector.
+
+This chapter includes the following topics.
+{toc:minLevel=3}
+
+h3. Clinical Connector Baseline Software Requirements
+
+|| Requirement || Version || Component || Link ||
+|| Java SE | 1.5.0_10 SDK | Apps, webSSO | [http://java.sun.com/products/archive/] ||
+|| Ant | 1.7 | Installation | [http://archive.apache.org/dist/ant/binaries/] ||
+|| Tomcat | 5.5.27 | Apps, webSSO | [https://gforge.nci.nih.gov/svnroot/commonlibrary/trunk/techstack/approved-exception/apache-tomcat-5.5.27.zip] ||
+|| caGrid | 1.3 | caBIG Integration Hub | [http://gforge.nci.nih.gov/frs/download.php/7813/caGrid-installer-1.3.zip] ||
+|| Oracle Client | 8.0.6 | Oracle Client run-time libraries and tools | The client software should be available from the Oracle DBA or System Group that installed C3D ||
+
+h3. Step 1: Download caBIG{~}^®^~ Clinical Trials Suite 2.2
+
+The Suite distribution consists of multiple parts. The parts can be downloaded using the following URLs.
+* \[\]
+* \[\]
+* \[\]
+
+Once downloaded, the parts should be unzipped to the same root folder.  Please verify that the sizes of the downloaded files are same as on the Gforge upload site [http://gforge.nci.nih.gov/frs/?group_id=615]. When all parts are unzipped, the root folder contains:
+|| Directory/File || Description ||
+| readme.txt | Includes information on what is included in the bundle. |
+| suite-installer | Exploded Suite installer for caBIG Integration Hub, caBIG Adverse Event Reporting System (caAERS), caBIG Central Clinical Patient Registry (C3PR), caBIG Patient Study Calendar (PSC), and caBIG LabViewer applications |
+| clinical_connector | Zipped installer for the Clinical Connector. |
+| cagrid | Contains the caGrid 1.3 installer and documentation |
+The /cagrid directory contains the necessary files for installing caGrid 1.3. The caGrid installer can be used to install most of the required software for the Clinical Connector.
+
+h3. Step 2: Use caGrid to Install Software Components
+
+{info:title=JAVA_HOME Warning}
+Ensure the environment variable JAVA_HOME is set to the correct value before proceeding with caGrid installation.  A missing or incorrect JAVA_HOME will result in errors during the process.
+{info}
+# Locate the caGrid 1.3 Installer in the /cagrid directory created during the unzipping of the Suite. The Installer should be contained in the file *caGrid-installer-1.3.0.1zip*.
+# Unzip the file *caGrid-installer-1.3.0.1zip*. This creates the directory *caGrid-installer-1.3*. This documentation refers to this directory as *CAGRID_INSTALLER_LOCATION*.
+# From a command prompt, launch the installer using the following command:
+{noformat}
+ C:\> cd CAGRID_INSTALLER_LOCATION
+ C:\CAGRID_INSTALL_LOCATION> java -jar caGrid-installer-1.3.jar
+{noformat}
+# Select the *I agree to this license* checkbox and then click *Next*.
+!ccts_user_1.gif|vspace=4, alt="Screenshot of the license agreement page of the caGrid 1.3 installation."!
+# Select the *Install/Configure caGrid Software* checkbox and the *Install/Configure Grid Service Container* checkbox and click *Next*.
+!caGrid-installer-cagrid-step5_prc.jpg|vspace=4, alt="Screenshot reads: Select installation type. You can choose to install the caGrid source distribution and configure a grid service container (Tomcat or JBoss). Two checkboxes are labeled Install/Configure caGrid Software and Install/Configure Grid Service Container."!
+# The installer detects whether or not you have already installed *Ant*. You must specify the location where you want to install Ant and click *Next*.
+!caGrid-installer-step6.jpg|vspace=4, alt="Screenshot shows one text box labeled Directory and a Browse button. Click Browse to find the Ant installation location or type it into the Directory box."!
+# The installer detects whether or not you have already installed *Globus*. You must specify the location where you want to install Globus  and click *Next*. !caGrid-installer-step7.jpg|vspace=4, alt="Screenshot shows one text box labeled Directory and a Browse button. Click Browse to find the Globus installation location or type it into the Directory box."!
+# The installer asks you for a location on your local file system to install *caGrid*. Specify a location to install caGrid and click *Next*.
+!caGrid-installer-step8.jpg|vspace=4, alt="Screenshot shows one text box labeled Directory and a Browse button. Click Browse to find the caGrid installation location or type it into the Directory box."!
+# The installer displays a list of tasks that the installer will perform. Click *Next* to begin the installation process. At this time the installer downloads, builds, and installs several components. *This process takes several minutes.*
+!caGrid-installer-NEWstep9.jpg|vspace=4, alt="Screenshot reads: caGrid Install. Installing caGrid and dependencies. Prepared to run the following install tasks: Downloading Ant, Installing Ant, Configuring Ant, Downloading Globus, Installing Globus, Configuring Globus, Downloading caGrid, Installing caGrid, Compiling caGrid."!
+# Once the installer has completed installing all the components, click *Next*.
+!caGrid-installer-complete.gif|vspace=4, alt="Screenshot reads Install caGrid and Dependency Components and the progress bar has reached 100%."!
+# The installer prompts you to specify which Grid you want to configure your installation to use. Select the appropriate Grid from the drop down box and click *Next*.
+!caGrid_select_target_grid.gif|vspace=4, alt="Screenshot of the step in the caGrid 1.3 installation process where you specify the target grid. A drop-down list with the label Target Grid is the only option in the dialog box."!
+# The installer shows a summary of the tasks to be completed. Click *Next* to configure caGrid to use the selected target Grids. *This process takes several minutes.*
+!task_summary.gif|vspace=4, alt="Screenshot of configuring target grid step. Dialog box reads: Prepared to run the following install tasks: Configuring Target Grid."!
+# Once the installer has finished configuring caGrid to use the target Grid, click *Next*. The installer then prompts for the type of container to install. Choose Tomcat from the drop down box and also select the *Should the container be secure?* checkbox. Click *Next*. !caGrid-installer-NEWstep12_tomcat.jpg|vspace=4, alt="Screenshot has one drop-down list labeled Container Type and one checkbox labeled Should the container be secure?"!
+# The installer then prompts for Container Ports. Using the default values is sufficient. Click *Next*.
+!caGrid-installer-NEWstep12_tomcat_ports.jpg|vspace=4, alt="Screenshot has three text boxes labeled Hostname, Shutdown Port, and HTTPS Port."!
+# The installer then prompts for Host Credentials. These will be retrieved and configured into the deployment at a later step, so choose *Copy in host credentials manually.* Click *Next*.
+!caGrid-installer-NEWstep12_tomcat_gaards.jpg|vspace=4, alt="Screenshot shows a drop-down box labeled Obtain host credentials method. The option Copy in host credentials manually appears in the drop-down list."!
+# The installer then prompts for the installation location for *Tomcat*. You must specify the location where you want to install Tomcat and click *Next*.
+!caGrid-installer-NEWstep12_tomcat_directory.jpg|vspace=4, alt="Screenshot shows a text box labeled Directory and a Browse button and is preceded by the instruction to provide the directory into which Tomcat should be installed."!
+# The installer shows a summary of the container installation tasks to be completed. Click *Next* to install, deploy and configure the service container. *This process takes several minutes.*
+!caGrid-installer-NEWstep12_tomcat_gaards_build.jpg|vspace=4, alt="Screenshot reads Prepared to run the following install tasks: Downloading Tomcat, Installing Tomcat, Deploying Globus to Tomcat, Configuring Globus in Tomcat, and Deploying syncGTS."!
+# Once the installer has completed installing all the components, click *Next*.
+# The installer will then show the installation completion screen. A message appears reminding you to set System Environment variables for ANT_HOME, GLOBUS_LOCATION and CATALINA_HOME. Click *Finish* then *Close* to finalized caGrid installation.
+
+h3. Step 3: Add System Environment Variables
+
+System Environment variables need to be set for the software installed by the caGrid Installer.
+# Click the Windows *Start* button, then right-click on *My Computer*. Choose the *Properties* option.
+# On the System Properties dialog box, choose the *Advanced* tab, then click the *Environment Variables* button.
+!System_Properties.jpg|vspace=4, alt=Screenshot of the Advanced tab on the System Properties dialog box. The Environment Variables button is at the bottom."!
+# In the Environment Variables window, under the&nbsp; Systems variable section, click the *New* button and enter the information for each of the three environment variables (ANT_HOME, GLOBUS_LOCATION, CATALINA_HOME). Click *OK* to save each environment variable.
+# Click *OK* to save and close the Environment Variables window, then click *OK* to close the System Properties window.
+
+h3. Step 4: Install Oracle 8.0.6 Client Software
+
+The Oracle Client 8.0.6 Software comes with its own installation program.&nbsp; Use the included installation program to install the following products:Oracle8 ClientOracle8 Client Application, User Products, SQL*Plus Products, Programmer/2000 Products.  When installing Oracle 8.0.6 Client Software, it is best to use the default values suggested by the installer for the installation variables.
+{info:title=TNSNAMES.ORA Warning}
+To ensure that the service can properly connect to the Oracle database, verify that a database connection definition entry has been added to the file TNSNAMES.ORA.  The Oracle 8.0.6 Client Software installation places this files in the directory, C:\ORANT\NET80\ADMIN.
+{info}
+
+{scrollbar}
