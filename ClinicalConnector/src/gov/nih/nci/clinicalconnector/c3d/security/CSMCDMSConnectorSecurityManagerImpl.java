@@ -46,7 +46,7 @@ public class CSMCDMSConnectorSecurityManagerImpl implements
         String username = callerId.substring(beginIndex, endIndex);
  
         try {
-			props = PropertiesUtil.getProperties();
+			props = PropertiesUtil.getPropertiesFromDB();
 		} catch (Exception e) {
 		}
 		
@@ -117,7 +117,7 @@ public class CSMCDMSConnectorSecurityManagerImpl implements
         String username = callerId.substring(beginIndex, endIndex);
  
         try {
-			props = PropertiesUtil.getProperties();
+			props = PropertiesUtil.getPropertiesFromDB();
 		} catch (Exception e) {
 		}
 		
@@ -194,7 +194,7 @@ public class CSMCDMSConnectorSecurityManagerImpl implements
 		Properties props = null;
 		
 		try {
-			props = PropertiesUtil.getProperties();
+			props = PropertiesUtil.getPropertiesFromDB();
 		} catch (Exception e) {
 		}
 		/*if (!csmAccessPermissions.get(protElemName))

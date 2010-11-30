@@ -18,7 +18,7 @@ public class CSMCDMSConnectorSecurityManagerTest extends TestCase{
 		Map<String, Boolean> csmAccessPermissions = new HashMap<String, Boolean>();
 		Properties props = null;
 		try {
-			props = PropertiesUtil.getProperties();
+			props = PropertiesUtil.getDBProperties();
 		} catch (Exception e) {
 		}
 		csmAccessPermissions.put(CDMSConnectorSecurityManager.ENROLLPATIENT_SERVICE, true);

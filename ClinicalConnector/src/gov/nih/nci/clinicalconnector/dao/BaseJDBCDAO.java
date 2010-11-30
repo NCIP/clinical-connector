@@ -40,7 +40,7 @@ public abstract class BaseJDBCDAO {
 
 		Properties props = null;
 		try {
-			props = PropertiesUtil.getProperties();
+			props = PropertiesUtil.getPropertiesFromDB();
 		} catch (Exception e) {
 
 		}
@@ -65,7 +65,7 @@ public abstract class BaseJDBCDAO {
 
 		Properties props = null;
 		try {
-			props = PropertiesUtil.getProperties();
+			props = PropertiesUtil.getPropertiesFromDB();
 		} catch (Exception e) {
 
 		}

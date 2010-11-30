@@ -39,7 +39,7 @@ public class LoadLabsManagerImpl implements LoadLabsManager {
 	public Object loadLabs(Object request) throws Exception {
 		Properties props = null;
 		try {
-			props = PropertiesUtil.getProperties();
+			props = PropertiesUtil.getPropertiesFromDB();
 		} catch (Exception e) {
 		}
 		/*String userDN = null;

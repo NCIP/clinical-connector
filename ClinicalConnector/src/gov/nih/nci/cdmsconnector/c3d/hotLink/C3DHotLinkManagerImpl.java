@@ -80,7 +80,7 @@ public class C3DHotLinkManagerImpl implements HotLinkManager {
 	protected String createHotLink(String transactionId) {
 		Properties props = null;
 		try {
-			props = PropertiesUtil.getProperties();
+			props = PropertiesUtil.getPropertiesFromDB();
 		} catch (Exception e) {
 
 		}
