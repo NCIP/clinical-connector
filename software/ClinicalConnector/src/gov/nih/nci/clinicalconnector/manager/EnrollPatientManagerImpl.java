@@ -46,7 +46,7 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 			throws InvalidRequestException, AccessPermissionException {
 		Properties props = null;
 		try {
-			props = PropertiesUtil.getProperties();
+			props = PropertiesUtil.getPropertiesFromDB();
 		} catch (Exception e) {
 		}
 		String userDN=null;
