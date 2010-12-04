@@ -92,18 +92,24 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 
 			String studyName = cdmsEnrollPatientRequest.getStudy().getStudyIdentifier();
 			String siteName = cdmsEnrollPatientRequest.getStudy().getStudySite().getOrganizationName();
-			try {
-				userDN=gov.nih.nci.cagrid.introduce.servicetools.security.SecurityUtils.getCallerIdentity();
-			    try {
-			    	 SuiteRole suiteRole = securityManager.getRole(props.getProperty(gov.nih.nci.cdmsconnector.util.Constants.ClinConCSMRegRole));
-				     securityManager.checkAuthorization(userDN, studyName,siteName, suiteRole);
-	      		} catch (Exception e1) {
-			    	e1.printStackTrace();
-				    throw new AccessPermissionException(e1.toString());
-	      		}
-			} catch (Exception e1) {
-				e1.printStackTrace();
-				throw new AccessPermissionException(e1.toString());
+			
+			String useCSM = props.getProperty("enrollPatientService.useCSM");
+			
+			if (useCSM != null && useCSM.equalsIgnoreCase("true")) {
+
+				try {
+					userDN=gov.nih.nci.cagrid.introduce.servicetools.security.SecurityUtils.getCallerIdentity();
+					try {
+						SuiteRole suiteRole = securityManager.getRole(props.getProperty(gov.nih.nci.cdmsconnector.util.Constants.ClinConCSMRegRole));
+						securityManager.checkAuthorization(userDN, studyName,siteName, suiteRole);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+						throw new AccessPermissionException(e1.toString());
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					throw new AccessPermissionException(e1.toString());
+				}
 			}
 
 			String patientPosition = (String) enrollPatient(cdmsEnrollPatientRequest);
@@ -141,7 +147,52 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 			//cdmsEnrollPatientRequest.getStudySubject().setBirthDate(null);
 		}*/
 
-		return enrollmentDAO.enrollPatient(cdmsEnrollPatientRequest,isSaveEnrollmentDate(),
+		Properties props = null;
+		try {
+			props = PropertiesUtil.getPropertiesFromDB();
+		} catch (Exception e) {
+		}
+		
+	    try {
+	    	 String saveBirthDate = props.getProperty("enrollPatientManager.saveBirthDate.value");
+	    	 System.out.println("saveBirthDate from DB = '" + saveBirthDate);
+	    	 
+			 if (saveBirthDate != null && saveBirthDate.equalsIgnoreCase("true")){ 
+				 setSaveBirthDate(true);
+			 } else {
+				 setSaveBirthDate(false);
+			 }
+
+	    	 String saveGender = props.getProperty("enrollPatientManager.saveGender.value");
+	    	 System.out.println("saveGender from DB = '" + saveGender);
+	    	 
+			 if (saveGender != null && saveGender.equalsIgnoreCase("true")){ 
+				 setSaveGender(true);
+			 } else {
+				 setSaveGender(false);
+			 }
+	    	 String saveInitials = props.getProperty("enrollPatientManager.saveInitials.value");
+	    	 System.out.println("saveInitials from DB = '" + saveInitials);
+	    	 
+			 if (saveInitials != null && saveInitials.equalsIgnoreCase("true")){ 
+				 setSaveInitials(true);
+			 } else {
+				 setSaveInitials(false);
+			 }
+	    	 String saveEnrollmentDate = props.getProperty("enrollPatientManager.saveEnrollmentDate.value");
+	    	 System.out.println("saveEnrollmentDate from DB = '" + saveEnrollmentDate);
+	    	 
+			 if (saveEnrollmentDate != null && saveEnrollmentDate.equalsIgnoreCase("true")){ 
+				 setSaveEnrollmentDate(true);
+			 } else {
+				 setSaveEnrollmentDate(false);
+			 }
+
+      	} catch (Exception e) {
+		}
+		
+      	
+      	return enrollmentDAO.enrollPatient(cdmsEnrollPatientRequest,isSaveEnrollmentDate(),
 				isSaveGender(),isSaveInitials(), isSaveBirthDate());
 	}
 
