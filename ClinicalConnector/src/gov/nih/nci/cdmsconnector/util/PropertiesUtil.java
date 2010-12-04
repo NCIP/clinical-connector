@@ -97,51 +97,50 @@ public class PropertiesUtil {
 		Connection cn = null;
 		PreparedStatement stmt1 = null;
 
-		if (props == null) {
-			try {
-				getDBProperties();
-			} catch (Exception e) {
-
-			}
-
-			try {
-				String propKey = null, propVal = null;
-
-				Class.forName(props.getProperty(Constants.C3DDS_DRIVERCLASSNAME));
-				cn = DriverManager.getConnection(
-						props.getProperty(Constants.C3DDS_URL), 
-						props.getProperty(Constants.C3DDS_USERNAME), 
-						props.getProperty(Constants.C3DDS_PASSWORD));
-
-				stmt1 = cn.prepareStatement(GET_PROPS_FROM_DB);
-				
-				ResultSet rs1 = stmt1.executeQuery();
-				while (rs1.next()) {
-					
-					//recordExists = true;
-					propKey = rs1.getString("PROPERTY_KEY");
-					propVal = rs1.getString("PROPERTY_VALUE");
-
-					props.put(propKey, propVal);
-				}
-	            				
-			} finally {
-				try {
-					stmt1.close();
-				} catch (Exception ex) {
-				}
-				try {
-					cn.close();
-				} catch (Exception ex) {
-				}
-			}
-
-			if (!props.isEmpty()) {
-
-				validateProperties(props);
-			}
+		//if (props == null) {
+		try {
+			getDBProperties();
+		} catch (Exception e) {
 
 		}
+
+		try {
+			String propKey = null, propVal = null;
+
+			Class.forName(props.getProperty(Constants.C3DDS_DRIVERCLASSNAME));
+			cn = DriverManager.getConnection(
+					props.getProperty(Constants.C3DDS_URL), 
+					props.getProperty(Constants.C3DDS_USERNAME), 
+					props.getProperty(Constants.C3DDS_PASSWORD));
+
+			stmt1 = cn.prepareStatement(GET_PROPS_FROM_DB);
+				
+			ResultSet rs1 = stmt1.executeQuery();
+			while (rs1.next()) {
+					
+				//recordExists = true;
+				propKey = rs1.getString("PROPERTY_KEY");
+				propVal = rs1.getString("PROPERTY_VALUE");
+
+				props.setProperty(propKey, propVal);
+			}
+	            				
+		} finally {
+			try {
+				stmt1.close();
+			} catch (Exception ex) {
+			}
+			try {
+				cn.close();
+			} catch (Exception ex) {
+			}
+		}
+
+		if (!props.isEmpty()) {
+			validateProperties(props);
+		}
+
+		//}
 		showDBProperties();
 		return props;
 

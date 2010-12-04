@@ -77,14 +77,16 @@ public class LoadLabsManagerImpl implements LoadLabsManager {
 		cdmsRequest = modelAdapter.mapAndValidateLoadLabsRequest(request);
 
 		String userDN = null;
-	    try {
-		     userDN = gov.nih.nci.cagrid.introduce.servicetools.security.SecurityUtils
-				.getCallerIdentity();
- 		} catch (Exception e1) {
-	    	e1.printStackTrace();
-		    throw new AccessPermissionException(e1.toString());
- 		}
-
+		String useCSM = props.getProperty("loadLabsService.useCSM");
+		
+			try {
+				userDN = gov.nih.nci.cagrid.introduce.servicetools.security.SecurityUtils
+					.getCallerIdentity();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+				throw new AccessPermissionException(e1.toString());
+			}
+		
 		for (LabResult result : cdmsRequest.getResults()) {
 
 			if (result == null) {
@@ -93,6 +95,12 @@ public class LoadLabsManagerImpl implements LoadLabsManager {
 
 			String studyName = result.getStudy().getStudyIdentifier();
 			String siteName = null;
+			/*TODO
+			 * Put the Overall CSM Check here.  If we use CSM, then do the try else skip it 
+			 */
+			
+			if (useCSM != null && useCSM.equalsIgnoreCase("true")) {
+
 		    try {
 		    	SuiteRole suiteRole = securityManager.getRole(props.getProperty(gov.nih.nci.cdmsconnector.util.Constants.ClinConCSMLabRole));
 		    	securityManager.checkLabAuthorization(userDN, studyName, siteName, suiteRole);
@@ -100,6 +108,7 @@ public class LoadLabsManagerImpl implements LoadLabsManager {
 		    	e1.printStackTrace();
 			    throw new AccessPermissionException(e1.toString());
       		}
+			}
 		}
 
 		String error = null;
