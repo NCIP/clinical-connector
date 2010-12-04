@@ -18,7 +18,7 @@ public class PropertiesUtil {
 
 		if (DBprops == null) {
 
-						String catalinaHome = System.getProperty("catalina.home");
+			String catalinaHome = System.getProperty("catalina.home");
 			String propertiesFilePath = "c3d/c3dgridservice.properties";
 			java.io.InputStream inputStream = null;
 

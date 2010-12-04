@@ -374,7 +374,8 @@ public class GetStudyCDEDataOracleDAOImpl extends OracleDAO implements GetStudyC
 			//authManager = SecurityServiceProvider.getAuthorizationManager("c3d");
 
 			//prc new
-			System.out.println("Grid Credentials:  getCallerIdentity()='" + userDN );
+			System.out.println("Private Access needed for " + studyName + " and [" + cdeStr +"]." );
+			System.out.println("Grid Credentials: " + userDN );
 
 //			org.cagrid.gaards.websso.authentication.CaGridAuthenticationManager authManager = new org.cagrid.gaards.websso.authentication.CaGridAuthenticationManager();
 //			delegatedReference = authManager.getSerializedDelegationEpr();
@@ -426,7 +427,10 @@ public class GetStudyCDEDataOracleDAOImpl extends OracleDAO implements GetStudyC
 					"'  Password='" + c3dPassword +"'");
 			
 			c3dPassword = new StringEncrypter().oDecrypt(c3dPassword.trim());
-						//log.fatal("FATAL - " + "c3dUserName='" + c3dUserName + "'");
+
+			System.out.println("C3D Credentials:  Username='" + c3dUserName +
+					"'  Password='" + c3dPassword +"'");
+			//log.fatal("FATAL - " + "c3dUserName='" + c3dUserName + "'");
 			//log.fatal("FATAL - " + "c3dPassword='" + c3dPassword + "'");
 			try {
 				// connect to the defined database using C3D userid/password 
@@ -449,6 +453,8 @@ public class GetStudyCDEDataOracleDAOImpl extends OracleDAO implements GetStudyC
 		} else {
 			// Use SUPER Username for PUBLIC studies.
 			System.out.println("Using Superuser to Query Public study");
+			System.out.println("Public Access needed for " + studyName + " and [" + cdeStr +"]." );
+
 			//cn = getConnection();
 			/*
 			 * TODO: Get the DCAPI User and Password, IT is a superuser.*/
@@ -467,6 +473,8 @@ public class GetStudyCDEDataOracleDAOImpl extends OracleDAO implements GetStudyC
 				new StudyAccessException(
 					"Unable to get DCAPIUserCredentials. Please Contact C3D Webservices Administrator"));
 			} 
+			System.out.println("C3D Credentials:  Username='" + c3dUserName +
+					"'  Password='" + c3dPassword +"'");
 			cn = getConnection(c3dUserName, c3dPassword);
 			
 		}
