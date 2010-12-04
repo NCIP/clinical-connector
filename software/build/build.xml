@@ -104,6 +104,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 	<property name="db-upgrade.dist.dir" value="${dist.exploded.dir}/${db-upgrade.dist.relative.dir}" />
 	<!-- PRC added relative directories -->
 	<property name="dll.dist.dir" value="${dist.exploded.dir}/${dll.relative.dir}" />
+	<property name="oraweb.dist.dir" value="${dist.exploded.dir}/oraweb" />
 	<property name="conf.dist.dir" value="${dist.exploded.dir}/${conf.relative.dir}" />
 	<property name="template.dist.dir" value="${dist.exploded.dir}/${template.relative.dir}" />
 
@@ -169,6 +170,8 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 	<property name="ClinicalConnector.src.dir" value="${ClinicalConnector.base.dir}/src/web"/>
 	<property name="ClinicalConnector.build.file" value="build.xml" />
 	<property name="ClinicalConnector.build.target" value="war" />
+	<property name="oraweb.src.dir" value="${ClinicalConnector.base.dir}/${oraweb.relative.dir}" />	
+
 
 	<!-- retrive ivy.jar.files then retrieve bda files and librarires -->
 	<condition property="commonlibrary.dir" value="">
@@ -259,6 +262,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
                 <mkdir dir="${db-install.dist.dir}" />
                 <mkdir dir="${db-upgrade.dist.dir}" />                
                 <mkdir dir="${dll.dist.dir}" />    
+                <mkdir dir="${oraweb.dist.dir}" />    
                 <mkdir dir="${conf.dist.dir}" />    
                 
 
@@ -517,6 +521,14 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 			</fileset>
 			<fileset dir="${tools.src.dir}">
 			</fileset>
+		</copy>		
+		<copy todir="${oraweb.dist.dir}" overwrite  ="true">
+			<fileset dir="${oraweb.src.dir}">
+				<include name="**/*.sql"/>
+				<include name="**/*.fmx"/>
+				<include name="**/*.htm"/>
+				<include name="**/*.txt"/>
+			</fileset>			
 		</copy>		
 		<!--${basedir}/${tools.dist.relative.dir} -->
 		<echo message="tools.dist.dir=${tools.dist.dir}" />
