@@ -18,7 +18,7 @@ public abstract class OracleDAO extends BaseJDBCDAO {
 	private static Map<String, String> dcapiUserCredentials;
 
 	public Map<String, String> getDCAPIUserCredentials() {
-		if(dcapiUserCredentials==null){
+		//if(dcapiUserCredentials==null){
 			synchronized(this.getClass()){
 				Map<String, String> m = new HashMap<String, String>();
 				Connection cn = null;
@@ -35,7 +35,10 @@ public abstract class OracleDAO extends BaseJDBCDAO {
 						result.next();
 						m.put(Constants.UNAME, result.getString(Constants.UNAME));
 						pWord = result.getString(Constants.PWORD);
+						
+						System.out.println("---DCAPI PWORD before decryption :" + pWord);
 						log.debug("----------DCAPI PWORD before decryption :" + pWord);
+						
 						gov.nih.nci.cdmsconnector.util.StringEncrypter encrypter = new gov.nih.nci.cdmsconnector.util.StringEncrypter();
 						pWord = encrypter.oDecrypt(pWord);
 
@@ -43,8 +46,10 @@ public abstract class OracleDAO extends BaseJDBCDAO {
 						m.put(Constants.C3D_TNS_ENTRY, result
 								.getString(Constants.C3D_TNS_ENTRY));
 
-						log.debug("----------DCAPI UNAME :"
-								+ result.getString(Constants.UNAME));
+						System.out.println("---DCAPI UNAME :" + result.getString(Constants.UNAME));
+						System.out.println("---DCAPI PWORD :" + pWord);
+						System.out.println("---DCAPI C3D_TNS_ENTRY :" + result.getString(Constants.C3D_TNS_ENTRY));
+						log.debug("----------DCAPI UNAME :"	+ result.getString(Constants.UNAME));
 						log.debug("----------DCAPI PWORD :" + pWord);
 						log.debug("----------DCAPI C3D_TNS_ENTRY :"
 								+ result.getString(Constants.C3D_TNS_ENTRY));
@@ -65,7 +70,7 @@ public abstract class OracleDAO extends BaseJDBCDAO {
 				}
 				dcapiUserCredentials=m;
 			}
-		}
+		//}
 		
 		return dcapiUserCredentials;
 	}
