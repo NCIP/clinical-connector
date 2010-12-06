@@ -1,0 +1,104 @@
+Instructions for Installation Of the Clinical Connector Admin UI to the C3D Middle Tier
+
+First Time Deployment Instructions:
+
+ Database Object Enhancement
+ ---------------------------
+ 1) Connect to SQL*Plus using the Userid and Password of the Clinical Connector Admin UI Owner. (C3PR)
+ 3) Once SQL*Plus is started, set your default directory by using the menu options
+    "File / Open"
+    Select the directory where the installtion files are located (step 1).
+    Select the file "Install_CCAdminUI.sql"
+    Select the "Open" button.
+ 4) The contents of the "Install_CCAdminUI.sql" file will be brought into Sql*plus.  
+
+ 5) Install -
+    The installation of the Clinical Connector Admin UI can now begin. 
+    Begin by typing the following at the SQL prompt:
+    @Install_CCAdminUI.sql
+
+    The script will execute
+ 6) Once the SQL prompt reappears, check the output file "Install_CCAdminUI.lst"
+    for errors.
+ 7) Install the Data Extract Forms.
+
+ Web Deployment
+ --------------
+ NOTE:  At the NCICB, a directory has been created on the Middle Tier Web Server 
+ (the same machine where RDC and OPA are deplyed) that holds C3D Utilities and Applications.
+ This directory is named "ncioraapps" (i.e. D:\ncioraapps).  A subdirectory "html" was also 
+ created, to hold Utility specific launch web pages. (i.e. D:\ncioraapps\html).
+
+ Using this set up mentioned above, the following steps can be used to deploy the 
+ Clinical Connector Admin UI as a Web App.
+
+ 1) The Clinical Connector Admin UI form will need deployed to the C3D Application directory.
+
+ 	Copy the file:
+
+	CCAdminUI.FMX
+
+	to:
+
+	D:\ncioraapps
+
+ 2) Next, the html landing page for the form needs deployed:
+
+ 	Copy the file:
+
+	CCAdminUI.htm
+
+	to:
+
+	D:\ncioraapps\html
+
+ 3) Next, the web configuration for the tool needs added to the web configuration file.
+    Note, this is a ONE TIME edit.  If the tool has already been configured, do not add it again
+
+ 	edit the following file:
+
+	d:\ORACLE\806\FORMS60\server\formsweb.cfg
+
+	to the end of the file, cut-and-paste the contents of the file:
+
+	Formsweb_cfg_CCAdminUI.TXT
+
+ 4) The Service "OracleiSuitesHTTPServer" will need to be restarted on the Middle Tier, to ensure 
+    that the application is available.
+
+ 5) Once completed, the URL should be similar to:
+    http://middle_tier_name/opa45/CCAdminUI.htm
+    *Note: middle_tier_name should be the same as that used by the URL for RDC or OPA.
+
+
+
+
+
+
+
+* * * * * * *
+* N O T E S *
+* * * * * * *
+
+Data Extract v1.0.2
+
+Security Changes:
+
+Data Extract v1.0.2 contains a modification to the way Oracle Security is applied to the application.
+System Privileges were removed from the Data Extract Roles and placed instead on the owner CTEXT
+of Data Extract.  This allows the packages to be executed by users, but inherit the privileges of the 
+owner of the package. This means that the users do not have any System Privileges beyond the scope 
+of their regular database activities.
+
+Special Literal Option:
+
+Data Extract v1.0.2 contains an enhancement that allows individual studies to specify the character to 
+be used to denote a "NULL" in Text Values when building CTMS Data Files.  Theradex v310 and v312 allow
+the option of either spaces or the character "*" to denote a NULL value.  By default, spaces are used 
+to denote NULL values.  To override this option, the user must change the value of the Literal field in
+the CT EXT STUDY CTL section of the "Extract Control Data" form.  This is best performed for NEW 
+studies.  Studies previously extracted will contain two different Literal values for NULL, which 
+could increase the number of "update" records in a candidate submission. 
+
+
+
