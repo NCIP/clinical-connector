@@ -1,7 +1,7 @@
 package gov.nih.nci.cdmsconnector.dao.c3d;
 
-import gov.nih.nci.c3d.study.EnrollPatient;
-import gov.nih.nci.cdmsconnector.c3d.security.C3DUser;
+/*import gov.nih.nci.c3d.study.EnrollPatient;
+import gov.nih.nci.cdmsconnector.c3d.security.C3DUser;*/
 import gov.nih.nci.cdmsconnector.c3d.security.CSMCDMSConnectorSecurityManagerImpl;
 import gov.nih.nci.cdmsconnector.dao.BaseJDBCDAO;
 import gov.nih.nci.cdmsconnector.dao.GetStudyCDEDataDAO;
@@ -18,10 +18,10 @@ import gov.nih.nci.cdmsconnector.domain.StudySubject;
 import gov.nih.nci.cdmsconnector.manager.AccessPermissionException;
 import gov.nih.nci.cdmsconnector.manager.StudyAccessException;
 import gov.nih.nci.cdmsconnector.util.Constants;
-import gov.nih.nci.security.AuthorizationManager;
+/*import gov.nih.nci.security.AuthorizationManager;
 import gov.nih.nci.security.SecurityServiceProvider;
 import gov.nih.nci.security.exceptions.CSConfigurationException;
-import gov.nih.nci.security.exceptions.CSException;
+import gov.nih.nci.security.exceptions.CSException;*/
 import gov.nih.nci.cdmsconnector.util.StringEncrypter;
 
 import java.sql.Connection;
@@ -34,12 +34,12 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.apache.log4j.Logger;
-import org.cagrid.gaards.websso.utils.WebSSOConstants;
+//import org.cagrid.gaards.websso.utils.WebSSOConstants;
 import org.globus.gsi.GlobusCredential;
-import org.jasig.cas.authentication.Authentication;
-import org.jasig.cas.authentication.principal.UsernamePasswordCredentials;
+//import org.jasig.cas.authentication.Authentication;
+//import org.jasig.cas.authentication.principal.UsernamePasswordCredentials;
 
-import com.opensymphony.xwork2.ActionContext;
+//import com.opensymphony.xwork2.ActionContext;
 
 public class GetStudyCDEDataOracleDAOImpl extends OracleDAO implements GetStudyCDEDataDAO {
 

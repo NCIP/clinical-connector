@@ -14,11 +14,11 @@ public interface C3DGridServiceI {
 
   //public gov.nih.nci.cabig.ccts.domain.enrollpatient.EnrollPatientResponse enrollPatient(gov.nih.nci.cabig.ccts.domain.enrollpatient.EnrollPatientRequest enrollPatientRequest) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.EnrollPatientException ;
 
+  //public gov.nih.nci.cabig.ccts.domain.bridg.loadlabs.LoadLabsResponse loadLabs(gov.nih.nci.cabig.ccts.domain.bridg.loadlabs.LoadLabsRequest loadLabsRequest) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.LoadLabsException ;
+
   public gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCDEDataResponse getStudyCDEData(gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCDEDataRequest getStudyCDEDataRequest) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.StudyDataException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException ;
 
   public gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCDEsResponse getStudyCDEs(gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCDEsRequest getStudyCDEsRequest) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.StudyDataException ;
-
-  //public gov.nih.nci.cabig.ccts.domain.bridg.loadlabs.LoadLabsResponse loadLabs(gov.nih.nci.cabig.ccts.domain.bridg.loadlabs.LoadLabsRequest loadLabsRequest) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.LoadLabsException ;
 
   public gov.nih.nci.cabig.ccts.domain.studydata.IsValidStudyResponse isValidStudy(gov.nih.nci.cabig.ccts.domain.studydata.IsValidStudyRequest isValidStudyRequest) throws RemoteException ;
 
@@ -27,6 +27,10 @@ public interface C3DGridServiceI {
   public org.oasis.wsrf.properties.GetResourcePropertyResponse getResourceProperty(javax.xml.namespace.QName params) throws RemoteException ;
 
   public org.oasis.wsrf.properties.QueryResourcePropertiesResponse queryResourceProperties(org.oasis.wsrf.properties.QueryResourceProperties_Element params) throws RemoteException ;
+
+  public gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCRFDataResponse getStudyCRFData(gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCRFDataRequest getStudyCRFDataRequest) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.StudyDataException ;
+
+  public gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCRFsResponse getStudyCRFs(gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCRFsRequest getStudyCRFsRequest) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.StudyDataException ;
 
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService" xmlns:wsrp="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd" xmlns:wsrlw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" xmlns:wsdlpp="http://www.globus.org/namespaces/2004/10/WSDLPreprocessor" xmlns:gtwsdl1="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ServiceGroup-1.2-draft-01.wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:wsntw="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" xmlns:wsrbfw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" xmlns:wsrpw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns1="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns0="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" xmlns:ns0="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.cdt" xmlns:ns7="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" xmlns:ns1="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData" xmlns:ns5="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types" xmlns:ns4="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg.loadlabs" xmlns:ns3="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.enrollPatient" xmlns:ns6="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" xmlns:ns2="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg" name="C3DGridService" targetNamespace="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService">
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService" xmlns:wsrp="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd" xmlns:wsrlw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" xmlns:wsdlpp="http://www.globus.org/namespaces/2004/10/WSDLPreprocessor" xmlns:gtwsdl1="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ServiceGroup-1.2-draft-01.wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:wsntw="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" xmlns:wsrbfw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" xmlns:wsrpw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns1="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns0="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" xmlns:ns1="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.cdt" xmlns:ns6="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" xmlns:ns2="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData" xmlns:ns4="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types" xmlns:ns5="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" xmlns:ns3="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg" xmlns:ns0="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.c3DStudyDataMetadata" name="C3DGridService" targetNamespace="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService">
   <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" location="../wsrf/properties/WS-ResourceProperties.wsdl" />
   <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" location="../wsrf/faults/WS-BaseFaults.wsdl" />
   <import namespace="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" location="../wsrf/notification/WS-BaseN.wsdl" />
@@ -17,17 +17,16 @@
       <import namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" schemaLocation="./xsd/cagrid/types/caGridMetadata.xsd" />
       <import namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData" schemaLocation="./GetStudyData.xsd" />
       <import namespace="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types" schemaLocation="./C3DGridServiceTypes.xsd" />
-      <import namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg.loadlabs" schemaLocation="./LoadLabs.xsd" />
-      <import namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.enrollPatient" schemaLocation="./EnrollPatient.xsd" />
       <import namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" schemaLocation="./xsd/cagrid/types/security/security.xsd" />
       <import namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg" schemaLocation="./bridg.xsd" />
+      <import namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.c3DStudyDataMetadata" schemaLocation="./C3DStudyDataMetadata.xsd" />
       <element name="GetStudyCDEDataRequest">
         <complexType>
           <sequence>
             <element name="getStudyCDEDataRequest">
               <complexType>
                 <sequence>
-                  <element ref="ns1:GetStudyCDEDataRequest" minOccurs="1" maxOccurs="1" />
+                  <element ref="ns2:GetStudyCDEDataRequest" minOccurs="1" maxOccurs="1" />
                 </sequence>
               </complexType>
             </element>
@@ -37,7 +36,7 @@
       <element name="GetStudyCDEDataResponse">
         <complexType>
           <sequence>
-            <element ref="ns1:GetStudyCDEDataResponse" minOccurs="1" maxOccurs="1" />
+            <element ref="ns2:GetStudyCDEDataResponse" minOccurs="1" maxOccurs="1" />
           </sequence>
         </complexType>
       </element>
@@ -47,7 +46,7 @@
             <element name="getStudyCDEsRequest">
               <complexType>
                 <sequence>
-                  <element ref="ns1:GetStudyCDEsRequest" minOccurs="1" maxOccurs="1" />
+                  <element ref="ns2:GetStudyCDEsRequest" minOccurs="1" maxOccurs="1" />
                 </sequence>
               </complexType>
             </element>
@@ -57,7 +56,7 @@
       <element name="GetStudyCDEsResponse">
         <complexType>
           <sequence>
-            <element ref="ns1:GetStudyCDEsResponse" minOccurs="1" maxOccurs="1" />
+            <element ref="ns2:GetStudyCDEsResponse" minOccurs="1" maxOccurs="1" />
           </sequence>
         </complexType>
       </element>
@@ -67,7 +66,7 @@
             <element name="isValidStudyRequest">
               <complexType>
                 <sequence>
-                  <element ref="ns1:IsValidStudyRequest" minOccurs="1" maxOccurs="1" />
+                  <element ref="ns2:IsValidStudyRequest" minOccurs="1" maxOccurs="1" />
                 </sequence>
               </complexType>
             </element>
@@ -77,14 +76,54 @@
       <element name="IsValidStudyResponse">
         <complexType>
           <sequence>
-            <element ref="ns1:IsValidStudyResponse" minOccurs="1" maxOccurs="1" />
+            <element ref="ns2:IsValidStudyResponse" minOccurs="1" maxOccurs="1" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStudyCRFDataRequest">
+        <complexType>
+          <sequence>
+            <element name="getStudyCRFDataRequest">
+              <complexType>
+                <sequence>
+                  <element ref="ns2:GetStudyCRFDataRequest" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStudyCRFDataResponse">
+        <complexType>
+          <sequence>
+            <element ref="ns2:GetStudyCRFDataResponse" minOccurs="1" maxOccurs="1" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStudyCRFsRequest">
+        <complexType>
+          <sequence>
+            <element name="getStudyCRFsRequest">
+              <complexType>
+                <sequence>
+                  <element ref="ns2:GetStudyCRFsRequest" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStudyCRFsResponse">
+        <complexType>
+          <sequence>
+            <element ref="ns2:GetStudyCRFsResponse" minOccurs="1" maxOccurs="1" />
           </sequence>
         </complexType>
       </element>
       <element name="C3DGridServiceResourceProperties">
         <complexType>
           <sequence>
-            <element ref="ns7:ServiceMetadata" />
+            <element ref="ns6:ServiceMetadata" />
           </sequence>
         </complexType>
       </element>
@@ -109,17 +148,23 @@
   <message name="IsValidStudyResponse">
     <part name="parameters" element="tns:IsValidStudyResponse" />
   </message>
-  <message name="InValidStudyExceptionFaultMessage">
-    <part name="fault" element="ns5:InValidStudyException" />
+  <message name="GetStudyCRFDataRequest">
+    <part name="parameters" element="tns:GetStudyCRFDataRequest" />
   </message>
-  <message name="EnrollPatientExceptionFaultMessage">
-    <part name="fault" element="ns5:EnrollPatientException" />
+  <message name="GetStudyCRFDataResponse">
+    <part name="parameters" element="tns:GetStudyCRFDataResponse" />
+  </message>
+  <message name="GetStudyCRFsRequest">
+    <part name="parameters" element="tns:GetStudyCRFsRequest" />
+  </message>
+  <message name="GetStudyCRFsResponse">
+    <part name="parameters" element="tns:GetStudyCRFsResponse" />
   </message>
   <message name="StudyDataExceptionFaultMessage">
-    <part name="fault" element="ns5:StudyDataException" />
+    <part name="fault" element="ns4:StudyDataException" />
   </message>
-  <message name="LoadLabsExceptionFaultMessage">
-    <part name="fault" element="ns5:LoadLabsException" />
+  <message name="InValidStudyExceptionFaultMessage">
+    <part name="fault" element="ns4:InValidStudyException" />
   </message>
   <!--============================================================
 
@@ -142,6 +187,18 @@
     <operation name="isValidStudy">
       <input message="tns:IsValidStudyRequest" wsa:Action="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/IsValidStudyRequest" />
       <output message="tns:IsValidStudyResponse" wsa:Action="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/IsValidStudyResponse" />
+    </operation>
+    <operation name="getStudyCRFData">
+      <input message="tns:GetStudyCRFDataRequest" wsa:Action="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/GetStudyCRFDataRequest" />
+      <output message="tns:GetStudyCRFDataResponse" wsa:Action="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/GetStudyCRFDataResponse" />
+      <fault name="InValidStudyException" message="tns:InValidStudyExceptionFaultMessage" wsa:Action="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/InValidStudyExceptionFaultMessage" />
+      <fault name="StudyDataException" message="tns:StudyDataExceptionFaultMessage" wsa:Action="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/StudyDataExceptionFaultMessage" />
+    </operation>
+    <operation name="getStudyCRFs">
+      <input message="tns:GetStudyCRFsRequest" wsa:Action="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/GetStudyCRFsRequest" />
+      <output message="tns:GetStudyCRFsResponse" wsa:Action="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/GetStudyCRFsResponse" />
+      <fault name="InValidStudyException" message="tns:InValidStudyExceptionFaultMessage" wsa:Action="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/InValidStudyExceptionFaultMessage" />
+      <fault name="StudyDataException" message="tns:StudyDataExceptionFaultMessage" wsa:Action="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/StudyDataExceptionFaultMessage" />
     </operation>
     <operation name="getServiceSecurityMetadata">
       <input message="wns0:GetServiceSecurityMetadataRequest" wsa:Action="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity/GetServiceSecurityMetadataRequest" />

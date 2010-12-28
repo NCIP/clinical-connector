@@ -59,19 +59,11 @@ public class C3DGridServiceAuthorization implements PDP {
 		
 	}
 	   				
-	public void authorizeEnrollPatient(Subject peerSubject, MessageContext context, QName operation) throws AuthorizationException {
-		
-	}
-	   				
 	public void authorizeGetStudyCDEData(Subject peerSubject, MessageContext context, QName operation) throws AuthorizationException {
 		
 	}
 	   				
 	public void authorizeGetStudyCDEs(Subject peerSubject, MessageContext context, QName operation) throws AuthorizationException {
-		
-	}
-	   				
-	public void authorizeLoadLabs(Subject peerSubject, MessageContext context, QName operation) throws AuthorizationException {
 		
 	}
 	   				
@@ -90,6 +82,14 @@ public class C3DGridServiceAuthorization implements PDP {
 	public void authorizeQueryResourceProperties(Subject peerSubject, MessageContext context, QName operation) throws AuthorizationException {
 		
 	}
+	   				
+	public void authorizeGetStudyCRFData(Subject peerSubject, MessageContext context, QName operation) throws AuthorizationException {
+		
+	}
+	   				
+	public void authorizeGetStudyCRFs(Subject peerSubject, MessageContext context, QName operation) throws AuthorizationException {
+		
+	}
 	   
 	
 	public boolean isPermitted(Subject peerSubject, MessageContext context, QName operation)
@@ -101,17 +101,11 @@ public class C3DGridServiceAuthorization implements PDP {
 		if(operation.getLocalPart().equals("getServiceSecurityMetadata")){
 			authorizeGetServiceSecurityMetadata(peerSubject, context, operation);
 			return true;
-		} else if(operation.getLocalPart().equals("enrollPatient")){
-			authorizeEnrollPatient(peerSubject, context, operation);
-			return true;
 		} else if(operation.getLocalPart().equals("getStudyCDEData")){
 			authorizeGetStudyCDEData(peerSubject, context, operation);
 			return true;
 		} else if(operation.getLocalPart().equals("getStudyCDEs")){
 			authorizeGetStudyCDEs(peerSubject, context, operation);
-			return true;
-		} else if(operation.getLocalPart().equals("loadLabs")){
-			authorizeLoadLabs(peerSubject, context, operation);
 			return true;
 		} else if(operation.getLocalPart().equals("isValidStudy")){
 			authorizeIsValidStudy(peerSubject, context, operation);
@@ -124,6 +118,12 @@ public class C3DGridServiceAuthorization implements PDP {
 			return true;
 		} else if(operation.getLocalPart().equals("queryResourceProperties")){
 			authorizeQueryResourceProperties(peerSubject, context, operation);
+			return true;
+		} else if(operation.getLocalPart().equals("getStudyCRFData")){
+			authorizeGetStudyCRFData(peerSubject, context, operation);
+			return true;
+		} else if(operation.getLocalPart().equals("getStudyCRFs")){
+			authorizeGetStudyCRFs(peerSubject, context, operation);
 			return true;
 		} 		
 		return false;

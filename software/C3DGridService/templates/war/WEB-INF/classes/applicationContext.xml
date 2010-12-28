@@ -15,8 +15,30 @@
 		class="gov.nih.nci.cdmsconnector.c3d.service.C3DGridServiceImpl">
 		<property name="getStudyCDEsManager" ref="getStudyCDEsManager" />
 		<property name="getStudyCDEDataManager" ref="getStudyCDEDataManager" />
+		<property name="getStudyCRFsManager" ref="getStudyCRFsManager" />
+		<property name="getStudyCRFDataManager" ref="getStudyCRFDataManager" />
 		<property name="isValidStudyManager" ref="isValidStudyManager" />
 	</bean>
+	<!-- GetStudyCRFs Section Starts -->
+	<bean id="getStudyCRFsManager"
+		class="gov.nih.nci.cdmsconnector.manager.GetStudyCRFsManagerImpl">
+		<property name="dao" ref="getStudyCRFsDAO" />
+		<property name="validator" ref="getStudyCRFValidator" />
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	<bean id="getStudyCRFsDAO"
+		class="gov.nih.nci.cdmsconnector.dao.c3d.GetStudyCRFDataOracleDAOImpl" />
+	<bean id="getStudyCRFValidator"
+		class="gov.nih.nci.cdmsconnector.domain.validator.GetStudyCRFRequestsValidatorImpl">
+		<property name="isValidStudyDAO" ref="isValidStudyDAO" />
+	</bean>
+	<bean id="getStudyCRFDataManager"
+		class="gov.nih.nci.cdmsconnector.manager.GetStudyCRFDataManagerImpl">
+		<property name="dao" ref="getStudyCRFsDAO" />
+		<property name="validator" ref="getStudyCRFValidator" />
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	<!-- GetStudyCRFs Section Ends -->
 	<!-- GetStudyCDEs Section Starts -->
 	<bean id="getStudyCDEsManager"
 		class="gov.nih.nci.cdmsconnector.manager.GetStudyCDEsManagerImpl">
