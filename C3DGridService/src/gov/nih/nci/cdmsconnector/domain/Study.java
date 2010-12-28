@@ -11,11 +11,13 @@ public class Study {
 	
 	// Events should be a subset of StudySubject --PRC
 	 List<Event> events;
-	
-	// Events should be a subset of StudySubject --PRC
+
+	 //List<CaseReportForm> crfs;
+	 
 	public Study(){
 		events=new ArrayList<Event>();
 		studySubjects=new ArrayList<StudySubject>();
+		//crfs=new ArrayList<CaseReportForm>();		
 	}
 
 	public List<Event> getEvents() {
@@ -26,6 +28,14 @@ public class Study {
 		this.events = events;
 	}
     	
+/*	public List<CaseReportForm> getCrfs() {
+		return crfs;
+	}
+
+	public void setCrfs(List<CaseReportForm> crfs) {
+		this.crfs = crfs;
+	}
+*/
 	/*public Study(){
 		studySubjects=new ArrayList<StudySubject>();
 		}

@@ -10,7 +10,7 @@
       <ns2:Operation description="" name="getServiceSecurityMetadata">
        <ns2:inputParameterCollection/>
        <ns2:Output qName="ns4:ServiceSecurityMetadata" dimensionality="1" isArray="false" xmlns:ns4="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security">
-        <ns5:UMLClass className="ServiceSecurityMetadata" description="An instance of the Security Service Metadata." id="7E372A10-54E5-DB0F-E040-BB89AD435EC5" packageName="gov.nih.nci.cagrid.metadata.security" projectName="caGrid_Metadata_Models" projectVersion="1" xmlns:ns5="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common">
+        <ns5:UMLClass className="ServiceSecurityMetadata" description="An instance of the Security Service Metadata." id="97EE053F-6A01-E324-E040-BB89AD436D61" packageName="gov.nih.nci.cagrid.metadata.security" projectName="caGrid_Metadata_Models" projectVersion="1" xmlns:ns5="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common">
          <ns5:umlAttributeCollection/>
          <ns5:SemanticMetadata conceptCode="C80736" conceptDefinition="A software system providing a public need." conceptName="Software Service" order="2"/>
          <ns5:SemanticMetadata conceptCode="C25669" conceptDefinition="Security; freedom from anxiety or fear." conceptName="Security" order="1"/>
@@ -21,9 +21,9 @@
       </ns2:Operation>
       <ns2:Operation description="" name="getStudyCDEData">
        <ns2:inputParameterCollection>
-        <ns2:InputParameter qName="ns8:GetStudyCDEDataRequest" dimensionality="1" index="0" isArray="false" isRequired="false" name="getStudyCDEDataRequest" xmlns:ns8="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+        <ns2:InputParameter qName="ns6:GetStudyCDEDataRequest" dimensionality="1" index="0" isArray="false" isRequired="false" name="getStudyCDEDataRequest" xmlns:ns6="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
        </ns2:inputParameterCollection>
-       <ns2:Output qName="ns9:GetStudyCDEDataResponse" dimensionality="1" isArray="false" xmlns:ns9="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+       <ns2:Output qName="ns7:GetStudyCDEDataResponse" dimensionality="1" isArray="false" xmlns:ns7="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
        <ns2:faultCollection>
         <ns2:Fault description="" name="StudyDataException"/>
         <ns2:Fault description="" name="InValidStudyException"/>
@@ -31,9 +31,9 @@
       </ns2:Operation>
       <ns2:Operation description="" name="getStudyCDEs">
        <ns2:inputParameterCollection>
-        <ns2:InputParameter qName="ns10:GetStudyCDEsRequest" dimensionality="1" index="0" isArray="false" isRequired="false" name="getStudyCDEsRequest" xmlns:ns10="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+        <ns2:InputParameter qName="ns8:GetStudyCDEsRequest" dimensionality="1" index="0" isArray="false" isRequired="false" name="getStudyCDEsRequest" xmlns:ns8="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
        </ns2:inputParameterCollection>
-       <ns2:Output qName="ns11:GetStudyCDEsResponse" dimensionality="1" isArray="false" xmlns:ns11="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+       <ns2:Output qName="ns9:GetStudyCDEsResponse" dimensionality="1" isArray="false" xmlns:ns9="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
        <ns2:faultCollection>
         <ns2:Fault description="" name="InValidStudyException"/>
         <ns2:Fault description="" name="StudyDataException"/>
@@ -41,9 +41,9 @@
       </ns2:Operation>
       <ns2:Operation description="" name="isValidStudy">
        <ns2:inputParameterCollection>
-        <ns2:InputParameter qName="ns14:IsValidStudyRequest" dimensionality="1" index="0" isArray="false" isRequired="false" name="isValidStudyRequest" xmlns:ns14="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+        <ns2:InputParameter qName="ns10:IsValidStudyRequest" dimensionality="1" index="0" isArray="false" isRequired="false" name="isValidStudyRequest" xmlns:ns10="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
        </ns2:inputParameterCollection>
-       <ns2:Output qName="ns15:IsValidStudyResponse" dimensionality="1" isArray="false" xmlns:ns15="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+       <ns2:Output qName="ns11:IsValidStudyResponse" dimensionality="1" isArray="false" xmlns:ns11="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
        <ns2:faultCollection/>
       </ns2:Operation>
       <ns2:Operation description="" name="GetMultipleResourceProperties">
@@ -57,6 +57,26 @@
       <ns2:Operation description="" name="QueryResourceProperties">
        <ns2:inputParameterCollection/>
        <ns2:faultCollection/>
+      </ns2:Operation>
+      <ns2:Operation description="" name="getStudyCRFData">
+       <ns2:inputParameterCollection>
+        <ns2:InputParameter qName="ns12:GetStudyCRFDataRequest" dimensionality="1" index="0" isArray="false" isRequired="false" name="getStudyCRFDataRequest" xmlns:ns12="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+       </ns2:inputParameterCollection>
+       <ns2:Output qName="ns13:GetStudyCRFDataResponse" dimensionality="1" isArray="false" xmlns:ns13="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+       <ns2:faultCollection>
+        <ns2:Fault description="" name="InValidStudyException"/>
+        <ns2:Fault description="" name="StudyDataException"/>
+       </ns2:faultCollection>
+      </ns2:Operation>
+      <ns2:Operation description="" name="getStudyCRFs">
+       <ns2:inputParameterCollection>
+        <ns2:InputParameter qName="ns14:GetStudyCRFsRequest" dimensionality="1" index="0" isArray="false" isRequired="false" name="getStudyCRFsRequest" xmlns:ns14="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+       </ns2:inputParameterCollection>
+       <ns2:Output qName="ns15:GetStudyCRFsResponse" dimensionality="1" isArray="false" xmlns:ns15="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+       <ns2:faultCollection>
+        <ns2:Fault description="" name="InValidStudyException"/>
+        <ns2:Fault description="" name="StudyDataException"/>
+       </ns2:faultCollection>
       </ns2:Operation>
      </ns2:operationCollection>
      <ns2:contextPropertyCollection>

@@ -44,6 +44,12 @@ public class C3DGridServiceProviderImpl {
     return boxedResult;
   } */
 
+    /* public gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsResponse loadLabs(gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsRequest params) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.LoadLabsException {
+    gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsResponse boxedResult = new gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsResponse();
+    boxedResult.setLoadLabsResponse(impl.loadLabs(params.getLoadLabsRequest().getLoadLabsRequest()));
+    return boxedResult;
+  } */
+
     public gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCDEDataResponse getStudyCDEData(gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCDEDataRequest params) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.StudyDataException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException {
     gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCDEDataResponse boxedResult = new gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCDEDataResponse();
     boxedResult.setGetStudyCDEDataResponse(impl.getStudyCDEData(params.getGetStudyCDEDataRequest().getGetStudyCDEDataRequest()));
@@ -56,15 +62,21 @@ public class C3DGridServiceProviderImpl {
     return boxedResult;
   }
 
-    /* public gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsResponse loadLabs(gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsRequest params) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.LoadLabsException {
-    gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsResponse boxedResult = new gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsResponse();
-    boxedResult.setLoadLabsResponse(impl.loadLabs(params.getLoadLabsRequest().getLoadLabsRequest()));
-    return boxedResult;
-  } */
-
     public gov.nih.nci.cdmsconnector.c3d.stubs.IsValidStudyResponse isValidStudy(gov.nih.nci.cdmsconnector.c3d.stubs.IsValidStudyRequest params) throws RemoteException {
     gov.nih.nci.cdmsconnector.c3d.stubs.IsValidStudyResponse boxedResult = new gov.nih.nci.cdmsconnector.c3d.stubs.IsValidStudyResponse();
     boxedResult.setIsValidStudyResponse(impl.isValidStudy(params.getIsValidStudyRequest().getIsValidStudyRequest()));
+    return boxedResult;
+  }
+
+    public gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFDataResponse getStudyCRFData(gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFDataRequest params) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.StudyDataException {
+    gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFDataResponse boxedResult = new gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFDataResponse();
+    boxedResult.setGetStudyCRFDataResponse(impl.getStudyCRFData(params.getGetStudyCRFDataRequest().getGetStudyCRFDataRequest()));
+    return boxedResult;
+  }
+
+    public gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFsResponse getStudyCRFs(gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFsRequest params) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.StudyDataException {
+    gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFsResponse boxedResult = new gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFsResponse();
+    boxedResult.setGetStudyCRFsResponse(impl.getStudyCRFs(params.getGetStudyCRFsRequest().getGetStudyCRFsRequest()));
     return boxedResult;
   }
 

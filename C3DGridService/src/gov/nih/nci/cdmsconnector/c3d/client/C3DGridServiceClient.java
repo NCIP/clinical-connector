@@ -76,18 +76,6 @@ public class C3DGridServiceClient extends C3DGridServiceClientBase implements C3
 		}
 	}
 
-  /*public gov.nih.nci.cabig.ccts.domain.enrollpatient.EnrollPatientResponse enrollPatient(gov.nih.nci.cabig.ccts.domain.enrollpatient.EnrollPatientRequest enrollPatientRequest) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.EnrollPatientException {
-    synchronized(portTypeMutex){
-      configureStubSecurity((Stub)portType,"enrollPatient");
-    gov.nih.nci.cdmsconnector.c3d.stubs.EnrollPatientRequest params = new gov.nih.nci.cdmsconnector.c3d.stubs.EnrollPatientRequest();
-    gov.nih.nci.cdmsconnector.c3d.stubs.EnrollPatientRequestEnrollPatientRequest enrollPatientRequestContainer = new gov.nih.nci.cdmsconnector.c3d.stubs.EnrollPatientRequestEnrollPatientRequest();
-    enrollPatientRequestContainer.setEnrollPatientRequest(enrollPatientRequest);
-    params.setEnrollPatientRequest(enrollPatientRequestContainer);
-    gov.nih.nci.cdmsconnector.c3d.stubs.EnrollPatientResponse boxedResult = portType.enrollPatient(params);
-    return boxedResult.getEnrollPatientResponse();
-    }
-  }*/
-
   public gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCDEDataResponse getStudyCDEData(gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCDEDataRequest getStudyCDEDataRequest) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.StudyDataException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException {
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"getStudyCDEData");
@@ -112,18 +100,6 @@ public class C3DGridServiceClient extends C3DGridServiceClientBase implements C3
     }
   }
 
-/*  public gov.nih.nci.cabig.ccts.domain.bridg.loadlabs.LoadLabsResponse loadLabs(gov.nih.nci.cabig.ccts.domain.bridg.loadlabs.LoadLabsRequest loadLabsRequest) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.LoadLabsException {
-    synchronized(portTypeMutex){
-      configureStubSecurity((Stub)portType,"loadLabs");
-    gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsRequest params = new gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsRequest();
-    gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsRequestLoadLabsRequest loadLabsRequestContainer = new gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsRequestLoadLabsRequest();
-    loadLabsRequestContainer.setLoadLabsRequest(loadLabsRequest);
-    params.setLoadLabsRequest(loadLabsRequestContainer);
-    gov.nih.nci.cdmsconnector.c3d.stubs.LoadLabsResponse boxedResult = portType.loadLabs(params);
-    return boxedResult.getLoadLabsResponse();
-    }
-  }
-*/
   public gov.nih.nci.cabig.ccts.domain.studydata.IsValidStudyResponse isValidStudy(gov.nih.nci.cabig.ccts.domain.studydata.IsValidStudyRequest isValidStudyRequest) throws RemoteException {
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"isValidStudy");
@@ -154,6 +130,30 @@ public class C3DGridServiceClient extends C3DGridServiceClientBase implements C3
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"queryResourceProperties");
     return portType.queryResourceProperties(params);
+    }
+  }
+
+  public gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCRFDataResponse getStudyCRFData(gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCRFDataRequest getStudyCRFDataRequest) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.StudyDataException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"getStudyCRFData");
+    gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFDataRequest params = new gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFDataRequest();
+    gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFDataRequestGetStudyCRFDataRequest getStudyCRFDataRequestContainer = new gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFDataRequestGetStudyCRFDataRequest();
+    getStudyCRFDataRequestContainer.setGetStudyCRFDataRequest(getStudyCRFDataRequest);
+    params.setGetStudyCRFDataRequest(getStudyCRFDataRequestContainer);
+    gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFDataResponse boxedResult = portType.getStudyCRFData(params);
+    return boxedResult.getGetStudyCRFDataResponse();
+    }
+  }
+
+  public gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCRFsResponse getStudyCRFs(gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCRFsRequest getStudyCRFsRequest) throws RemoteException, gov.nih.nci.cdmsconnector.c3d.stubs.types.InValidStudyException, gov.nih.nci.cdmsconnector.c3d.stubs.types.StudyDataException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"getStudyCRFs");
+    gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFsRequest params = new gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFsRequest();
+    gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFsRequestGetStudyCRFsRequest getStudyCRFsRequestContainer = new gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFsRequestGetStudyCRFsRequest();
+    getStudyCRFsRequestContainer.setGetStudyCRFsRequest(getStudyCRFsRequest);
+    params.setGetStudyCRFsRequest(getStudyCRFsRequestContainer);
+    gov.nih.nci.cdmsconnector.c3d.stubs.GetStudyCRFsResponse boxedResult = portType.getStudyCRFs(params);
+    return boxedResult.getGetStudyCRFsResponse();
     }
   }
 

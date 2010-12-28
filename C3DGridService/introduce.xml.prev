@@ -1,5 +1,16 @@
 <ns1:ServiceDescription introduceVersion="1.3" xmlns:ns1="gme://gov.nih.nci.cagrid/1/Introduce">
  <ns2:Namespaces xsi:type="ns2:NamespacesType" xmlns:ns2="gme://gov.nih.nci.cagrid.introduce/1/Namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ns2:Namespace location="./C3DStudyDataMetadata.xsd" namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.c3DStudyDataMetadata" packageName="gov.nih.nci.cabig.ccts.domain.c3dstudydatametadata" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="CDEData" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="CDEMetadata" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="CRFData" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="CRFMetadata" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudyData" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudyDataMetadata" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudyMetadata" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudySite" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="StudySubject" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
   <ns2:Namespace location="./cdt.xsd" namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.cdt" packageName="gov.nih.nci.cabig.ccts.domain.cdt" xsi:type="ns2:NamespaceType">
    <ns2:SchemaElement type="AD" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="BL" xsi:type="ns2:SchemaElementType"/>
@@ -37,6 +48,10 @@
    <ns2:SchemaElement type="GetStudyCDEDataResponse" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="GetStudyCDEsRequest" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="GetStudyCDEsResponse" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="GetStudyCRFDataRequest" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="GetStudyCRFDataResponse" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="GetStudyCRFsRequest" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="GetStudyCRFsResponse" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="IsValidStudyRequest" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="IsValidStudyResponse" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
@@ -186,14 +201,6 @@
    <ns2:SchemaElement type="SubmissionUnitRelationship" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="TherapeuticAgent" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
-  <ns2:Namespace location="./EnrollPatient.xsd" namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.enrollPatient" packageName="gov.nih.nci.cabig.ccts.domain.enrollpatient" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="EnrollPatientRequest" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="EnrollPatientResponse" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./LoadLabs.xsd" namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg.loadlabs" packageName="gov.nih.nci.cabig.ccts.domain.bridg.loadlabs" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="LoadLabsRequest" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="LoadLabsResponse" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
   <ns2:Namespace namespace="http://www.w3.org/2001/XMLSchema" xsi:type="ns2:NamespaceType">
    <ns2:SchemaElement type="anySimpleType" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="anyType" xsi:type="ns2:SchemaElementType"/>
@@ -277,14 +284,14 @@
      <ns4:ImportInformation namespace="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" packageName="gov.nih.nci.cagrid.introduce.security.stubs" portTypeName="ServiceSecurityPortType" wsdlFile="ServiceSecurity.wsdl"/>
      <ns4:ProviderInformation providerClass="gov.nih.nci.cagrid.introduce.security.service.globus.ServiceSecurityProviderImpl"/>
     </ns4:Method>
-    <ns4:Method description="" isImported="false" isProvided="false" name="enrollPatient" xsi:type="ns4:MethodType">
+    <ns4:Method description="" isImported="false" isProvided="false" name="getStudyCDEData" xsi:type="ns4:MethodType">
      <ns4:Inputs>
-      <ns4:Input qName="ns7:EnrollPatientRequest" description="" isArray="false" name="enrollPatientRequest" xmlns:ns7="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.enrollPatient"/>
+      <ns4:Input qName="ns7:GetStudyCDEDataRequest" description="" isArray="false" name="getStudyCDEDataRequest" xmlns:ns7="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
      </ns4:Inputs>
-     <ns4:Output qName="ns8:EnrollPatientResponse" description="" isArray="false" xmlns:ns8="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.enrollPatient"/>
+     <ns4:Output qName="ns8:GetStudyCDEDataResponse" description="" isArray="false" xmlns:ns8="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
      <ns4:Exceptions>
-      <ns4:Exception description="" name="InValidStudyException" qname="ns9:InValidStudyException" xmlns:ns9="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
-      <ns4:Exception description="" name="EnrollPatientException" qname="ns10:EnrollPatientException" xmlns:ns10="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+      <ns4:Exception description="" name="StudyDataException" qname="ns9:StudyDataException" xmlns:ns9="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+      <ns4:Exception description="" name="InValidStudyException" qname="ns10:InValidStudyException" xmlns:ns10="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
      </ns4:Exceptions>
      <ns11:MethodSecurity xsi:type="ns11:MethodSecurity" xmlns:ns11="gme://gov.nih.nci.cagrid.introduce/1/Security">
       <ns11:SecuritySetting xsi:type="ns11:SecuritySetting">Custom</ns11:SecuritySetting>
@@ -298,14 +305,14 @@
       </ns11:MethodAuthorization>
      </ns11:MethodSecurity>
     </ns4:Method>
-    <ns4:Method description="" isImported="false" isProvided="false" name="getStudyCDEData" xsi:type="ns4:MethodType">
+    <ns4:Method description="" isImported="false" isProvided="false" name="getStudyCDEs" xsi:type="ns4:MethodType">
      <ns4:Inputs>
-      <ns4:Input qName="ns12:GetStudyCDEDataRequest" description="" isArray="false" name="getStudyCDEDataRequest" xmlns:ns12="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+      <ns4:Input qName="ns12:GetStudyCDEsRequest" description="" isArray="false" name="getStudyCDEsRequest" xmlns:ns12="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
      </ns4:Inputs>
-     <ns4:Output qName="ns13:GetStudyCDEDataResponse" description="" isArray="false" xmlns:ns13="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+     <ns4:Output qName="ns13:GetStudyCDEsResponse" description="" isArray="false" xmlns:ns13="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
      <ns4:Exceptions>
-      <ns4:Exception description="" name="StudyDataException" qname="ns14:StudyDataException" xmlns:ns14="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
-      <ns4:Exception description="" name="InValidStudyException" qname="ns15:InValidStudyException" xmlns:ns15="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+      <ns4:Exception description="" name="InValidStudyException" qname="ns14:InValidStudyException" xmlns:ns14="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+      <ns4:Exception description="" name="StudyDataException" qname="ns15:StudyDataException" xmlns:ns15="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
      </ns4:Exceptions>
      <ns16:MethodSecurity xsi:type="ns16:MethodSecurity" xmlns:ns16="gme://gov.nih.nci.cagrid.introduce/1/Security">
       <ns16:SecuritySetting xsi:type="ns16:SecuritySetting">Custom</ns16:SecuritySetting>
@@ -319,95 +326,72 @@
       </ns16:MethodAuthorization>
      </ns16:MethodSecurity>
     </ns4:Method>
-    <ns4:Method description="" isImported="false" isProvided="false" name="getStudyCDEs" xsi:type="ns4:MethodType">
-     <ns4:Inputs>
-      <ns4:Input qName="ns17:GetStudyCDEsRequest" description="" isArray="false" name="getStudyCDEsRequest" xmlns:ns17="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
-     </ns4:Inputs>
-     <ns4:Output qName="ns18:GetStudyCDEsResponse" description="" isArray="false" xmlns:ns18="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
-     <ns4:Exceptions>
-      <ns4:Exception description="" name="InValidStudyException" qname="ns19:InValidStudyException" xmlns:ns19="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
-      <ns4:Exception description="" name="StudyDataException" qname="ns20:StudyDataException" xmlns:ns20="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
-     </ns4:Exceptions>
-     <ns21:MethodSecurity xsi:type="ns21:MethodSecurity" xmlns:ns21="gme://gov.nih.nci.cagrid.introduce/1/Security">
-      <ns21:SecuritySetting xsi:type="ns21:SecuritySetting">Custom</ns21:SecuritySetting>
-      <ns21:TransportLevelSecurity xsi:type="ns21:TransportLevelSecurity">
-       <ns21:CommunicationMethod xsi:type="ns21:CommunicationMethod">Privacy</ns21:CommunicationMethod>
-      </ns21:TransportLevelSecurity>
-      <ns21:RunAsMode xsi:type="ns21:RunAsMode">System</ns21:RunAsMode>
-      <ns21:AnonymousClients xsi:type="ns21:AnonymousCommunication">No</ns21:AnonymousClients>
-      <ns21:MethodAuthorization xsi:type="ns21:MethodAuthorization">
-       <ns21:InheritServiceAuthorization xsi:type="ns21:InheritServiceAuthorization"/>
-      </ns21:MethodAuthorization>
-     </ns21:MethodSecurity>
-    </ns4:Method>
-    <ns4:Method description="" isImported="false" isProvided="false" name="loadLabs" xsi:type="ns4:MethodType">
-     <ns4:Inputs>
-      <ns4:Input qName="ns22:LoadLabsRequest" description="" isArray="false" name="loadLabsRequest" xmlns:ns22="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg.loadlabs"/>
-     </ns4:Inputs>
-     <ns4:Output qName="ns23:LoadLabsResponse" description="" isArray="false" xmlns:ns23="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg.loadlabs"/>
-     <ns4:Exceptions>
-      <ns4:Exception description="" name="InValidStudyException" qname="ns24:InValidStudyException" xmlns:ns24="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
-      <ns4:Exception description="" name="LoadLabsException" qname="ns25:LoadLabsException" xmlns:ns25="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
-     </ns4:Exceptions>
-     <ns26:MethodSecurity xsi:type="ns26:MethodSecurity" xmlns:ns26="gme://gov.nih.nci.cagrid.introduce/1/Security">
-      <ns26:SecuritySetting xsi:type="ns26:SecuritySetting">Custom</ns26:SecuritySetting>
-      <ns26:TransportLevelSecurity xsi:type="ns26:TransportLevelSecurity">
-       <ns26:CommunicationMethod xsi:type="ns26:CommunicationMethod">Privacy</ns26:CommunicationMethod>
-      </ns26:TransportLevelSecurity>
-      <ns26:RunAsMode xsi:type="ns26:RunAsMode">System</ns26:RunAsMode>
-      <ns26:AnonymousClients xsi:type="ns26:AnonymousCommunication">No</ns26:AnonymousClients>
-      <ns26:MethodAuthorization xsi:type="ns26:MethodAuthorization">
-       <ns26:InheritServiceAuthorization xsi:type="ns26:InheritServiceAuthorization"/>
-      </ns26:MethodAuthorization>
-     </ns26:MethodSecurity>
-     <ns27:Extensions xsi:type="ns27:ExtensionsType" xmlns:ns27="gme://gov.nih.nci.cagrid.introduce/1/Extension"/>
-    </ns4:Method>
     <ns4:Method description="" isImported="false" isProvided="false" name="isValidStudy" xsi:type="ns4:MethodType">
      <ns4:Inputs>
-      <ns4:Input qName="ns28:IsValidStudyRequest" description="" isArray="false" name="isValidStudyRequest" xmlns:ns28="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+      <ns4:Input qName="ns17:IsValidStudyRequest" description="" isArray="false" name="isValidStudyRequest" xmlns:ns17="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
      </ns4:Inputs>
-     <ns4:Output qName="ns29:IsValidStudyResponse" description="" isArray="false" xmlns:ns29="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+     <ns4:Output qName="ns18:IsValidStudyResponse" description="" isArray="false" xmlns:ns18="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
      <ns4:Exceptions/>
-     <ns30:MethodSecurity xsi:type="ns30:MethodSecurity" xmlns:ns30="gme://gov.nih.nci.cagrid.introduce/1/Security">
-      <ns30:SecuritySetting xsi:type="ns30:SecuritySetting">Custom</ns30:SecuritySetting>
-      <ns30:TransportLevelSecurity xsi:type="ns30:TransportLevelSecurity">
-       <ns30:CommunicationMethod xsi:type="ns30:CommunicationMethod">Privacy</ns30:CommunicationMethod>
-      </ns30:TransportLevelSecurity>
-      <ns30:RunAsMode xsi:type="ns30:RunAsMode">System</ns30:RunAsMode>
-      <ns30:AnonymousClients xsi:type="ns30:AnonymousCommunication">No</ns30:AnonymousClients>
-      <ns30:MethodAuthorization xsi:type="ns30:MethodAuthorization">
-       <ns30:InheritServiceAuthorization xsi:type="ns30:InheritServiceAuthorization"/>
-      </ns30:MethodAuthorization>
-     </ns30:MethodSecurity>
+     <ns19:MethodSecurity xsi:type="ns19:MethodSecurity" xmlns:ns19="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns19:SecuritySetting xsi:type="ns19:SecuritySetting">Custom</ns19:SecuritySetting>
+      <ns19:TransportLevelSecurity xsi:type="ns19:TransportLevelSecurity">
+       <ns19:CommunicationMethod xsi:type="ns19:CommunicationMethod">Privacy</ns19:CommunicationMethod>
+      </ns19:TransportLevelSecurity>
+      <ns19:RunAsMode xsi:type="ns19:RunAsMode">System</ns19:RunAsMode>
+      <ns19:AnonymousClients xsi:type="ns19:AnonymousCommunication">No</ns19:AnonymousClients>
+      <ns19:MethodAuthorization xsi:type="ns19:MethodAuthorization">
+       <ns19:InheritServiceAuthorization xsi:type="ns19:InheritServiceAuthorization"/>
+      </ns19:MethodAuthorization>
+     </ns19:MethodSecurity>
     </ns4:Method>
     <ns4:Method isImported="true" isProvided="true" name="GetMultipleResourceProperties" xsi:type="ns4:MethodType">
      <ns4:Output qName="void" isArray="false"/>
-     <ns31:MethodSecurity xsi:type="ns31:MethodSecurity" xmlns:ns31="gme://gov.nih.nci.cagrid.introduce/1/Security">
-      <ns31:SecuritySetting xsi:type="ns31:SecuritySetting">None</ns31:SecuritySetting>
-     </ns31:MethodSecurity>
-     <ns4:ImportInformation fromIntroduce="false" inputMessage="ns32:GetMultipleResourcePropertiesRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" outputMessage="ns32:GetMultipleResourcePropertiesResponse" packageName="org.oasis.wsrf.properties" portTypeName="GetMultipleResourceProperties" wsdlFile="../wsrf/properties/WS-ResourceProperties.wsdl" xmlns:ns32="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl"/>
+     <ns20:MethodSecurity xsi:type="ns20:MethodSecurity" xmlns:ns20="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns20:SecuritySetting xsi:type="ns20:SecuritySetting">None</ns20:SecuritySetting>
+     </ns20:MethodSecurity>
+     <ns4:ImportInformation fromIntroduce="false" inputMessage="ns21:GetMultipleResourcePropertiesRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" outputMessage="ns21:GetMultipleResourcePropertiesResponse" packageName="org.oasis.wsrf.properties" portTypeName="GetMultipleResourceProperties" wsdlFile="../wsrf/properties/WS-ResourceProperties.wsdl" xmlns:ns21="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl"/>
      <ns4:ProviderInformation providerClass="GetMRPProvider"/>
     </ns4:Method>
     <ns4:Method isImported="true" isProvided="true" name="GetResourceProperty" xsi:type="ns4:MethodType">
      <ns4:Output qName="void" isArray="false"/>
-     <ns33:MethodSecurity xsi:type="ns33:MethodSecurity" xmlns:ns33="gme://gov.nih.nci.cagrid.introduce/1/Security">
-      <ns33:SecuritySetting xsi:type="ns33:SecuritySetting">None</ns33:SecuritySetting>
-     </ns33:MethodSecurity>
-     <ns4:ImportInformation fromIntroduce="false" inputMessage="ns34:GetResourcePropertyRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" outputMessage="ns34:GetResourcePropertyResponse" packageName="org.oasis.wsrf.properties" portTypeName="GetResourceProperty" wsdlFile="../wsrf/properties/WS-ResourceProperties.wsdl" xmlns:ns34="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl"/>
+     <ns22:MethodSecurity xsi:type="ns22:MethodSecurity" xmlns:ns22="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns22:SecuritySetting xsi:type="ns22:SecuritySetting">None</ns22:SecuritySetting>
+     </ns22:MethodSecurity>
+     <ns4:ImportInformation fromIntroduce="false" inputMessage="ns23:GetResourcePropertyRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" outputMessage="ns23:GetResourcePropertyResponse" packageName="org.oasis.wsrf.properties" portTypeName="GetResourceProperty" wsdlFile="../wsrf/properties/WS-ResourceProperties.wsdl" xmlns:ns23="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl"/>
      <ns4:ProviderInformation providerClass="GetRPProvider"/>
     </ns4:Method>
     <ns4:Method isImported="true" isProvided="true" name="QueryResourceProperties" xsi:type="ns4:MethodType">
      <ns4:Output qName="void" isArray="false"/>
-     <ns35:MethodSecurity xsi:type="ns35:MethodSecurity" xmlns:ns35="gme://gov.nih.nci.cagrid.introduce/1/Security">
-      <ns35:SecuritySetting xsi:type="ns35:SecuritySetting">None</ns35:SecuritySetting>
-     </ns35:MethodSecurity>
-     <ns4:ImportInformation fromIntroduce="false" inputMessage="ns36:QueryResourcePropertiesRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" outputMessage="ns36:QueryResourcePropertiesResponse" packageName="org.oasis.wsrf.properties" portTypeName="QueryResourceProperties" wsdlFile="../wsrf/properties/WS-ResourceProperties.wsdl" xmlns:ns36="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl"/>
+     <ns24:MethodSecurity xsi:type="ns24:MethodSecurity" xmlns:ns24="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns24:SecuritySetting xsi:type="ns24:SecuritySetting">None</ns24:SecuritySetting>
+     </ns24:MethodSecurity>
+     <ns4:ImportInformation fromIntroduce="false" inputMessage="ns25:QueryResourcePropertiesRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" outputMessage="ns25:QueryResourcePropertiesResponse" packageName="org.oasis.wsrf.properties" portTypeName="QueryResourceProperties" wsdlFile="../wsrf/properties/WS-ResourceProperties.wsdl" xmlns:ns25="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl"/>
      <ns4:ProviderInformation providerClass="QueryRPProvider"/>
     </ns4:Method>
+    <ns4:Method description="" isImported="false" isProvided="false" name="getStudyCRFData" xsi:type="ns4:MethodType">
+     <ns4:Inputs>
+      <ns4:Input qName="ns26:GetStudyCRFDataRequest" description="" isArray="false" name="getStudyCRFDataRequest" xmlns:ns26="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+     </ns4:Inputs>
+     <ns4:Output qName="ns27:GetStudyCRFDataResponse" description="" isArray="false" xmlns:ns27="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+     <ns4:Exceptions>
+      <ns4:Exception description="" name="InValidStudyException" qname="ns28:InValidStudyException" xmlns:ns28="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+      <ns4:Exception description="" name="StudyDataException" qname="ns29:StudyDataException" xmlns:ns29="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+     </ns4:Exceptions>
+    </ns4:Method>
+    <ns4:Method description="" isImported="false" isProvided="false" name="getStudyCRFs" xsi:type="ns4:MethodType">
+     <ns4:Inputs>
+      <ns4:Input qName="ns30:GetStudyCRFsRequest" description="" isArray="false" name="getStudyCRFsRequest" xmlns:ns30="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+     </ns4:Inputs>
+     <ns4:Output qName="ns31:GetStudyCRFsResponse" description="" isArray="false" xmlns:ns31="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData"/>
+     <ns4:Exceptions>
+      <ns4:Exception description="" name="InValidStudyException" qname="ns32:InValidStudyException" xmlns:ns32="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+      <ns4:Exception description="" name="StudyDataException" qname="ns33:StudyDataException" xmlns:ns33="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types"/>
+     </ns4:Exceptions>
+    </ns4:Method>
    </ns4:Methods>
-   <ns37:ResourcePropertiesList xsi:type="ns37:ResourcePropertiesListType" xmlns:ns37="gme://gov.nih.nci.cagrid.introduce/1/Resources">
-    <ns37:ResourceProperty qName="ns38:ServiceMetadata" fileLocation="serviceMetadata.xml" populateFromFile="true" register="true" xsi:type="ns37:ResourcePropertyType" xmlns:ns38="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata"/>
-   </ns37:ResourcePropertiesList>
+   <ns34:ResourcePropertiesList xsi:type="ns34:ResourcePropertiesListType" xmlns:ns34="gme://gov.nih.nci.cagrid.introduce/1/Resources">
+    <ns34:ResourceProperty qName="ns35:ServiceMetadata" fileLocation="serviceMetadata.xml" populateFromFile="true" register="true" xsi:type="ns34:ResourcePropertyType" xmlns:ns35="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata"/>
+   </ns34:ResourcePropertiesList>
    <ns3:ResourceFrameworkOptions xsi:type="ns3:ResourceFrameworkOptions">
     <ns3:Main xsi:type="ns3:Main"/>
     <ns3:Singleton xsi:type="ns3:Singleton"/>
@@ -416,7 +400,7 @@
    </ns3:ResourceFrameworkOptions>
   </ns3:Service>
  </ns3:Services>
- <ns39:Extensions xsi:type="ns39:ExtensionsType" xmlns:ns39="gme://gov.nih.nci.cagrid.introduce/1/Extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <ns39:Extension name="cagrid_metadata" version="1.3" xsi:type="ns39:ExtensionType"/>
- </ns39:Extensions>
+ <ns36:Extensions xsi:type="ns36:ExtensionsType" xmlns:ns36="gme://gov.nih.nci.cagrid.introduce/1/Extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ns36:Extension name="cagrid_metadata" version="1.3" xsi:type="ns36:ExtensionType"/>
+ </ns36:Extensions>
 </ns1:ServiceDescription>
