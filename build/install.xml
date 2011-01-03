@@ -126,6 +126,8 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 	<!-- Clean/make working dir -->
 	<delete dir="${working.dir}" failonerror="false"/>
 	<mkdir dir="${working.dir}" />
+      <!--<mkdir dir="${db-install.dir.dest}" /> -->
+	<!--<mkdir dir="${db-upgrade.dir.dest}" /> -->
 
 	<!-- Start logging moved out of target so all targets are logged --> 
 	<!--<property name="install-logs.dir" location="${application.base.path}/change-logs"/> -->
@@ -135,8 +137,6 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 		<format property="install.time" pattern="yyyy-MM-dd-HH-mm" />
 	</tstamp>
 	<record name="${install-logs.dir}/install-${install.time}.log" action="start"/>
-
-
 
 	<target name="common:init:pre">
 		<echo message="common:init:pre" />
@@ -181,7 +181,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 				<property name="database.driver" value="oracle.jdbc.driver.OracleDriver"/>
 				<property name="database.schema" value="${database.name}"/>
 			</case>
-			<case value="mysql">
+			<!--<case value="mysql">
 				<property name="database.dialect" value="org.hibernate.dialect.MySQLDialect"/>
 				<property name="database.driver.file" value="${bda-utils.dir}/mysql-connector-java-5.0.8.jar"/>
 				<property name="database.driver" value="com.mysql.jdbc.Driver"/>
@@ -192,7 +192,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 				<property name="database.driver.file" value="${bda-utils.dir}/postgresql-jdbc3-8.3-604.jar"/>
 				<property name="database.driver" value="org.postgresql.Driver"/>
 				<property name="database.schema" value="public"/>
-			</case>
+			</case>-->
 			<default>
 				<fail message="Invalid database type ${database.type}"/>
 			</default>
@@ -281,6 +281,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 	</target>
 
 	<target name="install:database:prep" description="Copies db files with filtering" unless="exclude.database" depends="common:init">
+		<echo message="install:database:prep" />
 		<property name="db.prop.list" value="database.url,database.user,database.password,database.name"/>
 		<echo  message="Checking if database properties exist: ${db.prop.list}"/>
 		<properties-exist properties.list="${db.prop.list}"/>
@@ -295,6 +296,16 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 				<filtersfile file="project.properties"/>
 			</filterset>
 		</copy>
+		<!--<copy todir="${db.dir.dest}/oracle" filtering="true">
+			<fileset dir="${db.dir.src}">
+				<include name="**/*"/>
+			</fileset>
+			<filterset refid="embedded.filterset"/>
+			<filterset>
+				<filtersfile file="${properties.file}"/>
+				<filtersfile file="project.properties"/>
+			</filterset>
+		</copy>-->
 		<mkdir dir="${os.temp.dir}/${project.name}"/>
 		<copy todir="${os.temp.dir}/${project.name}" filtering="true" flatten="true" overwrite="true">
 			<fileset dir="${db.dir.dest}">
@@ -305,39 +316,45 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 
 	<target name="install:database" description="Runs datbase creation scripts then calls uprade database." unless="exclude.database"
 		depends="
-		
 		common:init,
 		install:database:prep,
 		install:database:validation:pre-install
-		">
+		"> 
 		<!-- Drop all schema objects or re-create the db -->
-		<database-clean/>
+		<!-- <database-clean/> -->
 		<!-- Run baseline scripts stored in db.install.create.${database.type}.file.list variable -->
+		<echo message="Checking for database type inside install:database"/>
 		<switch value="${database.type}">
 			<case value="oracle">
 				<database-install
 					db.install.create.file.list="${db.install.create.oracle.file.list}"
+					sql.delimiter=";"
+					/>
+				<database-install
+					db.install.create.file.list="${db.install.create.oracle.proc.list}"
 					sql.delimiter="/"
 					sql.delimitertype="row"
 					/>
 			</case>
 			<case value="postgresql">
-				<database-install
+				<fail  message="database type mysql not allowed"/>
+				<!--<database-install
 					db.install.create.file.list="${db.install.create.postgresql.file.list}"
 					sql.delimiter="/"
 					sql.delimitertype="row"
-					/>
+					/>-->
 			</case>
 			<case value="mysql">
-				<database-install
+				<fail  message="database type mysql not allowed"/>
+				<!--<database-install
 					db.install.create.file.list="${db.install.create.mysql.file.list}"
-					/>
+					/> -->
 			</case>
 		</switch>
-		<database-upgrade
+		<!--<database-upgrade
 			database.changelog.file="${os.temp.dir}/${project.name}/db-upgrade.xml"
 			/>
-		<database-tag/>
+		<database-tag/>-->
 	</target>
 
 	<target name="install:common:validation:pre-install" description="Runs pre-install validation checks bda-utils" depends="common:init">
@@ -363,9 +380,22 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 		common:init,
 		install:common:validation:pre-install
 		">
-		<validate-pre-install-database
-			database.version="${mysql.minimum.version}"
-			/>
+            <echo message="Checking for database type inside install:database"/>
+		<switch value="${database.type}">
+			<case value="oracle">
+				<validate-pre-install-database
+					database.version="${mysql.minimum.version}"
+				/>
+			</case>
+			<case value="postgresql">
+				<fail  message="database type postgresql not allowed"/>
+			</case>
+			<case value="mysql">
+				<fail  message="database type mysql not allowed"/>
+			</case>
+		</switch>
+
+		
 	</target>
 
 	<target name="install:tomcat:validation:pre-install:ports" description="Checks to see if configured ports are listenting and fails buld, meant to be run after jboss:stop"
@@ -463,7 +493,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 	<!-- PRC modified original "upgrade" from this: -->
 	<!-- <target name="upgrade" description="Upgrades JBoss and Database" depends="upgrade:common:init,common:init,upgrade-dac">-->
 	<!-- To this: -->
-	<target name="upgrade" description="Upgrades Tomcat and Clinical Connector" depends="upgrade:tomcat">
+	<target name="upgrade" description="Upgrades Tomcat and Clinical Connector" depends="upgrade:tomcat,upgrade:database">
 	</target>
 
 	<target name="upgrade-with-dbinstall" description="Upgrades JBoss and Database" depends="upgrade:common:init,common:init,upgrade-dac:with-dbinstall">
@@ -651,15 +681,63 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 
 	<target name="upgrade:database" description="Upgrades database using BDA Datbase Upgrade process." unless="exclude.database"
 		depends="
-		upgrade:database:init,
 		common:init,
 		install:database:prep,
 		install:database:validation:pre-install
 		">
-		<database-upgrade
+		<!--db.install.upgrade.oracle.file.list=C3DGridService_Tables_and_Data_UPGRADE_Bare.sql
+		    db.install.upgrade.oracle.proc.list=C3DGridService_ProcFunc_Bare.sql
+		    db.install.upgrade.oracle.security=C3DGridService_ObjectSecurity_Bare.sql
+		    db.install.upgrade.oracle.synonyms=C3DGridService_ObjectSynonyms_Bare.sql -->
+
+		<echo message="Checking for database type inside install:database"/>
+		<switch value="${database.type}">
+			<case value="oracle">
+				<echo message="Upgrade Database Objects with ${db.install.upgrade.oracle.file.list}"/>
+				<database-install
+					db.install.create.file.list="${db.install.upgrade.oracle.file.list}"
+					sql.delimiter=";"
+					/>
+				<echo message="Upgrade Procedures/Functions/Packages with ${db.install.upgrade.oracle.proc.list}"/>
+				<database-install
+					db.install.create.file.list="${db.install.upgrade.oracle.proc.list}"
+					sql.delimiter="/"
+					sql.delimitertype="row"
+					/>
+				<echo message="Applying Database Security with ${db.install.upgrade.oracle.security}"/>
+				<database-install
+					db.install.create.file.list="${db.install.upgrade.oracle.security}"
+					sql.delimiter=";"
+					/>
+				<echo message="Applying Synonyms ${db.install.upgrade.oracle.synonyms}"/>
+				<database-install
+					db.install.create.file.list="${db.install.upgrade.oracle.synonyms}"
+					sql.delimiter=";"
+					/>
+			</case>
+			<case value="postgresql">
+				<fail  message="database type mysql not allowed"/>
+				<!--<database-install
+					db.install.create.file.list="${db.install.create.postgresql.file.list}"
+					sql.delimiter="/"
+					sql.delimitertype="row"
+					/>-->
+			</case>
+			<case value="mysql">
+				<fail  message="database type mysql not allowed"/>
+				<!--<database-install
+					db.install.create.file.list="${db.install.create.mysql.file.list}"
+					/> -->
+			</case>
+		</switch>
+		<!--<database-upgrade
 			database.changelog.file="${os.temp.dir}/${project.name}/db-upgrade.xml"
 			/>
-		<database-tag/>
+		<database-tag/>-->
+		<!--<database-upgrade
+			database.changelog.file="${os.temp.dir}/${project.name}/db-upgrade.xml"
+			/>
+		<database-tag/>-->
 	</target>
 
 	<target name="upgrade:database:tag" description="Tags current state of database with a tag to allow for rollback of database to previous versions." unless="exclude.database"
