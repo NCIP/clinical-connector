@@ -50,7 +50,7 @@ First Time Deployment Instructions:
 
 	to:
 
-	D:\ncioraapps\html
+	D:\opaapps45\html
 
  3) Next, the web configuration for the tool needs added to the web configuration file.
     Note, this is a ONE TIME edit.  If the tool has already been configured, do not add it again
@@ -69,36 +69,3 @@ First Time Deployment Instructions:
  5) Once completed, the URL should be similar to:
     http://middle_tier_name/opa45/CCAdminUI.htm
     *Note: middle_tier_name should be the same as that used by the URL for RDC or OPA.
-
-
-
-
-
-
-
-* * * * * * *
-* N O T E S *
-* * * * * * *
-
-Data Extract v1.0.2
-
-Security Changes:
-
-Data Extract v1.0.2 contains a modification to the way Oracle Security is applied to the application.
-System Privileges were removed from the Data Extract Roles and placed instead on the owner CTEXT
-of Data Extract.  This allows the packages to be executed by users, but inherit the privileges of the 
-owner of the package. This means that the users do not have any System Privileges beyond the scope 
-of their regular database activities.
-
-Special Literal Option:
-
-Data Extract v1.0.2 contains an enhancement that allows individual studies to specify the character to 
-be used to denote a "NULL" in Text Values when building CTMS Data Files.  Theradex v310 and v312 allow
-the option of either spaces or the character "*" to denote a NULL value.  By default, spaces are used 
-to denote NULL values.  To override this option, the user must change the value of the Literal field in
-the CT EXT STUDY CTL section of the "Extract Control Data" form.  This is best performed for NEW 
-studies.  Studies previously extracted will contain two different Literal values for NULL, which 
-could increase the number of "update" records in a candidate submission. 
-
-
-
