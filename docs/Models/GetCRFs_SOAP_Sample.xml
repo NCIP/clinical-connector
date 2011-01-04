@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:c3d="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService" xmlns:gov="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <c3d:GetStudyCRFsRequest>
+         <c3d:getStudyCRFsRequest>
+            <gov:GetStudyCRFsRequest>
+               <gov:studyName>SMOKE_TEST</gov:studyName>
+            </gov:GetStudyCRFsRequest>
+         </c3d:getStudyCRFsRequest>
+      </c3d:GetStudyCRFsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
