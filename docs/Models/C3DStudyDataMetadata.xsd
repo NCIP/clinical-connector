@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:studyDataMeta="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.c3DStudyDataMetadata"
+        xmlns:bridg="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg"
+        xmlns:cdt="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.cdt"
+	targetNamespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.c3DStudyDataMetadata">
+        <xs:import schemaLocation="bridg.xsd" namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg" />	
+        <xs:import schemaLocation="cdt.xsd"   namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.cdt"/>
+	<xs:element name="StudyMetadata" type="studyDataMeta:StudyMetadata"/>
+	<xs:complexType name="StudyMetadata">
+		<xs:sequence>
+			<xs:element name="CDEMetadata" type="studyDataMeta:CDEMetadata" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CRFMetadata" type="studyDataMeta:CRFMetadata" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="StudyData" type="studyDataMeta:StudyData"/>
+	<xs:complexType name="StudyData">
+		<xs:sequence>
+			<xs:element name="CDEData" type="studyDataMeta:CDEData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CRFData" type="studyDataMeta:CRFData" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CDEMetadata" type="studyDataMeta:CDEMetadata"/>
+	<xs:complexType name="CDEMetadata">
+		<xs:sequence>
+			<xs:element name="DataCollectionInstrument" type="bridg:DataCollectionInstrument" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CRFMetadata" type="studyDataMeta:CRFMetadata"/>
+	<xs:complexType name="CRFMetadata">
+		<xs:sequence>
+			<xs:element name="crfName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="dciName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="dciId" type="xs:int" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CRFData" type="studyDataMeta:CRFData"/>
+	<xs:complexType name="CRFData">
+		<xs:sequence>
+			<xs:element name="CRFMetadata" type="studyDataMeta:CRFMetadata" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="StudySite" type="studyDataMeta:StudySite" minOccurs="0" maxOccurs="unbounded"/>			
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CDEData" type="studyDataMeta:CDEData"/>
+	<xs:complexType name="CDEData">
+		<xs:sequence>
+			<xs:element name="StudySite" type="studyDataMeta:StudySite" minOccurs="0" maxOccurs="unbounded"/>			
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="StudySubject" type="studyDataMeta:StudySubject"/>
+	<xs:complexType name="StudySubject">
+		<xs:sequence>
+			<xs:element name="informedConsentSignatureText" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="status" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="statusEndDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="statusStartDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="studySubjectState" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="subgroup" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="studySubjectStateDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="II" type="cdt:II" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Event" type="bridg:Event" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="StudyDataMetadata" type="studyDataMeta:StudyDataMetadata"/>
+	<xs:complexType name="StudyDataMetadata">
+		<xs:sequence>
+			<xs:element name="studyName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="StudyMetadata" type="studyDataMeta:StudyMetadata" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="StudyData" type="studyDataMeta:StudyData" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="StudySite" type="studyDataMeta:StudySite"/>
+	<xs:complexType name="StudySite">
+		<xs:sequence>
+			<xs:element name="accrualStatus" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="endDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="irbApprovalDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="role" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="startDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="status" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="statusEndDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="statusStartDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="targetAccrualNumber" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="StudySubject" type="studyDataMeta:StudySubject" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

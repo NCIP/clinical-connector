@@ -1,0 +1,279 @@
+Exporting package to 'H:\Projects\ClinicalConnector\docs\Models\BRIDG 2.0 Domain Model.xml'
+Retrieving data for export: diagram elements
+Retrieving data for export: links
+Retrieving data for export: constraints
+Retrieving data for export: attribute tagged values
+Retrieving data for export: operation tagged values
+Retrieving data for export: operation parameter tagged values
+Retrieving data for export: connector tagged values
+Completed data retrieval
+Pre-processing export tree...
+Completed pre-processing
+Processing package: BRIDG Domain Model
+Element:0: Logical Model
+Element:1: bridg
+Diagram: BRIDG Domain Model
+Processing package: Logical Model
+Element:2: BRIDG Release 2.0 -- Static Classes
+Processing package: BRIDG Release 2.0 -- Static Classes
+Element:3: Note
+Element:4: AEOutcomeAssessmentRelationship
+Element:5: BiologicEntityGroup
+Element:6: Note
+Element:7: TreatingSite
+Element:8: Note
+Element:9: Laboratory
+Element:10: Note
+Element:11: DefinedActivity
+Element:12: 
+Element:13: Note
+Element:14: StudySegment
+Element:15: ScheduledSubjectStudyEncounter
+Element:16: Subject
+Element:17: Note
+Element:18: 
+Element:19: Note
+Element:20: PerformedSpecimenCollection
+Element:21: ManufacturingSite
+Element:22: DocumentIdentificationRelationship
+Element:23: 
+Element:24: FoodProduct
+Element:25: PerformedDiagnosis
+Element:26: DocumentAuthor
+Element:27: Note
+Element:28: Note
+Element:29: ClinicalResearchStaff
+Element:30: SubmissionUnitRelationship
+Element:31: PerformedLesionDescription
+Element:32: ScheduledActivity
+Element:33: Note
+Element:34: PlannedObservationResult
+Element:35: Note
+Element:36: FundingSource
+Element:37: RegulatedProduct
+Element:38: Note
+Element:39: 
+Element:40: DefinedEpoch
+Element:41: Specimen
+Element:42: ReviewableUnit
+Element:43: HealthCareFacility
+Element:44: Note
+Element:45: StudyInvestigator
+Element:46: SubjectStudyEncounterRule
+Element:47: PlannedActivity
+Element:48: Note
+Element:49: Distributor
+Element:50: Note
+Element:51: ScheduledStudySegment
+Element:52: Note
+Element:53: ArmSoA
+Element:54: Material
+Element:55: PerformedProcedure
+Element:56: RandomizationBookEntry
+Element:57: PerformingLaboratory
+Element:58: Arm
+Element:59: StudySubject
+Element:60: Animal
+Element:61: AdministrativeMemberPI
+Element:62: Note
+Element:63: 
+Element:64: ActivityRelationship
+Element:65: Biologic
+Element:66: PerformedObservationResult
+Element:67: Note
+Element:68: AECausalPerformedActivityRelationship
+Element:69: Note
+Element:70: HealthCareProvider
+Element:71: Note
+Element:72: ClinicalResearchCoordinator
+Element:73: Note
+Element:74: Activity
+Element:75: Note
+Element:76: Note
+Element:77: DocumentRelationship
+Element:78: PerformedProtocolDeviation
+Element:79: Note
+Element:80: ScheduledArm
+Element:81: Note
+Element:82: AECausalityAssessmentRelationship
+Element:83: Note
+Element:84: PerformedClinicalResult
+Element:85: 
+Element:86: ObservationResultRelationship
+Element:87: Manufacturer
+Element:88: Legend
+Element:89: SubjectStudyEncounter
+Element:90: PerformedProductObservation
+Element:91: DocumentContent
+Element:92: PerformedSubjectMilestone
+Element:93: PerfObsPerfObsResultRelationship
+Element:94: Note
+Element:95: StudySite
+Element:96: SafetyReport
+Element:97: Note
+Element:98: PerformedNonSubjectAdministrativeActivity
+Element:99: PlannedEligibilityCriterion
+Element:100: PerformedClinicalInterpretation
+Element:101: Department
+Element:102: Harmonized Elements : Comprehensive Class and attribute diagram
+Element:103: PerformedExclusionCriterion
+Element:104: Note
+Element:105: Note
+Element:106: Legend
+Element:107: Person
+Element:108: PerformedProductInvestigationResult
+Element:109: Note
+Element:110: Note
+Element:111: Note
+Element:112: StratumGroup
+Element:113: Note
+Element:114: Note
+Element:115: Note
+Element:116: StudyProtocol
+Element:117: NonTherapeuticAgent
+Element:118: Note
+Element:119: AECausalPerfObsResultRelationship
+Element:120: PlannedSubstanceAdministration
+Element:121: RegulatoryAuthority
+Element:122: Note
+Element:123: ProductActionTakenRelationship
+Element:124: StudyAgent
+Element:125: SoACell
+Element:126: ObservationResult
+Element:127: HealthCareProviderGroup
+Element:128: AdministrativeMemberCRA
+Element:129: Legend
+Element:130: PlannedObservation
+Element:131: Legend
+Element:132: Note
+Element:133: Note
+Element:134: Note
+Element:135: Note
+Element:136: SubmissionUnit
+Element:137: PerformedMedicalHistoryResult
+Element:138: Note
+Element:139: Note
+Element:140: Package
+Element:141: Note
+Element:142: AEActionTakenRelationship
+Element:143: Device
+Element:144: Note
+Element:145: Note
+Element:146: Note
+Element:147: PerformedEpoch
+Element:148: Note
+Element:149: Note
+Element:150: Note
+Element:151: DocumentStructureRelationship
+Element:152: Epoch
+Element:153: Place
+Element:154: Note
+Element:155: Note
+Element:156: OrganizationalContact
+Element:157: Note
+Element:158: Note
+Element:159: Note
+Element:160: ActivityStudySegmentRule
+Element:161: PerformedEligibilityCriterion
+Element:162: PlannedStratificationCriterion
+Element:163: PlannedExclusionCriterion
+Element:164: MemberInstitution
+Element:165: PlannedArm
+Element:166: StudyCoordinatingCenter
+Element:167: ResearchOrganization
+Element:168: Note
+Element:169: PlannedStratificationCriterionPermissibleResult
+Element:170: StudyCell
+Element:171: Product
+Element:172: Note
+Element:173: Note
+Element:174: StudyDevice
+Element:175: 
+Element:176: PlannedEpoch
+Element:177: Note
+Element:178: Note
+Element:179: Note
+Element:180: StudyRelationship
+Element:181: IdentifiedBiologicEntity
+Element:182: Harmonized Elements : Comprehensive Class-only diagram
+Element:183: RegulatoryApplication
+Element:184: Note
+Element:185: HealthCareProviderGroupMember
+Element:186: Note
+Element:187: Note
+Element:188: ScheduledEpoch
+Element:189: Note
+Element:190: Report
+Element:191: PlannedStudySegment
+Element:192: CooperativeGroup
+Element:193: Note
+Element:194: DocumentReceivingOrganization
+Element:195: PerformedAdministrativeActivity
+Element:196: Drug
+Element:197: PerformedStudyAgentTransfer
+Element:198: RegulatoryApplicationSponsor
+Element:199: 
+Element:200: Note
+Element:201: DocumentFrame
+Element:202: PerformedInclusionCriterion
+Element:203: Submission
+Element:204: Legend
+Element:205: PerformedSubstanceAdministration
+Element:206: Note
+Element:207: Note
+Element:208: Note
+Element:209: BiologicSpecimen
+Element:210: DocumentReceivingPerson
+Element:211: Assessor
+Element:212: PerformedArm
+Element:213: PerformedProductInvestigation
+Element:214: BiologicEntity
+Element:215: StudySegmentStudyCellRule
+Element:216: 
+Element:217: Note
+Element:218: PerformedHistopathology
+Element:219: PlannedSubjectStudyEncounter
+Element:220: OversightCommittee
+Element:221: EpochRule
+Element:222: DocumentIdentification
+Element:223: ServiceDeliveryLocation
+Element:224: Note
+Element:225: PlannedInclusionCriterion
+Element:226: StudyAuthor
+Element:227: PerformedObservation
+Element:228: Document
+Element:229: PerformedProductProblemDiscovery
+Element:230: 
+Element:231: PerformedActivity
+Element:232: 
+Element:233: StratumGroupRelationship
+Element:234: StudySponsor
+Element:235: TherapeuticAgent
+Element:236: 
+Element:237: StudyObective
+Element:238: ConcomitantAgent
+Element:239: Note
+Element:240: AdverseEvent
+Element:241: AssociatedPerson
+Element:242: Note
+Element:243: Note
+Element:244: 
+Element:245: PerformedSubjectStudyEncounter
+Element:246: Note
+Element:247: PerformedStudySegment
+Element:248: Note
+Element:249: Note
+Element:250: Current diagrams
+Element:251: DocumentStructure
+Element:252: Cosmetic
+Element:253: Organization
+Element:254: Note
+Element:255: CentralLaboratory
+Element:256: PlannedStudyCell
+Diagram: View 1 - Protocol-Driven Research
+Diagram: View 3 - Document
+Diagram: View 5 - Complete - Classes, Attributes, Inheritance
+Diagram: View 4 - Adverse Event
+Diagram: View 2 - Study Design
+Formatting output XML...please wait
+XMI Document Export Complete!

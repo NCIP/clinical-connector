@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="C3DGridService" targetNamespace="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService" xmlns:tns="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<types>
+		<xs:schema targetNamespace="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://c3d.cdmsconnector.nci.nih.gov/C3DGridService">
+			<xs:element name="GetStudyCDEsRequest" type="s1:GetStudyCDEsRequest"/>
+			<xs:complexType name="GetStudyCDEsRequest">
+				<xs:sequence minOccurs="1" maxOccurs="1"/>
+			</xs:complexType>
+			<xs:element name="GetStudyCDEsResponse" type="s1:GetStudyCDEsResponse"/>
+			<xs:complexType name="GetStudyCDEsResponse">
+				<xs:sequence minOccurs="1" maxOccurs="1"/>
+			</xs:complexType>
+			<xs:element name="GetStudyCDEDataRequest" type="s1:GetStudyCDEDataRequest"/>
+			<xs:complexType name="GetStudyCDEDataRequest">
+				<xs:sequence minOccurs="1" maxOccurs="1"/>
+			</xs:complexType>
+			<xs:element name="GetStudyCDEDataResponse" type="s1:GetStudyCDEDataResponse"/>
+			<xs:complexType name="GetStudyCDEDataResponse">
+				<xs:sequence minOccurs="1" maxOccurs="1"/>
+			</xs:complexType>
+			<xs:element name="GetStudyCRFsRequest" type="s1:GetStudyCRFsRequest"/>
+			<xs:complexType name="GetStudyCRFsRequest">
+				<xs:sequence minOccurs="1" maxOccurs="1"/>
+			</xs:complexType>
+			<xs:element name="GetStudyCRFsResponse" type="s1:GetStudyCRFsResponse"/>
+			<xs:complexType name="GetStudyCRFsResponse">
+				<xs:sequence minOccurs="1" maxOccurs="1"/>
+			</xs:complexType>
+			<xs:element name="GetStudyCRFDataRequest" type="s1:GetStudyCRFDataRequest"/>
+			<xs:complexType name="GetStudyCRFDataRequest">
+				<xs:sequence minOccurs="1" maxOccurs="1"/>
+			</xs:complexType>
+			<xs:element name="GetStudyCRFDataReqponse" type="s1:GetStudyCRFDataReqponse"/>
+			<xs:complexType name="GetStudyCRFDataReqponse">
+				<xs:sequence minOccurs="1" maxOccurs="1"/>
+			</xs:complexType>
+		</xs:schema>
+	</types>
+	<service name="C3DGridServicePortType"/>
+</definitions>

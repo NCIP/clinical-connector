@@ -1,0 +1,280 @@
+
+Importing Model from XMI
+Root Package: BRIDG Domain Model
+Add Classifier Role: Logical Model
+Add Classifier Role: bridg
+Append Package: Logical Model
+Add Classifier Role: BRIDG Release 2.0 -- Static Classes
+Append Package: BRIDG Release 2.0 -- Static Classes
+Add Classifier: Note
+Add Classifier: AEOutcomeAssessmentRelationship
+Add Classifier: BiologicEntityGroup
+Add Classifier: Note
+Add Classifier: TreatingSite
+Add Classifier: Note
+Add Classifier: Laboratory
+Add Classifier: Note
+Add Classifier: DefinedActivity
+Add Classifier: 
+Add Classifier: Note
+Add Classifier: StudySegment
+Add Classifier: ScheduledSubjectStudyEncounter
+Add Classifier: Subject
+Add Classifier: Note
+Add Classifier: 
+Add Classifier: Note
+Add Classifier: PerformedSpecimenCollection
+Add Classifier: ManufacturingSite
+Add Classifier: DocumentIdentificationRelationship
+Add Classifier: 
+Add Classifier: FoodProduct
+Add Classifier: PerformedDiagnosis
+Add Classifier: DocumentAuthor
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: ClinicalResearchStaff
+Add Classifier: SubmissionUnitRelationship
+Add Classifier: PerformedLesionDescription
+Add Classifier: ScheduledActivity
+Add Classifier: Note
+Add Classifier: PlannedObservationResult
+Add Classifier: Note
+Add Classifier: FundingSource
+Add Classifier: RegulatedProduct
+Add Classifier: Note
+Add Classifier: 
+Add Classifier: DefinedEpoch
+Add Classifier: Specimen
+Add Classifier: ReviewableUnit
+Add Classifier: HealthCareFacility
+Add Classifier: Note
+Add Classifier: StudyInvestigator
+Add Classifier: SubjectStudyEncounterRule
+Add Classifier: PlannedActivity
+Add Classifier: Note
+Add Classifier: Distributor
+Add Classifier: Note
+Add Classifier: ScheduledStudySegment
+Add Classifier: Note
+Add Classifier: ArmSoA
+Add Classifier: Material
+Add Classifier: PerformedProcedure
+Add Classifier: RandomizationBookEntry
+Add Classifier: PerformingLaboratory
+Add Classifier: Arm
+Add Classifier: StudySubject
+Add Classifier: Animal
+Add Classifier: AdministrativeMemberPI
+Add Classifier: Note
+Add Classifier: 
+Add Classifier: ActivityRelationship
+Add Classifier: Biologic
+Add Classifier: PerformedObservationResult
+Add Classifier: Note
+Add Classifier: AECausalPerformedActivityRelationship
+Add Classifier: Note
+Add Classifier: HealthCareProvider
+Add Classifier: Note
+Add Classifier: ClinicalResearchCoordinator
+Add Classifier: Note
+Add Classifier: Activity
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: DocumentRelationship
+Add Classifier: PerformedProtocolDeviation
+Add Classifier: Note
+Add Classifier: ScheduledArm
+Add Classifier: Note
+Add Classifier: AECausalityAssessmentRelationship
+Add Classifier: Note
+Add Classifier: PerformedClinicalResult
+Add Classifier: 
+Add Classifier: ObservationResultRelationship
+Add Classifier: Manufacturer
+Add Classifier: Legend
+Add Classifier: SubjectStudyEncounter
+Add Classifier: PerformedProductObservation
+Add Classifier: DocumentContent
+Add Classifier: PerformedSubjectMilestone
+Add Classifier: PerfObsPerfObsResultRelationship
+Add Classifier: Note
+Add Classifier: StudySite
+Add Classifier: SafetyReport
+Add Classifier: Note
+Add Classifier: PerformedNonSubjectAdministrativeActivity
+Add Classifier: PlannedEligibilityCriterion
+Add Classifier: PerformedClinicalInterpretation
+Add Classifier: Department
+Add Classifier: Harmonized Elements : Comprehensive Class and attribute diagram
+Add Classifier: PerformedExclusionCriterion
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: Legend
+Add Classifier: Person
+Add Classifier: PerformedProductInvestigationResult
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: StratumGroup
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: StudyProtocol
+Add Classifier: NonTherapeuticAgent
+Add Classifier: Note
+Add Classifier: AECausalPerfObsResultRelationship
+Add Classifier: PlannedSubstanceAdministration
+Add Classifier: RegulatoryAuthority
+Add Classifier: Note
+Add Classifier: ProductActionTakenRelationship
+Add Classifier: StudyAgent
+Add Classifier: SoACell
+Add Classifier: ObservationResult
+Add Classifier: HealthCareProviderGroup
+Add Classifier: AdministrativeMemberCRA
+Add Classifier: Legend
+Add Classifier: PlannedObservation
+Add Classifier: Legend
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: SubmissionUnit
+Add Classifier: PerformedMedicalHistoryResult
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: Package
+Add Classifier: Note
+Add Classifier: AEActionTakenRelationship
+Add Classifier: Device
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: PerformedEpoch
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: DocumentStructureRelationship
+Add Classifier: Epoch
+Add Classifier: Place
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: OrganizationalContact
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: ActivityStudySegmentRule
+Add Classifier: PerformedEligibilityCriterion
+Add Classifier: PlannedStratificationCriterion
+Add Classifier: PlannedExclusionCriterion
+Add Classifier: MemberInstitution
+Add Classifier: PlannedArm
+Add Classifier: StudyCoordinatingCenter
+Add Classifier: ResearchOrganization
+Add Classifier: Note
+Add Classifier: PlannedStratificationCriterionPermissibleResult
+Add Classifier: StudyCell
+Add Classifier: Product
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: StudyDevice
+Add Classifier: 
+Add Classifier: PlannedEpoch
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: StudyRelationship
+Add Classifier: IdentifiedBiologicEntity
+Add Classifier: Harmonized Elements : Comprehensive Class-only diagram
+Add Classifier: RegulatoryApplication
+Add Classifier: Note
+Add Classifier: HealthCareProviderGroupMember
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: ScheduledEpoch
+Add Classifier: Note
+Add Classifier: Report
+Add Classifier: PlannedStudySegment
+Add Classifier: CooperativeGroup
+Add Classifier: Note
+Add Classifier: DocumentReceivingOrganization
+Add Classifier: PerformedAdministrativeActivity
+Add Classifier: Drug
+Add Classifier: PerformedStudyAgentTransfer
+Add Classifier: RegulatoryApplicationSponsor
+Add Classifier: 
+Add Classifier: Note
+Add Classifier: DocumentFrame
+Add Classifier: PerformedInclusionCriterion
+Add Classifier: Submission
+Add Classifier: Legend
+Add Classifier: PerformedSubstanceAdministration
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: BiologicSpecimen
+Add Classifier: DocumentReceivingPerson
+Add Classifier: Assessor
+Add Classifier: PerformedArm
+Add Classifier: PerformedProductInvestigation
+Add Classifier: BiologicEntity
+Add Classifier: StudySegmentStudyCellRule
+Add Classifier: 
+Add Classifier: Note
+Add Classifier: PerformedHistopathology
+Add Classifier: PlannedSubjectStudyEncounter
+Add Classifier: OversightCommittee
+Add Classifier: EpochRule
+Add Classifier: DocumentIdentification
+Add Classifier: ServiceDeliveryLocation
+Add Classifier: Note
+Add Classifier: PlannedInclusionCriterion
+Add Classifier: StudyAuthor
+Add Classifier: PerformedObservation
+Add Classifier: Document
+Add Classifier: PerformedProductProblemDiscovery
+Add Classifier: 
+Add Classifier: PerformedActivity
+Add Classifier: 
+Add Classifier: StratumGroupRelationship
+Add Classifier: StudySponsor
+Add Classifier: TherapeuticAgent
+Add Classifier: 
+Add Classifier: StudyObective
+Add Classifier: ConcomitantAgent
+Add Classifier: Note
+Add Classifier: AdverseEvent
+Add Classifier: AssociatedPerson
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: 
+Add Classifier: PerformedSubjectStudyEncounter
+Add Classifier: Note
+Add Classifier: PerformedStudySegment
+Add Classifier: Note
+Add Classifier: Note
+Add Classifier: DocumentStructure
+Add Classifier: Cosmetic
+Add Classifier: Organization
+Add Classifier: Note
+Add Classifier: CentralLaboratory
+Add Classifier: PlannedStudyCell
+Add Classifier Role: Current diagrams
+Resolving Classifiers
+Resolving Owners
+Resolve Package Links
+Add Extensions
+Add Diagrams
+Adding Diagram : BRIDG Domain Model
+Adding Diagram : View 1 - Protocol-Driven Research
+Adding Diagram : View 3 - Document
+Adding Diagram : View 5 - Complete - Classes, Attributes, Inheritance
+Adding Diagram : View 4 - Adverse Event
+Adding Diagram : View 2 - Study Design
+Resolving DiagramIDs
+Resolving Association Classes
+Resolving Parameter Types
+Resolving Attribute Types
+Resolving Note links
+Fixup external references
+Import Complete!

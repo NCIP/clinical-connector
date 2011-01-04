@@ -1,0 +1,108 @@
+##############################################################
+#
+# $Id: project.properties 1741 2009-05-28 21:48:01Z saksass $
+# $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-template/software/build/project.properties $
+#
+# This properties file is to store properties that are shared between the build.xml and install.xml.
+# 
+# bda-build-template version 1.2.0  
+##############################################################
+# Tools Required version
+ant.minimum.version=1.7.0
+java.major.version=1.5
+java.minor.version=1.5.0_10
+bda.version=1.2.7
+require.build.wscore=true
+
+project.name=clinConn
+clinConn-webapp.install.name=clinConn_install
+clinConn-webapp.upgrade.name=clinConn_ugprade
+clinConn-webapp.version=2.3Initial
+clinConn-webapp.upgrade.zip.file=${clinConn-webapp.upgrade.name}_${clinConn-webapp.version}.zip
+clinConn-webapp.install.zip.file=${clinConn-webapp.install.name}_${clinConn-webapp.version}.zip
+
+build.bda.src.url=http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-download/bda-ivy-build.xml
+ivy.bda.settings.src.url=http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-download/ivy-bda-settings.xml
+ivy.bda.src.url=http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-download/ivy-bda.xml 
+
+cacore-sdk.required=true
+cacore-sdk.binaries.file=caCORE_SDK_411-src.zip
+cacore-sdk.src.url=http://gforge.nci.nih.gov/svnroot/commonlibrary/trunk/cacore-sdk/4.1.1/${cacore-sdk.binaries.file}
+cacore-sdk.binaries.relative.dir=codegen
+
+cagrid-libs.binaries.file=cagrid-wscore-4.0.3-appserver-libs.zip
+cagrid-libs.src.url=http://gforge.nci.nih.gov/svnroot/commonlibrary/trunk/techstack-2007/os-independent/${cagrid-libs.binaries.file}
+cagrid-libs.binaries.relative.dir=.
+
+cagrid-base-war.binaries.file=cagrid-wscore-4.0.3-appserver-base-war.zip
+cagrid-base-war.src.url=http://gforge.nci.nih.gov/svnroot/commonlibrary/trunk/techstack-2007/os-independent/${cagrid-base-war.binaries.file}
+cagrid-base-war.binaries.relative.dir=.
+
+cagrid-libs.dest.file=${cagrid-libs.binaries.file}
+cagrid-base-war.dest.file=${cagrid-base-war.binaries.file}
+
+
+# you can also retrieve the file locally if you have a slow connection, sweet.
+# Jboss 4.0.5 JEMS install
+# Jboss 4.2.2 GA
+
+
+tomcat.binaries.file=apache-tomcat-5.5.27.zip
+#tomcat.src.url=https://ncisvn.nci.nih.gov/svn/cabigintegrationhub/trunk/docs/archive/${tomcat.binaries.file}
+#tomcat.src.url=http://archive.apache.org/dist/tomcat/tomcat-5/v5.5.27/bin/${tomcat.binaries.file}
+#tomcat.src.url=http://gforge.nci.nih.gov/svnroot/commonlibrary/trunk/techstack-2009/os-independent/
+tomcat.src.url=http://gforge.nci.nih.gov/svnroot/commonlibrary/trunk/techstack/approved-exception/${tomcat.binaries.file}
+tomcat.binaries.relative.dir=apache-tomcat-5.5.27
+tomcat.binaries.MD5.type=.MD5
+
+findbugs.binaries.file=findbugs-1.3.4.zip
+findbugs.src.url=http://gforge.nci.nih.gov/svnroot/commonlibrary/trunk/other/os-independent/${findbugs.binaries.file}
+findbugs.binaries.relative.dir=findbugs-1.3.4
+
+# These props represent the relative path of the packages from the distribution area.  They are used in creation of the distribution then in the install process.
+tools.dist.relative.dir=tools
+clinConn-api.dist.relative.dir=clinConn-api
+clinConn-webapp.dist.relative.dir=webapps
+C3DGridService-webapp.dist.relative.dir=webapps
+grid-sample.dist.relative.dir=grid-sample
+common.dist.relative.dir=common
+security.dist.relative.dir=common/resources/security
+grid.dist.relative.dir=common/resources/grid
+db.dist.relative.dir=db
+db-install.dist.relative.dir=db/db-install
+db-upgrade.dist.relative.dir=db/db-upgrade
+# PRC The following definitions are for Clinical Connector specific inclusions
+dll.relative.dir=dll
+tools.relative.dir=tools
+conf.relative.dir=conf
+template.relative.dir=templates
+deploy.dll.dir=C:\\DCAPI\\gov\\nih\\nci\\c3d\\study
+
+# PRC Synch GTS related install from https://wiki.nci.nih.gov/display/BuildandDeploymentAutomation/How+to+configure+a+Secure+Grid+Listener
+sync-gts.binaries.file=gaards-syncgts-1.3-bin.zip
+# URL for sync-gts installer  
+sync-gts.src.url=http://software.cagrid.org/gaards/1.3/gaards-syncgts-1.3-bin.zip
+sync-gts.binaries.relative.dir=.
+sync-gts.dist.relative.dir=sync-gts
+cagrid-target.src.url=https://ncisvn.nci.nih.gov/svn/cagrid/branches/caGrid-1_3_release/cagrid-1-0/caGrid/repository/caGrid/target_grid  
+
+
+#*******************************
+# Databases build/install properties
+#*******************************
+# These properties are the list of files used by the install of the database for each type
+db.install.create.oracle.file.list=
+db.install.create.mysql.file.list=create-tables.sql,insert-data.sql
+db.install.create.postgresql.file.list=
+
+# Database version
+database.release.version=2.0
+
+# From clinConn-ds.xml
+application.context.name=bda
+
+pmd.revision.number=0
+checkstyle.revision.number=0
+# PRC Removed below
+# database.jndi.datasource.name=jdbc/bdaDS
+database.context.path=clinConn-webapp

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:apis="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData" xmlns:bridg="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg" xmlns:cdt="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.cdt" elementFormDefault="qualified">
+	<xs:import namespace="gme://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg" schemaLocation="H:\Projects\ClinicalConnector\software\C3DGridService\schema\C3DGridService\bridg.xsd"/>
+	<xs:element name="GetStudyCRFsRequest" type="apis:GetStudyCRFsRequest"/>
+	<xs:complexType name="GetStudyCRFsRequest">
+		<xs:sequence>
+			<xs:element name="studyName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetStudyCRFsResponse" type="apis:GetStudyCRFsResponse"/>
+	<xs:complexType name="GetStudyCRFsResponse">
+		<xs:sequence>
+			<xs:element name="studyProtocol" type="bridg:StudyProtocol" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetStudyCRFDataRequest" type="apis:GetStudyCRFDataRequest"/>
+	<xs:complexType name="GetStudyCRFDataRequest">
+		<xs:sequence>
+			<xs:element name="studyName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="studyCRF" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetStudyCRFDataResponse" type="apis:GetStudyCRFDataResponse"/>
+	<xs:complexType name="GetStudyCRFDataResponse">
+		<xs:sequence>
+			<xs:element name="studyProtocol" type="bridg:StudyProtocol" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetStudyCDEDataRequest" type="apis:GetStudyCDEDataRequest" nillable="true"/>
+	<xs:complexType name="GetStudyCDEDataRequest">
+		<xs:sequence>
+			<xs:element name="commonDataElement" type="bridg:CommonDataElement" minOccurs="1" maxOccurs="1" nillable="true"/>
+			<xs:element name="studyName" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetStudyCDEDataResponse" type="apis:GetStudyCDEDataResponse" nillable="true"/>
+	<xs:complexType name="GetStudyCDEDataResponse">
+		<xs:sequence>
+			<xs:element name="studyProtocol" type="bridg:StudyProtocol" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetStudyCDEsRequest" type="apis:GetStudyCDEsRequest" nillable="true"/>
+	<xs:complexType name="GetStudyCDEsRequest">
+		<xs:sequence>
+			<xs:element name="studyName" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetStudyCDEsResponse" type="apis:GetStudyCDEsResponse" nillable="true"/>
+	<xs:complexType name="GetStudyCDEsResponse">
+		<xs:sequence>
+			<xs:element name="studyProtocol" type="bridg:StudyProtocol" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="IsValidStudyRequest" type="apis:IsValidStudyRequest" nillable="true"/>
+	<xs:complexType name="IsValidStudyRequest">
+		<xs:sequence>
+			<xs:element name="studyName" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="IsValidStudyResponse" type="apis:IsValidStudyResponse" nillable="true"/>
+	<xs:complexType name="IsValidStudyResponse">
+		<xs:sequence>
+			<xs:element name="isValid" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
