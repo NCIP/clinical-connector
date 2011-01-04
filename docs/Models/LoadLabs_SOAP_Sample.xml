@@ -1,0 +1,51 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clin="http://gov.nci.nih.clinicalconnector/ClinicalConnector" xmlns:ns2="http://clinicalconnector.nci.nih.gov" xmlns:uri="uri:iso.org:21090">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clin:LoadLabsRequest>
+         <clin:loadLabsRequest>
+             <ns2:LoadLabsRequest xmlns:ns2="http://clinicalconnector.nci.nih.gov">
+                 <ns2:performedClinicalResult>
+                      <ns2:asCollectedIndicator xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:BL" value="false"/>
+                      <ns2:comment xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:SC" value=""/>
+                      <ns2:confidentialityCode xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:CD" code=""/>
+                      <ns2:numericalResult xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:PQ" value="11.0" precision="0" unit="mg/dL"/>
+                      <ns2:referenceRange xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:IVL_PQ" lowClosed="false" highClosed="false">
+                           <ns1:low xsi:type="ns1:PQ" value="8.0" precision="0"/>
+                           <ns1:high xsi:type="ns1:PQ" value="22.0" precision="0"/>
+                      </ns2:referenceRange>
+                      <ns2:referenceRangeComment xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:ST" value=""/>
+                      <ns2:reportedDate xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:TS" value="20080430T02:28:00.000Z"/>
+                      <ns2:reportedResultStatusCode xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:CD" code=""/>
+                      <ns2:textResult xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:ST" value=""/>
+                      <ns2:uncertaintyCode xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:CD" code=""/>
+                      <ns2:performedObservation>
+                           <ns2:activityNameCode xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:CD" code="BUN"/>
+                           <ns2:studyProtocolIdentifier xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:II" nullFlavor="NI" displayable="false" extension="SMOKE_TEST" identifierName="STUDY"/>
+                           <ns2:studySubjectIdentifier xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:II" root="2.16.840.1.113883.3.26.7.1" extension="00-00-00-0" identifierName="MRN" displayable="false"/>
+                      </ns2:performedObservation>
+                 </ns2:performedClinicalResult>
+                 <ns2:performedClinicalResult>
+                      <ns2:asCollectedIndicator xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:BL" value="false"/>
+                      <ns2:comment xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:SC" value=""/>
+                      <ns2:confidentialityCode xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:CD" code=""/>
+                      <ns2:numericalResult xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:PQ" value="11.0" precision="0" unit="mg/dL"/>
+                      <ns2:referenceRange xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:IVL_PQ" lowClosed="false" highClosed="false">
+                           <ns1:low xsi:type="ns1:PQ" value="8.0" precision="0"/>
+                           <ns1:high xsi:type="ns1:PQ" value="22.0" precision="0"/>
+                      </ns2:referenceRange>
+                      <ns2:referenceRangeComment xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:ST" value=""/>
+                      <ns2:reportedDate xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:TS" value="20080430T02:28:00.000Z"/>
+                      <ns2:reportedResultStatusCode xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:CD" code=""/>
+                      <ns2:textResult xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:ST" value=""/>
+                      <ns2:uncertaintyCode xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:CD" code=""/>
+                      <ns2:performedObservation>
+                           <ns2:activityNameCode xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:CD" code="BUN"/>
+                           <ns2:studyProtocolIdentifier xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:II" nullFlavor="NI" displayable="false" extension="SMOKE_TEST" identifierName="STUDY"/>
+                           <ns2:studySubjectIdentifier xmlns:ns1="uri:iso.org:21090" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:II" root="2.16.840.1.113883.3.26.7.1" extension="00-00-00-0" identifierName="MRN" displayable="false"/>
+                      </ns2:performedObservation>
+                  </ns2:performedClinicalResult>
+              </ns2:LoadLabsRequest>
+         </clin:loadLabsRequest>
+      </clin:LoadLabsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
