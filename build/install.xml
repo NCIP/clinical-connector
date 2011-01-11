@@ -697,22 +697,26 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 				<database-install
 					db.install.create.file.list="${db.install.upgrade.oracle.file.list}"
 					sql.delimiter=";"
+					onerror="continue"
 					/>
 				<echo message="Upgrade Procedures/Functions/Packages with ${db.install.upgrade.oracle.proc.list}"/>
 				<database-install
 					db.install.create.file.list="${db.install.upgrade.oracle.proc.list}"
 					sql.delimiter="/"
 					sql.delimitertype="row"
+					onerror="continue"
 					/>
 				<echo message="Applying Database Security with ${db.install.upgrade.oracle.security}"/>
 				<database-install
 					db.install.create.file.list="${db.install.upgrade.oracle.security}"
 					sql.delimiter=";"
+					onerror="continue"
 					/>
 				<echo message="Applying Synonyms ${db.install.upgrade.oracle.synonyms}"/>
 				<database-install
 					db.install.create.file.list="${db.install.upgrade.oracle.synonyms}"
 					sql.delimiter=";"
+					onerror="continue"
 					/>
 			</case>
 			<case value="postgresql">
