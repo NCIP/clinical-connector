@@ -866,6 +866,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 	</target>
 
 	<target name="install:post:tomcat" unless="exclude.tomcat" depends="common:init">
+		<mkdir dir="${tomcat.home}/temp"/>
 		<if>
 			<not>
 				<equals arg1="${exclude.tomcat.backup}" arg2="true"/>
@@ -897,7 +898,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 		<echo message="clinConn-webapp.dir.dist=${clinConn-webapp.dir.dist}" />
 		<echo message="clinConn-webapp.war.file=${clinConn-webapp.war.file}" />
 		<echo message="clinConn-Destination=${tomcat.home}/webapps/${clinConn-webapp.name}" />
-		<delete dir="${tomcat.home}/temp"/>
+		<!--<delete dir="${tomcat.home}/temp"/>-->
 		<delete dir="${tomcat.home}/work"/>
 		<delete dir="${tomcat.home}/webapps/${clinConn-webapp.name}"/>
 		<!-- unwar the inbound service war file (wsrf-clinicalConnector) --> 
@@ -922,7 +923,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 		<echo message="C3DGridService-webapp.dir.dist=${C3DGridService-webapp.dir.dist}" />
 		<echo message="C3DGridService-webapp.war.file=${C3DGridService-webapp.war.file}" />
 		<echo message="C3DGridService-Destination=${tomcat.home}/webapps/${C3DGridService-webapp.name}" />
-		<delete dir="${tomcat.home}/temp"/>
+		<--<delete dir="${tomcat.home}/temp"/>-->
 		<delete dir="${tomcat.home}/work"/>
 		<delete dir="${tomcat.home}/webapps/${C3DGridService-webapp.name}"/>
 		<!-- unwar the inbound service war file (wsrf-clinicalConnector) --> 
