@@ -1,4 +1,4 @@
-<Context path="/c3d" docBase="c3d" debug="1" crossContext="true">
+<Context path="/c3d" debug="1" crossContext="true">
 	<Logger className="org.apache.catalina.logger.FileLogger"
 		prefix="localhost_c3dGrid_log." suffix=".txt" timestamp="true" />
 		<Resource name="c3d" auth="Container" type="javax.sql.DataSource"/>
