@@ -141,7 +141,7 @@ public class PropertiesUtil {
 		}
 
 		//}
-		showDBProperties();
+		//showDBProperties();
 		return props;
 
 	}

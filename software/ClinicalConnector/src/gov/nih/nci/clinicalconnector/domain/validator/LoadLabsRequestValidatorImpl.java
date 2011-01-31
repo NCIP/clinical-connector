@@ -9,6 +9,7 @@ import gov.nih.nci.clinicalconnector.dao.IsValidStudyDAO;
 import gov.nih.nci.clinicalconnector.domain.validator.DataValidationException;
 import gov.nih.nci.clinicalconnector.domain.validator.LoadLabsRequestValidator;
 import gov.nih.nci.clinicalconnector.domain.validator.StudyNotReadyException;
+import gov.nih.nci.clinicalconnector.manager.InvalidStudyException;
 
 public class LoadLabsRequestValidatorImpl implements LoadLabsRequestValidator {
 
@@ -16,11 +17,11 @@ public class LoadLabsRequestValidatorImpl implements LoadLabsRequestValidator {
 
 	public boolean validate(LoadLabsRequest request) throws Exception {
 		if (request == null) {
-			throw new DataValidationException("corrupt request");
+			throw new DataValidationException("Corrupt Load Lab Request");
 		}
 		LabResult[] results = request.getResults();
 		if (results == null || results.length == 0) {
-			throw new DataValidationException("No Lab Results received");
+			throw new DataValidationException("No Lab Results Received");
 		}
 		for (LabResult labResult : results) {
 			validateLabResult(labResult);
@@ -36,7 +37,7 @@ public class LoadLabsRequestValidatorImpl implements LoadLabsRequestValidator {
 
 	private void validateLabResult(LabResult labResult) throws Exception {
 		if (labResult == null) {
-			throw new DataValidationException("Corrupt LabResult");
+			throw new DataValidationException("Corrupt Load Lab Request");
 		}
 		Study study = labResult.getStudy();
 		validateStudy(study);
@@ -44,7 +45,7 @@ public class LoadLabsRequestValidatorImpl implements LoadLabsRequestValidator {
 		validateStudySubject(studySubject);
 		String textResult = labResult.getTextResult();
 		if (textResult == null || "".equals(textResult)) {
-			throw new DataValidationException("Result missing from LabResult");
+			throw new DataValidationException("Result Value Missing from LabResult");
 		}
 	}
 
@@ -53,7 +54,7 @@ public class LoadLabsRequestValidatorImpl implements LoadLabsRequestValidator {
 		if (studySubject == null
 				|| studySubject.getParticipantIdentifier() == null
 				|| "".equals(studySubject.getParticipantIdentifier())) {
-			throw new DataValidationException("MRN Not Received");
+			throw new DataValidationException("Lab Patient MRN Not Received");
 		}
 	}
 
@@ -63,7 +64,7 @@ public class LoadLabsRequestValidatorImpl implements LoadLabsRequestValidator {
 			throw new DataValidationException("Study Not Received");
 		}
 		if (!isValidStudyDAO.isValidStudy(study.getStudyIdentifier())) {
-			throw new DataValidationException("Invalid Study:"
+			throw new InvalidStudyException("Invalid Study:"
 					+ study.getStudyIdentifier());
 		}
 		HealthCareFacility site = study.getStudySite();

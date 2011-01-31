@@ -2,7 +2,6 @@ package gov.nih.nci.clinicalconnector.manager;
 
 import java.util.Properties;
 
-//import gov.nih.nci.cabig.ccts.domain.Registration;
 import clinicalconnector.nci.nih.gov.RegisterSubjectRequest;
 import gov.nih.nci.cabig.ctms.suite.authorization.SuiteRole;
 import gov.nih.nci.cdmsconnector.domain.EnrollPatientRequest;
@@ -17,12 +16,8 @@ import gov.nih.nci.clinicalconnector.manager.InvalidRequestException;
 import gov.nih.nci.cdmsconnector.util.PropertiesUtil;
 import gov.nih.nci.clinicalconnector.domain.adapter.bridg21.BRIDG21Adapter;
 import gov.nih.nci.clinicalconnector.domain.adapter.ccts.CCTSAdapter;
-//import gov.nih.nci.security.AuthorizationManager;
-//import gov.nih.nci.security.CommonSecurityManager;
-//import gov.nih.nci.security.SecurityServiceProvider;
-//import gov.nih.nci.security.acegi.authentication.CSMUserDetails;
-//import gov.nih.nci.security.authentication.loginmodules.CSMLoginModule;
-//import gov.nih.nci.security.authorization.jaas.AccessPermission;
+import gov.nih.nci.cdmsconnector.domain.Study;
+import gov.nih.nci.clinicalconnector.dao.TranslateStudyDAO;
 
 import org.apache.log4j.Logger;
 
@@ -37,9 +32,7 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 	protected EnrollPatientRequestValidator validator;
 	protected CDMSConnectorSecurityManager securityManager;
 	protected BRIDG21Adapter bridg21ModelAdapter;
-	/* PRC Turned off CCTSAdapter
-	 * protected CCTSAdapter cctsModelAdapter; 
-	 * */
+	protected TranslateStudyDAO translator;
 	
 	public Object enrollPatient(
 			Object enrollPatientRequest)
@@ -50,45 +43,50 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 		} catch (Exception e) {
 		}
 		String userDN=null;
-		/*try {
-			userDN=gov.nih.nci.cagrid.introduce.servicetools.security.SecurityUtils.getCallerIdentity();
-			if(!securityManager.canAccess(userDN, CDMSConnectorSecurityManager.ENROLLPATIENT_SERVICE, 
-					props.getProperty(gov.nih.nci.cdmsconnector.util.Constants.ClinConCSMRegRole)))
-			{
-				throw new AccessPermissionException("EnrollPatient permission denied to user:"+userDN);
-			}
-		} catch (Exception e1) {
-			e1.printStackTrace();
-			throw new AccessPermissionException(e1.toString());
-		}*/
 
 		try {
 			System.out.println("Inside EnrollPatientManagerImpl.enrollPatient");
-
 			System.out.println("setting cdmsEnrollPatientRequest NULL");
 			EnrollPatientRequest cdmsEnrollPatientRequest = null;
 			
 			System.out.println("setting adapter");
 			
 			EnrollPatientAdapter adapter = modelAdapter;
-			/* PRC TUrned OFF cctsAdapter
-			 * if(cctsModelAdapter.getEnrollPatientRequestType().isAssignableFrom(enrollPatientRequest.getClass())){
-			 
-				adapter = cctsModelAdapter;
-			} else*/
+
 			if (bridg21ModelAdapter.getEnrollPatientRequestType().isAssignableFrom(enrollPatientRequest.getClass())){
 				adapter = bridg21ModelAdapter;
 			} else {
 				throw new InvalidRequestException("Invalid Model Passed");
 			}
 
-			System.out.println("setting cdmsEnrollPatientRequest from adapter.map...");
+			//System.out.println("setting cdmsEnrollPatientRequest from adapter.map...");
 			cdmsEnrollPatientRequest = adapter.mapAndValidateEnrollPatientRequest(enrollPatientRequest);
 			
-			System.out.println("validator...");
-			validator.validate(cdmsEnrollPatientRequest);
+			System.out.println("Validate Request");
+			try {
+				validator.validate(cdmsEnrollPatientRequest);
+			} catch (InvalidStudyException e1) {
+				//e1.printStackTrace();
+				System.out.println("Inside Exception Handler");
+				try {
+					System.out.println("Study not found, translating...");
+					String oldStudy = cdmsEnrollPatientRequest.getStudy().getStudyIdentifier();
+					String newStudy = translator.translateStudy(oldStudy);
+					//String newStudy = cdmsEnrollPatientRequest.getStudy().getStudyIdentifier();
+				    System.out.println("Study '" + oldStudy + "' successfully " + 
+							           "translated to Study '" + newStudy + "'.");
+					Study study = cdmsEnrollPatientRequest.getStudy();
+					study.setStudyIdentifier(newStudy);
+					cdmsEnrollPatientRequest.setStudy(study);
+				} catch (Exception ec) {
+					ec.printStackTrace();
+					throw new AccessPermissionException(ec.toString());
+				}
+			} catch (Exception e1) {
+					throw new InvalidStudyOrPatientException(e1.toString());
+			}
 			
-			System.out.println("patientPosition...");
+			//System.out.println("patientPosition...");
 
 			String studyName = cdmsEnrollPatientRequest.getStudy().getStudyIdentifier();
 			String siteName = cdmsEnrollPatientRequest.getStudy().getStudySite().getOrganizationName();
@@ -114,7 +112,7 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 
 			String patientPosition = (String) enrollPatient(cdmsEnrollPatientRequest);
 
-			System.out.println("adapter...");
+			//System.out.println("adapter...");
 
 			return adapter.createEnrollPatientResponse(enrollPatientRequest, patientPosition);
 
@@ -285,6 +283,14 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 
 	public void setBridg21ModelAdapter(BRIDG21Adapter bridg21ModelAdapter) {
 		this.bridg21ModelAdapter = bridg21ModelAdapter;
+	}
+
+	public TranslateStudyDAO getTranslator() {
+		return translator;
+	}
+
+	public void setTranslator(TranslateStudyDAO translator) {
+		this.translator = translator;
 	}
 
 }
