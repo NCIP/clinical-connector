@@ -1,7 +1,10 @@
 package gov.nih.nci.cdmsconnector.dao.c3d;
 
 import gov.nih.nci.cdmsconnector.dao.BaseJDBCDAO;
+import gov.nih.nci.cdmsconnector.manager.AccessPermissionException;
+import gov.nih.nci.cdmsconnector.manager.StudyAccessException;
 import gov.nih.nci.cdmsconnector.util.Constants;
+import gov.nih.nci.cdmsconnector.util.StringEncrypter;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,9 +20,13 @@ public abstract class OracleDAO extends BaseJDBCDAO {
 	
 	private static Map<String, String> dcapiUserCredentials;
 
-	public Map<String, String> getDCAPIUserCredentials() {
+	/* 
+	 * Made following Method STATIC and also commented out the synchronized call for the class 
+	 */
+	public static Map<String, String> getDCAPIUserCredentials() {
 		//if(dcapiUserCredentials==null){
-			synchronized(this.getClass()){
+			//synchronized(this.getClass())
+			{
 				Map<String, String> m = new HashMap<String, String>();
 				Connection cn = null;
 				PreparedStatement stmt = null;
@@ -36,8 +43,8 @@ public abstract class OracleDAO extends BaseJDBCDAO {
 						m.put(Constants.UNAME, result.getString(Constants.UNAME));
 						pWord = result.getString(Constants.PWORD);
 						
-						System.out.println("---DCAPI PWORD before decryption :" + pWord);
-						log.debug("----------DCAPI PWORD before decryption :" + pWord);
+						//System.out.println("---DCAPI PWORD before decryption :" + pWord);
+						log.debug("----------DCAPI PWORD before decryption: " + pWord);
 						
 						gov.nih.nci.cdmsconnector.util.StringEncrypter encrypter = new gov.nih.nci.cdmsconnector.util.StringEncrypter();
 						pWord = encrypter.oDecrypt(pWord);
@@ -46,12 +53,12 @@ public abstract class OracleDAO extends BaseJDBCDAO {
 						m.put(Constants.C3D_TNS_ENTRY, result
 								.getString(Constants.C3D_TNS_ENTRY));
 
-						System.out.println("---DCAPI UNAME :" + result.getString(Constants.UNAME));
-						System.out.println("---DCAPI PWORD :" + pWord);
-						System.out.println("---DCAPI C3D_TNS_ENTRY :" + result.getString(Constants.C3D_TNS_ENTRY));
-						log.debug("----------DCAPI UNAME :"	+ result.getString(Constants.UNAME));
-						log.debug("----------DCAPI PWORD :" + pWord);
-						log.debug("----------DCAPI C3D_TNS_ENTRY :"
+						//System.out.println("---DCAPI UNAME :" + result.getString(Constants.UNAME));
+						//System.out.println("---DCAPI PWORD :" + pWord);
+						//System.out.println("---DCAPI C3D_TNS_ENTRY :" + result.getString(Constants.C3D_TNS_ENTRY));
+						log.debug("----------DCAPI UNAME: "	+ result.getString(Constants.UNAME));
+						//log.debug("----------DCAPI PWORD :" + pWord);
+						log.debug("----------DCAPI C3D_TNS_ENTRY: "
 								+ result.getString(Constants.C3D_TNS_ENTRY));
 					}
 
@@ -75,7 +82,141 @@ public abstract class OracleDAO extends BaseJDBCDAO {
 		return dcapiUserCredentials;
 	}
 	
-	
+	public static Connection getStudySecurityBasedConnection(String studyName) throws Exception {
+		//PRC study access checking
+		Connection cn = null;
+		PreparedStatement stmt1 = null;
+		PreparedStatement stmt2 = null;
+		boolean isPublic = false;
+		boolean atLeastOne = false;
+		
+		try {
+			//use common connect to database
+			cn = getConnection();
+
+			stmt1 = cn.prepareStatement(OracleDAOConstants.FIND_STUDY_ACCESS);
+			stmt1.setString(1, studyName);
+
+			ResultSet rs1 = stmt1.executeQuery();
+
+			while (rs1.next()) {
+				atLeastOne = true;
+				isPublic = rs1.getString("ACCESS_METHOD").equals("PUBLIC");
+			}
+            
+			if (!atLeastOne) {
+				atLeastOne = false;
+				stmt2 = cn.prepareStatement(OracleDAOConstants.FIND_DEFAULT_STUDY_ACCESS);
+
+				ResultSet rs2 = stmt1.executeQuery();
+
+				while (rs2.next()) {
+					atLeastOne = true;
+					isPublic = rs2.getString("ACCESS_METHOD").equals("PUBLIC");
+				}
+				
+				if (!atLeastOne) {
+					isPublic = false;
+				}
+				
+				stmt2.close();
+			}
+			
+		} finally {
+			try {
+				stmt1.close();
+			} catch (Exception ex) {
+			}
+			try {
+				cn.close();
+			} catch (Exception ex) {
+			}
+		}
+
+		cn = null;
+		String c3dUserName = null, c3dPassword = null, userDN = null;
+		// Use C3D Username associated with GridId for PRIVATE studies.
+		if (!isPublic) {
+			//throw new Exception("Study " + studyName + " is PRIVATE.");
+			//Get and check C3D Credentials
+				
+			// get current caGrid Username
+			userDN = gov.nih.nci.cagrid.introduce.servicetools.security.SecurityUtils.getCallerIdentity();
+			// get authorization mananger for c3d application from CSM
+			//authManager = SecurityServiceProvider.getAuthorizationManager("c3d");
+
+			System.out.println("Private Access needed for " + studyName + "." );
+			System.out.println("Grid Credentials: " + userDN );
+
+			// Find Record
+			Boolean recordExists = false;
+			try {
+				cn = getConnection();
+
+				// Find the Grid User 
+				stmt1 = cn.prepareStatement(OracleDAOConstants.FIND_USER_QUERY);
+				stmt1.setString(1, userDN);
+
+				ResultSet rs1 = stmt1.executeQuery();
+
+				while (rs1.next()) {
+						
+					recordExists = true;
+					c3dUserName = rs1.getString("C3D_USERNAME");
+					c3dPassword = rs1.getString("C3D_PASSWORD");
+				}
+
+				if (!recordExists) {
+					throw new Exception("C3D Credentials Not Found!");
+				}
+				stmt1.close();
+
+			}
+			catch (Exception e1) {
+				e1.printStackTrace();
+				throw new AccessPermissionException(e1.toString());
+			}
+
+			c3dPassword = new StringEncrypter().oDecrypt(c3dPassword.trim());
+
+			try {
+				// connect to the defined database using C3D userid/password 
+				BaseJDBCDAO.getConnection(c3dUserName, c3dPassword);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new AccessPermissionException("Bad C3D username or password.  Can not connect.");
+			}
+			cn = getConnection(c3dUserName, c3dPassword);
+			
+		    stmt1 = null;
+				
+		} else {
+			// Use SUPER Username for PUBLIC studies.
+			System.out.println("Using Superuser to Query Public study");
+			System.out.println("Public Access needed for " + studyName + "." );
+
+			// Get the DCAPI User and Password, IT is a superuser.
+			Map<String, String> m = getDCAPIUserCredentials();
+			if (m != null && m.containsKey(Constants.UNAME)
+						&& m.containsKey(Constants.PWORD)
+						&& m.containsKey(Constants.C3D_TNS_ENTRY)) 
+			{
+			  c3dUserName = (String) m.get(Constants.UNAME);
+			  c3dPassword = (String) m.get(Constants.PWORD);
+			} else {
+				// Throw Exception
+				log.error(OracleDAOConstants.BAD_DCAPI_CRENTIALS);
+				new StudyAccessException(OracleDAOConstants.BAD_DCAPI_CRENTIALS);
+			} 
+
+			cn = getConnection(c3dUserName, c3dPassword);			
+		}
+
+		log.debug("After Trying to get Connection");
+
+		return cn;
+	}
+
 	public String getStudyPosId(String study, String pos, String site) {
 		Connection cn = null;
 		PreparedStatement stmt = null;

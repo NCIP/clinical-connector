@@ -4,11 +4,18 @@ public class OracleDAOConstants {
 	public OracleDAOConstants(){
 		
 	}
+	
+	//prc added redaction string constant here
+	public final static String REDACT = "##########";
+	
+	public final static String REDACT_CDE = 
+		"select redact(?,?,?) REDACT from dual";
+	
 	// prc added this string for v2.2 security - Is Study Accessible by User
 	public final static String STUDY_ACCESSIBLE = "select STUDY " 
 		+ "from C3D_ACCESSIBLE_STUDIES_VW "
 		+ "where STUDY = ?";
-	
+
 	// prc added this string for v2.2 security - What is Study Security Level
 	public final static String FIND_STUDY_ACCESS = "select ACCESS_METHOD " 
 		+ "from STUDY_SECURITY_LEVEL "
@@ -20,13 +27,17 @@ public class OracleDAOConstants {
 		+ "where STUDY = 'ALL'";
 	
 	// prc added this string for v2.2 security
-    private final static String GET_C3D_CREDENTIALS = "select b.C3D_USERNAME, b.C3D_PASSWORD "
+    /* Not Needed
+     * private final static String GET_C3D_CREDENTIALS = "select b.C3D_USERNAME, b.C3D_PASSWORD "
     	+ "FROM CSM_USER a, C3D_USER b "
     	+ "where a.user_id = b.user_id (+) "
     	+ "and login_name = ?";
-
+     */
+	
 	// the sql query for the case when no studyName is provided
-	private final static String SQL1 = "select distinct s.study study_name,"
+	/* Not Needed
+	 * private final static String SQL1 = "select distinct s.study study_name,"
+	 
 			+ "dci_modules dcim, q.name question_name, dq.DEFAULT_PROMPT default_prompt, d.name dcm_name, "
 			+ "d.SHORT_NAME, dq.DCM_QUESTION_ID question_id, dq.DCM_ID dcm_id,  s.task_id study_id, dci.name DCI_NAME, dqg.NAME QUESTGRP_NAME "
 			+ "from questions q, "
@@ -49,19 +60,22 @@ public class OracleDAOConstants {
 			+ "AND dq.dcm_que_dcm_subset_sn = dqg.dcm_que_grp_dcm_subset_sn "
 			+ "AND dq.dcm_que_dcm_layout_sn = dqg.dcm_que_grp_dcm_layout_sn "
 			+ "AND dq.dcm_question_group_id = dqg.dcm_question_grp_id "
-			+ "AND dq.occurrence_sn = 0 "
+			//+ "AND dq.occurrence_sn = 0 "
 			+ "and  dq.collected_in_subset_flag = 'Y' " + "order by 1,2,3,4 ";
-
+	*/
+    
 	// the sql query for the case when a studyName is provided
-	private final static String SQL1_1 = "select distinct s.study study_name,"
-			+ "dci.name DCI_NAME, q.name question_name, dq.DEFAULT_PROMPT default_prompt, "
-			+ "d.SHORT_NAME, dq.DCM_QUESTION_ID question_id, dq.DCM_ID dcm_id, s.task_id study_id, d.name dcm_name, dci.name DCI_NAME, dqg.NAME QUESTGRP_NAME "
+	public final static String SQL1_1 = "select distinct s.study STUDY_NAME, "
+			+ "dci.name DCI_NAME, q.name QUESTION_NAME, dq.DEFAULT_PROMPT DEFAULT_PROMPT, "
+			+ "d.SHORT_NAME, dq.DCM_QUESTION_ID QUESTION_ID, dq.DCM_ID DCM_ID, s.task_id STUDY_ID, "
+			+ "d.name DCM_NAME, dci.name DCI_NAME, dqg.NAME QUESTGRP_NAME "
 			+ "from questions q, "
 			+ "dcm_questions dq, "
 			+ "dcms d, "
 			+ "ocl_studies s,  dcis dci,dci_modules dcim, dcm_question_groups dqg "
-			+ "where (DQ.HELP_TEXT =  ? "
-			+ "  OR q.status_comment_text =  ? ) "
+			//+ "where (DQ.HELP_TEXT =  ? "
+			//+ "  OR q.status_comment_text =  ? ) "
+			+ "where nvl(DQ.HELP_TEXT,Q.STATUS_COMMENT_TEXT) = ? "
 			+ "and q.question_status_code = 'A' "
 			+ "and dq.question_id = q.question_id "
 			+ "and d.dcm_id = dq.dcm_id "
@@ -81,11 +95,11 @@ public class OracleDAOConstants {
 			+ "AND dq.occurrence_sn = 0 " + "order by 1,2,3,4 ";
 
 	// sql query for getting the patient data for a given studyName and CDE
-	private final static String SQL2 = "SELECT ? STUDY, ? dcm_id, ? DCI_NAME, "
-		    + "? QUESTGRP_NAME, ? dcm_name, ? def_prompt, ? study_name, " 
-		    + "? dci_name2, ? question_name, ? default_prompt, rd.PATIENT patient_pos, "
-		    + "rd.CLIN_PLAN_EVE_NAME event_name, rd.dcm_date dcm_date, rd.dcm_time, "
-			+ "r.VALUE_TEXT question_value, r.dcm_question_id question_id "
+	public final static String SQL2 = "SELECT ? STUDY, ? DCM_ID, ? DCI_NAME, "
+		    + "? QUESTGRP_NAME, ? DCM_NAME, ? DEFAULT_PROMPT, " 
+		    + "? QUESTION_NAME, rd.PATIENT PATIENT_POS, "
+		    + "rd.CLIN_PLAN_EVE_NAME EVENT_NAME, "
+			+ "r.VALUE_TEXT QUESTION_VALUE, r.dcm_question_id QUESTION_ID "
 			+ "FROM RECEIVED_DCMS RD, "
 			+ "RESPONSES R "
 			+ "where RD.CLINICAL_STUDY_ID = R.CLINICAL_STUDY_ID "
@@ -96,8 +110,8 @@ public class OracleDAOConstants {
 			+ "AND r.CLINICAL_STUDY_ID = ? "
 			+ "and r.dcm_question_id = ? "
 			+ "order by STUDY, rd.PATIENT, rd.CLIN_PLAN_EVE_NAME, DCI_NAME, " 
-			+ "DCM_NAME, QUESTGRP_NAME, question_name";
-
+			+ "DCM_NAME, QUESTGRP_NAME, QUESTION_NAME";
+	
 	public final static String GET_STUDY_CDE_SQL = "SELECT cs.study STUDY,"
 			+ "cpe.NAME EVENT_NAME,"
 			+ "dci.name DCI_NAME,"
@@ -153,59 +167,6 @@ public class OracleDAOConstants {
 			+ "AND db.dci_book_status_code = 'A' "
 			+ "AND db.default_flag = 'Y' "
 			+ "AND cs.study = ? "
-			+ "ORDER BY cs.study, cpe.CLIN_PLAN_EVE_SN, dci.name, dcm.NAME, dqg.display_sn, dq.display_sn";
-
-		public final static String GET_STUDY_CDE_SQL_NO_STUDY = "SELECT cs.study STUDY,"
-			+ "cpe.NAME EVENT_NAME,"
-			+ "dci.name DCI_NAME,"
-			+ "dcm.NAME DCM_NAME,"
-			+ "dcm.DCM_ID dcm_id,"
-			+ "dqg.NAME QUESTGRP_NAME,"
-			+ "dq.question_name QUEST_NAME,"
-			+ "dq.DCM_QUESTION_ID question_id, "
-			+ "'' question_value,"
-			+ "dq.default_prompt DEF_PROMPT,"
-			+ "dq.help_text CDE_FULL_TEXT,"
-			+ "ltrim(substr(dq.HELP_TEXT,1,instr(dq.help_text,'VERSION')-1),'CDE_ID:') CDE_ID,"
-			+ "ltrim(substr(dq.HELP_TEXT,instr(dq.help_text,'VERSION')),'VERSION:') VERSION "
-			+ "FROM dcis dci,"
-			+ "dci_modules dcim,"
-			+ "dcms dcm,"
-			+ "dcm_question_groups dqg,"
-			+ "dcm_questions dq,"
-			+ "dci_books db,"
-			+ "dci_book_pages dcibp,"
-			+ "clinical_planned_events cpe,"
-			+ "clinical_studies cs "
-			+ "WHERE dci.dci_id = dcim.dci_id "
-			+ "AND dcm.dcm_id = dcim.dcm_id "
-			+ "AND dcm.dcm_subset_sn = dcim.dcm_subset_sn "
-			+ "AND dcm.dcm_layout_sn = dcim.dcm_layout_sn "
-			+ "AND dqg.dcm_id = dcim.dcm_id "
-			+ "AND dqg.dcm_que_grp_dcm_subset_sn = dcim.dcm_subset_sn "
-			+ "AND dqg.dcm_que_grp_dcm_layout_sn = dcim.dcm_layout_sn "
-			+ "AND dq.dcm_id = dqg.dcm_id "
-			+ "AND dq.dcm_que_dcm_subset_sn = dqg.dcm_que_grp_dcm_subset_sn "
-			+ "AND dq.dcm_que_dcm_layout_sn = dqg.dcm_que_grp_dcm_layout_sn "
-			+ "AND dq.dcm_question_group_id = dqg.dcm_question_grp_id "
-			+ "AND dq.occurrence_sn = 0 "
-			+ "AND dcibp.dci_id = dci.dci_id "
-			+ "AND dcibp.clin_plan_eve_id = cpe.clin_plan_eve_id "
-			+ "AND dcibp.dci_book_id = db.dci_book_id "
-			+ "AND cs.clinical_study_id = dci.clinical_study_id "
-			+ "AND cs.clinical_study_id = dcim.clinical_study_id "
-			+ "AND cs.clinical_study_id = dcm.clinical_study_id "
-			+ "AND cs.clinical_study_id = dqg.clinical_study_id "
-			+ "AND cs.clinical_study_id = dq.clinical_study_id "
-			+ "AND cs.clinical_study_id = dcibp.clinical_study_id "
-			+ "AND cs.clinical_study_id = db.clinical_study_id "
-			+ "AND dci.dci_status_code = 'A' "
-			+ "AND dcm.dcm_status_code = 'A' "
-			+ "AND dq.collected_flag = 'Y' "
-			+ "AND dq.collected_in_subset_flag = 'Y' "
-			+ "and dqg.collected_flag = 'Y' "
-			+ "AND db.dci_book_status_code = 'A' "
-			+ "AND db.default_flag = 'Y' "
 			+ "ORDER BY cs.study, cpe.CLIN_PLAN_EVE_SN, dci.name, dcm.NAME, dqg.display_sn, dq.display_sn";
 	
 	public static final String GET_STUDY_CRFS = 
