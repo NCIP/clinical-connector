@@ -126,7 +126,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 	<!-- Clean/make working dir -->
 	<delete dir="${working.dir}" failonerror="false"/>
 	<mkdir dir="${working.dir}" />
-      <!--<mkdir dir="${db-install.dir.dest}" /> -->
+        <!--<mkdir dir="${db-install.dir.dest}" /> -->
 	<!--<mkdir dir="${db-upgrade.dir.dest}" /> -->
 
 	<!-- Start logging moved out of target so all targets are logged --> 
@@ -314,7 +314,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 		</copy>
 	</target>
 
-	<target name="install:database" description="Runs datbase creation scripts then calls uprade database." unless="exclude.database"
+	<target name="install:database" description="Runs database creation scripts then calls uprade database." unless="exclude.database"
 		depends="
 		common:init,
 		install:database:prep,
@@ -326,35 +326,291 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 		<echo message="Checking for database type inside install:database"/>
 		<switch value="${database.type}">
 			<case value="oracle">
-				<database-install
-					db.install.create.file.list="${db.install.create.oracle.file.list}"
-					sql.delimiter=";"
-					/>
-				<database-install
-					db.install.create.file.list="${db.install.create.oracle.proc.list}"
+				<echo message="Cleaning Oracle database prior to install with file: ${db.oracle.clean-script}"/>
+				<run-sql-script database.url="${database.url}"
+					database.user="${database.user}"
+					database.password="${database.password}"
 					sql.delimiter="/"
-					sql.delimitertype="row"
-					/>
+					sql.delimitertype="normal"
+					sql.file="${db.oracle.clean-script}"
+					onerror="continue"/>
+				<echo message="Step 1) Upgrade Database Objects with files from ${db.install.oracle.dir}/TablesAndData"/>
+				<for param="file" keepgoing="true">
+					<path>
+						<fileset dir="${db.install.oracle.dir}/TablesAndData" includes="*.SQL, *.sql"/>
+					</path>
+					<sequential>
+						<echo message="@{file}"/>
+						<run-sql-script database.url="${database.url}"
+							database.user="${database.user}"
+							database.password="${database.password}"
+							sql.delimiter="/"
+							sql.delimitertype="normal"
+							sql.file="@{file}"
+							onerror="continue"/>
+					</sequential>
+				</for>	
+				<echo message="Step 2) Upgrade Database Procedures/Functions/Packages with files from ${db.install.oracle.dir}/ProcsAndFuncs"/>
+				<for param="file" keepgoing="true">
+					<path>
+						<fileset dir="${db.install.oracle.dir}/ProcsAndFuncs" includes="*.SQL, *.sql"/>
+					</path>
+					<sequential>
+						<echo message="@{file}"/>
+						<run-sql-script database.url="${database.url}"
+							database.user="${database.user}"
+							database.password="${database.password}"
+							sql.delimiter="/"
+							sql.delimitertype="row"
+							sql.file="@{file}"
+							onerror="continue"/>
+					</sequential>
+				</for>	
+				<echo message="Step 3) Upgdate Database Security with files from ${db.install.oracle.dir}/Security"/>					
+				<for param="file" keepgoing="true">
+					<path>
+						<fileset dir="${db.install.oracle.dir}/Security" includes="*.SQL, *.sql"/>
+					</path>
+					<sequential>
+						<echo message="@{file}"/>
+						<run-sql-script database.url="${database.url}"
+							database.user="${database.user}"
+							database.password="${database.password}"
+							sql.delimiter="/"
+							sql.delimitertype="row"
+							sql.file="@{file}"
+							onerror="continue"/>
+					</sequential>
+				</for>	
+				<echo message="Step 4) Upgdate Database Synonyms with files from ${db.install.oracle.dir}/Synonyms"/>
+				<for param="file" keepgoing="true">
+					<path>
+						<fileset dir="${db.install.oracle.dir}/Synonyms" includes="*.SQL, *.sql"/>
+					</path>
+					<sequential>
+						<echo message="@{file}"/>
+						<run-sql-script database.url="${database.url}"
+							database.user="${database.user}"
+							database.password="${database.password}"
+							sql.delimiter="/"
+							sql.delimitertype="row"
+							sql.file="@{file}"
+							onerror="continue"/>
+					</sequential>
+				</for>					
 			</case>
 			<case value="postgresql">
 				<fail  message="database type mysql not allowed"/>
-				<!--<database-install
-					db.install.create.file.list="${db.install.create.postgresql.file.list}"
-					sql.delimiter="/"
-					sql.delimitertype="row"
-					/>-->
 			</case>
 			<case value="mysql">
 				<fail  message="database type mysql not allowed"/>
-				<!--<database-install
-					db.install.create.file.list="${db.install.create.mysql.file.list}"
-					/> -->
 			</case>
 		</switch>
-		<!--<database-upgrade
-			database.changelog.file="${os.temp.dir}/${project.name}/db-upgrade.xml"
-			/>
-		<database-tag/>-->
+	</target>
+
+	<target name="install:database:support:c3dmailer" description="Runs database creation scripts for the C3DMailer Utility." if="support.c3dmailer.installed"
+		depends="
+		common:init,
+		install:database:prep,
+		install:database:validation:pre-install
+		"> 
+		<echo message="Checking for database type inside install:database:support:c3dmailer"/>
+		<switch value="${database.type}">
+		   <case value="oracle">
+		      <if>
+		         <equals arg1="${support.c3dmailer.installed}" arg2="LOCAL" />
+			    <then>
+			       <echo message="C3DMAILER to installed LOCAL" />
+			       <echo message="Cleaning the LOCAL C3DMAILER from database prior to install with file: ${db.oracle.clean-c3dmailer-script}"/>
+			       <run-sql-script database.url="${database.url}"
+					database.user="${database.user}"
+					database.password="${database.password}"
+					sql.delimiter="/"
+					sql.delimitertype="normal"
+					sql.file="${db.oracle.clean-c3dmailer-script}"
+					onerror="continue"/>
+				<echo message="Step 1) Install C3DMailer Database Objects with files from ${db.install.support.oracle.dir}/TablesAndData"/>
+				<for param="file" keepgoing="true">
+				   <path>
+				      <fileset dir="${db.install.support.oracle.dir}/TablesAndData" includes="C3D_MAIL*.SQL, C3D_MAIL*.sql"/>
+				   </path>
+				   <sequential>
+				      <echo message="@{file}"/>
+				      <run-sql-script database.url="${database.url}"
+						database.user="${database.user}"
+						database.password="${database.password}"
+						sql.delimiter="/"
+						sql.delimitertype="normal"
+						sql.file="@{file}"
+						onerror="continue"/>
+				   </sequential>
+				</for>	
+				<echo message="Step 2) Upgrade Database Procedures/Functions/Packages with files from ${db.install.support.oracle.dir}/ProcsAndFuncs"/>
+				<for param="file" keepgoing="true">
+				   <path>
+				      <fileset dir="${db.install.support.oracle.dir}/ProcsAndFuncs" includes="C3D_MAIL*.SQL, C3D_MAIL*.sql"/>
+				   </path>
+				   <sequential>
+				      <echo message="@{file}"/>
+				      <run-sql-script database.url="${database.url}"
+						database.user="${database.user}"
+						database.password="${database.password}"
+						sql.delimiter="/"
+						sql.delimitertype="normal"
+						sql.file="@{file}"
+						onerror="continue"/>
+				   </sequential>
+				</for>	
+			    </then>
+		      <elseif>
+		         <equals arg1="${support.c3dmailer.installed}" arg2="UNIVERSAL" />
+		            <then>
+		               <echo message="C3DMAILER to installed UNIVERSAL, synonyms are PUBLIC." />
+		            </then>
+		      </elseif>
+		      <else>
+		         <echo message="Invalid value of '${support.c3dmailer.installed}' for [support.c3dmailer.installed]" />
+		      </else>
+		      </if>
+		   </case>
+		   <case value="postgresql">
+			<fail  message="Database type poatgres not allowed"/>
+		   </case>
+		   <case value="mysql">
+			<fail  message="Database type mysql not allowed"/>
+		   </case>
+	        </switch>
+	</target>
+
+	<target name="install:database:support:autoloader" description="Runs database creation scripts for the AutoLoader for labs Utility." if="support.autoloader.installed"
+		depends="
+		common:init,
+		install:database:prep,
+		install:database:validation:pre-install
+		"> 
+		<echo message="Checking for database type inside install:database:support:autoloader"/>
+		<switch value="${database.type}">
+		   <case value="oracle">
+		      <if>
+		         <equals arg1="${support.autoloader.installed}" arg2="LOCAL" />
+			    <then>
+			       <echo message="AUTOLOADER installed LOCAL" />
+			       <echo message="Cleaning the LOCAL AUTOLOADER from database prior to install with file: ${db.oracle.clean-autoloader-script}"/>
+			       <run-sql-script database.url="${database.url}"
+					database.user="${database.user}"
+					database.password="${database.password}"
+					sql.delimiter="/"
+					sql.delimitertype="normal"
+					sql.file="${db.oracle.clean-autoloader-script}"
+					onerror="continue"/>
+				<echo message="Step 1) Install AutoLoader Database Objects with files from ${db.install.support.oracle.dir}/TablesAndData"/>
+				<for param="file" keepgoing="true">
+				   <path>
+				      <fileset dir="${db.install.support.oracle.dir}/TablesAndData" includes="AUTOLOAD*.SQL, AUTOLOAD*.sql"/>
+				   </path>
+				   <sequential>
+				      <echo message="@{file}"/>
+				      <run-sql-script database.url="${database.url}"
+						database.user="${database.user}"
+						database.password="${database.password}"
+						sql.delimiter="/"
+						sql.delimitertype="normal"
+						sql.file="@{file}"
+						onerror="continue"/>
+				   </sequential>
+				</for>	
+				<echo message="Step 2) Install AutoLoader Database Procedures/Functions/Packages with files from ${db.install.support.oracle.dir}/ProcsAndFuncs"/>
+				<for param="file" keepgoing="true">
+				   <path>
+				      <fileset dir="${db.install.support.oracle.dir}/ProcsAndFuncs" includes="AUTOLOAD*.SQL, AUTOLOAD*.sql"/>
+				   </path>
+				   <sequential>
+				      <echo message="@{file}"/>
+				      <run-sql-script database.url="${database.url}"
+						database.user="${database.user}"
+						database.password="${database.password}"
+						sql.delimiter="/"
+						sql.delimitertype="normal"
+						sql.file="@{file}"
+						onerror="continue"/>
+				   </sequential>
+				</for>	
+				<echo message="Step 3) Apply Database Security from NCI LABS owner using files from ${working.dir}/${db.install.oracle.dir}/Security"/>					
+				<for param="file" keepgoing="true">
+				   <path>
+				      <fileset dir="${working.dir}/${db.install.support.oracle.dir}/Security" includes="NCI_LABS_LOCAL*.SQL, NCI_LABS_LOCAL*.sql"/>
+				   </path>
+				   <sequential>
+				      <echo message="@{file}"/>
+				      <run-sql-script database.url="${database.url}"
+						database.user="${support.NCILABS.user}"
+						database.password="${support.NCILABS.password}"
+						sql.delimiter="/"
+						sql.delimitertype="row"
+						sql.file="@{file}"
+						onerror="continue"/>
+				   </sequential>
+				</for>
+				<echo message="Step 4) Apply Database Synonyms with files from ${working.dir}/${db.install.oracle.dir}/Synonyms"/>
+				<for param="file" keepgoing="true">
+				   <path>
+				      <fileset dir="${working.dir}/${db.install.support.oracle.dir}/Synonyms" includes="AUTOLOAD_Local*.SQL, AUTOLOAD_Local*.sql"/>
+				   </path>
+				   <sequential>
+				      <echo message="@{file}"/>
+				      <run-sql-script database.url="${database.url}"
+						database.user="${database.user}"
+						database.password="${database.password}"
+						sql.delimiter="/"
+						sql.delimitertype="row"
+						sql.file="@{file}"
+						onerror="continue"/>
+				   </sequential>
+				</for>					
+			    </then>
+		      <elseif>
+		         <equals arg1="${support.autoloader.installed}" arg2="UNIVERSAL" />
+		            <then>
+		               <echo message="AUTOLOADER to installed UNIVERSAL, synonyms only" />
+		               <echo message="AUTOLOADER installed LOCAL" />
+			       <echo message="Cleaning the LOCAL AUTOLOADER from database prior to install with file: ${db.oracle.clean-autoloader-script}"/>
+			       <run-sql-script database.url="${database.url}"
+			       		database.user="${database.user}"
+			       		database.password="${database.password}"
+			       		sql.delimiter="/"
+			       		sql.delimitertype="normal"
+			       		sql.file="${db.oracle.clean-autoloader-script}"
+					onerror="continue"/>
+		               <echo message="Step 1) Apply Database Synonyms with files from ${working.dir}/${db.install.support.oracle.dir}/Synonyms"/>
+			       <for param="file" keepgoing="true">
+			       	   <path>
+			       	      <fileset dir="${working.dir}/${db.install.support.oracle.dir}/Synonyms" includes="AUTOLOAD_Universal*.SQL, AUTOLOAD_Universal*.sql"/>
+			       	   </path>
+			       	   <sequential>
+			       	      <echo message="@{file}"/>
+			       	      <run-sql-script database.url="${database.url}"
+			       			database.user="${database.user}"
+			       			database.password="${database.password}"
+			       			sql.delimiter="/"
+			       			sql.delimitertype="row"
+			       			sql.file="@{file}"
+			       			onerror="continue"/>
+			       	   </sequential>
+			       </for>	
+		            </then>
+		      </elseif>
+		      <else>
+		         <echo message="Invalid value of '${support.autoloader.installed}' for [support.autoloader.installed]" />
+		      </else>
+		      </if>
+		   </case>
+		   <case value="postgresql">
+			<fail  message="Database type poatgres not allowed"/>
+		   </case>
+		   <case value="mysql">
+			<fail  message="Database type mysql not allowed"/>
+		   </case>
+	        </switch>
 	</target>
 
 	<target name="install:common:validation:pre-install" description="Runs pre-install validation checks bda-utils" depends="common:init">
@@ -380,7 +636,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 		common:init,
 		install:common:validation:pre-install
 		">
-            <echo message="Checking for database type inside install:database"/>
+            <echo message="Checking for database type inside install:database:validation:pre-install"/>
 		<switch value="${database.type}">
 			<case value="oracle">
 				<validate-pre-install-database
@@ -693,31 +949,70 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 		<echo message="Checking for database type inside install:database"/>
 		<switch value="${database.type}">
 			<case value="oracle">
-				<echo message="Upgrade Database Objects with ${db.install.upgrade.oracle.file.list}"/>
-				<database-install
-					db.install.create.file.list="${db.install.upgrade.oracle.file.list}"
-					sql.delimiter=";"
-					onerror="continue"
-					/>
-				<echo message="Upgrade Procedures/Functions/Packages with ${db.install.upgrade.oracle.proc.list}"/>
-				<database-install
-					db.install.create.file.list="${db.install.upgrade.oracle.proc.list}"
-					sql.delimiter="/"
-					sql.delimitertype="row"
-					onerror="continue"
-					/>
-				<echo message="Applying Database Security with ${db.install.upgrade.oracle.security}"/>
-				<database-install
-					db.install.create.file.list="${db.install.upgrade.oracle.security}"
-					sql.delimiter=";"
-					onerror="continue"
-					/>
-				<echo message="Applying Synonyms ${db.install.upgrade.oracle.synonyms}"/>
-				<database-install
-					db.install.create.file.list="${db.install.upgrade.oracle.synonyms}"
-					sql.delimiter=";"
-					onerror="continue"
-					/>
+				<echo message="Step 1) Upgrade Database Objects with files from ${db.upgrade.oracle.dir}/TablesAndData"/>
+				<for param="file" keepgoing="true">
+				   <path>
+				      <fileset dir="${db.upgrade.oracle.dir}/TablesAndData" includes="*.SQL, *.sql"/>
+				   </path>
+				   <sequential>
+				      <echo message="@{file}"/>
+				      <run-sql-script database.url="${database.url}"
+				      		      database.user="${database.user}"
+				      		      database.password="${database.password}"
+				      		      sql.delimiter="/"
+				      		      sql.delimitertype="normal"
+				      		      sql.file="@{file}"
+						      onerror="continue"/>
+				   </sequential>
+				</for>	
+				<echo message="Step 2) Upgrade Database Procedures/Functions/Packages with files from ${db.upgrade.oracle.dir}/ProcsAndFuncs"/>
+				<for param="file" keepgoing="true">
+				   <path>
+				      <fileset dir="${db.upgrade.oracle.dir}/ProcsAndFuncs" includes="*.SQL, *.sql"/>
+				   </path>
+				   <sequential>
+				      <echo message="@{file}"/>
+				      <run-sql-script database.url="${database.url}"
+				      		      database.user="${database.user}"
+				      		      database.password="${database.password}"
+				      		      sql.delimiter="/"
+				      		      sql.delimitertype="row"
+				      		      sql.file="@{file}"
+						      onerror="continue"/>
+				   </sequential>
+				</for>	
+				<echo message="Step 3) Upgdate Database Security with files from ${db.upgrade.oracle.dir}/Security"/>					
+				<for param="file" keepgoing="true">
+				   <path>
+				      <fileset dir="${db.upgrade.oracle.dir}/Security" includes="*.SQL, *.sql"/>
+				   </path>
+				   <sequential>
+				      <echo message="@{file}"/>
+				      <run-sql-script database.url="${database.url}"
+				      		      database.user="${database.user}"
+				      		      database.password="${database.password}"
+				      		      sql.delimiter="/"
+				      		      sql.delimitertype="row"
+				      		      sql.file="@{file}"
+						      onerror="continue"/>
+				   </sequential>
+				</for>	
+				<echo message="Step 3) Upgdate Database Synonyms with files from ${db.upgrade.oracle.dir}/Synonyms"/>
+				<for param="file" keepgoing="true">
+				   <path>
+				      <fileset dir="${db.upgrade.oracle.dir}/Synonyms" includes="*.SQL, *.sql"/>
+				   </path>
+				   <sequential>
+				      <echo message="@{file}"/>
+				      <run-sql-script database.url="${database.url}"
+				      		      database.user="${database.user}"
+				      		      database.password="${database.password}"
+				      		      sql.delimiter="/"
+				      		      sql.delimitertype="row"
+				      		      sql.file="@{file}"
+						      onerror="continue"/>
+				   </sequential>
+				</for>	
 			</case>
 			<case value="postgresql">
 				<fail  message="database type mysql not allowed"/>
@@ -734,10 +1029,6 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 					/> -->
 			</case>
 		</switch>
-		<!--<database-upgrade
-			database.changelog.file="${os.temp.dir}/${project.name}/db-upgrade.xml"
-			/>
-		<database-tag/>-->
 		<!--<database-upgrade
 			database.changelog.file="${os.temp.dir}/${project.name}/db-upgrade.xml"
 			/>
