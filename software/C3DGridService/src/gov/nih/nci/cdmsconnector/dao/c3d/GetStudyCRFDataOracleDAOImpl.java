@@ -1,7 +1,5 @@
 package gov.nih.nci.cdmsconnector.dao.c3d;
 
-//import gov.nih.nci.cdmsconnector.c3d.security.CSMCDMSConnectorSecurityManagerImpl;
-import gov.nih.nci.cdmsconnector.dao.BaseJDBCDAO;
 import gov.nih.nci.cdmsconnector.dao.GetStudyCRFDAO;
 
 import gov.nih.nci.cdmsconnector.domain.StudySite;
@@ -13,10 +11,7 @@ import gov.nih.nci.cdmsconnector.domain.QuestionGroup;
 import gov.nih.nci.cdmsconnector.domain.Question;
 import gov.nih.nci.cdmsconnector.domain.CommonDataElement;
 import gov.nih.nci.cdmsconnector.manager.AccessPermissionException;
-import gov.nih.nci.cdmsconnector.manager.StudyAccessException;
-import gov.nih.nci.cdmsconnector.util.Constants;
 
-import gov.nih.nci.cdmsconnector.util.StringEncrypter;
 import gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCRFDataRequest;
 import gov.nih.nci.cabig.ccts.domain.studydata.GetStudyCRFsRequest;
 import gov.nih.nci.cabig.ccts.domain.bridg.QuestionValue;
@@ -36,18 +31,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Map;
-//import java.util.Set;
-//import java.util.TreeSet;
 
 import org.apache.log4j.Logger;
-//import org.globus.gsi.GlobusCredential;
 
 public class GetStudyCRFDataOracleDAOImpl extends OracleDAO implements GetStudyCRFDAO {
 
 	private final static Logger log = Logger
 			.getLogger(GetStudyCDEDataOracleDAOImpl.class.getName());
-	
-//	private CSMCDMSConnectorSecurityManagerImpl securityManager;
 	
 	/*
 	 * See OracleDAOConstants for Queries
@@ -62,144 +52,18 @@ public class GetStudyCRFDataOracleDAOImpl extends OracleDAO implements GetStudyC
 		String crfName   = getStudyCRFDataRequest.getCrfName();
 
 		if (crfName == null || "".equals(crfName)){
-			throw new Exception("CRF Name Invalid CDE ID / Version");
+			throw new Exception("CRF Name cannot be blank.");
 		}
 
 		//PRC study access checking
 		Connection cn = null;
 		PreparedStatement stmt1 = null;
-		PreparedStatement stmt2 = null;
-		boolean isPublic = false;
-		boolean atLeastOne = false;
-
-//		GlobusCredential globusCredential;
-//		String delegatedReference = null;
-
 		
-		try {
-			//use common connect to database
-			cn = getConnection();
-
-			stmt1 = cn.prepareStatement(OracleDAOConstants.FIND_STUDY_ACCESS);
-			stmt1.setString(1, studyName);
-
-			ResultSet rs1 = stmt1.executeQuery();
-
-			while (rs1.next()) {
-				atLeastOne = true;
-				isPublic = rs1.getString("ACCESS_METHOD").equals("PUBLIC");
-			}
-            
-			if (!atLeastOne) {
-				atLeastOne = false;
-				stmt2 = cn.prepareStatement(OracleDAOConstants.FIND_DEFAULT_STUDY_ACCESS);
-
-				ResultSet rs2 = stmt1.executeQuery();
-
-				while (rs2.next()) {
-					atLeastOne = true;
-					isPublic = rs2.getString("ACCESS_METHOD").equals("PUBLIC");
-				}
-				
-				if (!atLeastOne) {
-					isPublic = false;
-				}
-				
-				stmt2.close();
-			}
-			
-		} finally {
-			try {
-				stmt1.close();
-			} catch (Exception ex) {
-			}
-			try {
-				cn.close();
-			} catch (Exception ex) {
-			}
-		}
-
-		cn = null;
-		String c3dUserName = null, c3dPassword = null, userDN = null;
-		// Use C3D Username associated with GridId for PRIVATE studies.
-		if (!isPublic) {
-			//throw new Exception("Study " + studyName + " is PRIVATE.");
-			//Get and check C3D Credentials
-				
-			// get current caGrid Username
-			userDN = gov.nih.nci.cagrid.introduce.servicetools.security.SecurityUtils.getCallerIdentity();
-			// get authorization mananger for c3d application from CSM
-			//authManager = SecurityServiceProvider.getAuthorizationManager("c3d");
-
-			System.out.println("Private Access needed for " + studyName + "." );
-			System.out.println("Grid Credentials: " + userDN );
-
-			// Find Record
-			Boolean recordExists = false;
-			try {
-				cn = getConnection();
-
-				// Find the Grid User 
-				stmt1 = cn.prepareStatement(OracleDAOConstants.FIND_USER_QUERY);
-				stmt1.setString(1, userDN);
-
-				ResultSet rs1 = stmt1.executeQuery();
-
-				while (rs1.next()) {
-						
-					recordExists = true;
-					c3dUserName = rs1.getString("C3D_USERNAME");
-					c3dPassword = rs1.getString("C3D_PASSWORD");
-				}
-
-				if (!recordExists) {
-					throw new Exception("C3D Credentials Not Found!");
-				}
-				stmt1.close();
-
-			}
-			catch (Exception e1) {
-				e1.printStackTrace();
-				throw new AccessPermissionException(e1.toString());
-			}
-
-			c3dPassword = new StringEncrypter().oDecrypt(c3dPassword.trim());
-
-			try {
-				// connect to the defined database using C3D userid/password 
-				BaseJDBCDAO.getConnection(c3dUserName, c3dPassword);
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new AccessPermissionException("Bad C3D username or password.  Can not connect.");
-			}
-			cn = getConnection(c3dUserName, c3dPassword);
-			
-		    stmt1 = null;
-				
-		} else {
-			// Use SUPER Username for PUBLIC studies.
-			System.out.println("Using Superuser to Query Public study");
-			System.out.println("Public Access needed for " + studyName + "." );
-
-			// Get the DCAPI User and Password, IT is a superuser.
-			Map<String, String> m = getDCAPIUserCredentials();
-			if (m != null && m.containsKey(Constants.UNAME)
-						&& m.containsKey(Constants.PWORD)
-						&& m.containsKey(Constants.C3D_TNS_ENTRY)) 
-			{
-			  c3dUserName = (String) m.get(Constants.UNAME);
-			  c3dPassword = (String) m.get(Constants.PWORD);
-			} else {
-				// Throw Exception
-				log.error(OracleDAOConstants.BAD_DCAPI_CRENTIALS);
-				new StudyAccessException(OracleDAOConstants.BAD_DCAPI_CRENTIALS);
-			} 
-
-			cn = getConnection(c3dUserName, c3dPassword);			
-		}
+		cn = getStudySecurityBasedConnection(studyName);
 		
 		PreparedStatement sa_stmt = null;
 		boolean isAccessible = false;
+		//boolean atLeastOne = false;
 		
 		try {
 			sa_stmt = cn.prepareStatement(OracleDAOConstants.STUDY_ACCESSIBLE);
@@ -208,7 +72,7 @@ public class GetStudyCRFDataOracleDAOImpl extends OracleDAO implements GetStudyC
 			ResultSet rs1 = sa_stmt.executeQuery();
 
 			while (rs1.next()) {
-				atLeastOne = true;
+				//atLeastOne = true;
 				isAccessible = rs1.getString("STUDY").equals(studyName);
 			}
 			
@@ -220,8 +84,7 @@ public class GetStudyCRFDataOracleDAOImpl extends OracleDAO implements GetStudyC
 		}
 
 		if (!isAccessible) {
-			throw new Exception("User " + c3dUserName + 
-					            " does not have access to Study " + studyName);
+			throw new Exception("User does not have access to Study '" + studyName + "'");
 		}
 		
 		 stmt1 = null;
@@ -257,13 +120,45 @@ public class GetStudyCRFDataOracleDAOImpl extends OracleDAO implements GetStudyC
 		return studyDataMetadata;
 	}
 
-	public StudyDataMetadata getStudyCRFs(GetStudyCRFsRequest getStudyCRFsRequest) {
+	public StudyDataMetadata getStudyCRFs(GetStudyCRFsRequest getStudyCRFsRequest) throws Exception {
 		Connection cn = null;
 		String studyName = getStudyCRFsRequest.getStudyName();
 		StudyDataMetadata studyDesign = new StudyDataMetadata();
 
 		try {
-			cn = getConnection();
+			cn = getStudySecurityBasedConnection(studyName);
+		}
+		catch (Exception e1) {
+			e1.printStackTrace();
+			throw new Exception(e1.toString());
+		}
+		
+		try {
+			
+			PreparedStatement sa_stmt = null;
+			boolean isAccessible = false;
+			
+			try {
+				sa_stmt = cn.prepareStatement(OracleDAOConstants.STUDY_ACCESSIBLE);
+				sa_stmt.setString(1, studyName);
+
+				ResultSet rs1 = sa_stmt.executeQuery();
+
+				while (rs1.next()) {
+					//atLeastOne = true;
+					isAccessible = rs1.getString("STUDY").equals(studyName);
+				}
+				
+			} finally {
+				try {
+					sa_stmt.close();
+				} catch (Exception ex) {
+			    }
+			}
+
+			if (!isAccessible) {
+				throw new Exception("User does not have access to Study '" + studyName + "'");
+			}
 
 			PreparedStatement stmt = null;
 
@@ -347,8 +242,6 @@ public class GetStudyCRFDataOracleDAOImpl extends OracleDAO implements GetStudyC
 		QuestionGroup qg = null;
 		List<Question> qs = null;
 		Question q = null;
-		
-		String Redact = "##########";
 		
 		while (rs.next()) {
 			try {
@@ -464,7 +357,7 @@ public class GetStudyCRFDataOracleDAOImpl extends OracleDAO implements GetStudyC
 				q.setName(questionName);
 				
 				if (redact.compareTo("Y") == 0 ) {
-					q.setValue(Redact);
+					q.setValue(OracleDAOConstants.REDACT);
 				} else {
 					q.setValue(questionValue);
 				}
@@ -483,7 +376,7 @@ public class GetStudyCRFDataOracleDAOImpl extends OracleDAO implements GetStudyC
 		
 		gov.nih.nci.cabig.ccts.domain.c3dstudydatametadata.StudySite[] studySiteArr = new gov.nih.nci.cabig.ccts.domain.c3dstudydatametadata.StudySite[studySites.size()];
 		for (int i = 0; i < studySites.size(); i++) {
-			System.out.println("Doing Question: '" + studySite.getStudySiteName() + "'." );
+			//System.out.println("Doing Question: '" + studySite.getStudySiteName() + "'." );
 			studySiteArr[i] = new gov.nih.nci.cabig.ccts.domain.c3dstudydatametadata.StudySite();
 			studySiteArr[i].setStudySubject(getStudySubjects(studySites.get(i).getStudySubjects()));
 		}

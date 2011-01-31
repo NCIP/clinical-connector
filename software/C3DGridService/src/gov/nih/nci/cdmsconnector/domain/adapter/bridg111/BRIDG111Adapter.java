@@ -14,7 +14,7 @@ import gov.nih.nci.cabig.ccts.domain.cdt.II;
 import gov.nih.nci.cdmsconnector.domain.Activity;
 //import gov.nih.nci.cdmsconnector.domain.Event;
 import gov.nih.nci.cdmsconnector.domain.HealthCareFacility;
-import gov.nih.nci.cdmsconnector.domain.LabResult;
+//import gov.nih.nci.cdmsconnector.domain.LabResult;
 import gov.nih.nci.cdmsconnector.domain.PerformedSubjectMilestone;
 import gov.nih.nci.cdmsconnector.domain.QuestionGroup;
 import gov.nih.nci.cdmsconnector.domain.Study;
@@ -59,7 +59,7 @@ public abstract class BRIDG111Adapter{
 		return cdmsMileStone;
 	}
 
-	protected LabResult getLabResult(PerformedClinicalResult result)
+/*	protected LabResult getLabResult(PerformedClinicalResult result)
 			throws Exception {
 		if (result == null) {
 			return null;
@@ -84,7 +84,7 @@ public abstract class BRIDG111Adapter{
 
 		return cdmsResult;
 	}
-
+*/
 	protected String getTextResult(PerformedClinicalResult result) {
 		if (result.getTextResult() == null
 				|| result.getTextResult().getValue() == null

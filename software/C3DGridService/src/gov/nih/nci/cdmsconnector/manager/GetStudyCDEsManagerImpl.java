@@ -5,6 +5,7 @@ import gov.nih.nci.cdmsconnector.domain.Study;
 import gov.nih.nci.cdmsconnector.domain.adapter.GetStudyCDEsAdapter;
 import gov.nih.nci.cdmsconnector.domain.validator.GetStudyCDEDataRequestValidator;
 import gov.nih.nci.cdmsconnector.util.PropertiesUtil;
+import gov.nih.nci.cdmsconnector.util.Utilities;
 
 import java.util.Properties;
 import java.util.Set;
@@ -22,6 +23,9 @@ public class GetStudyCDEsManagerImpl implements GetStudyCDEsManager {
 
 	public Object getStudyCDEs(Object getStudyCDEsRequest)
 			throws Exception {
+
+		System.out.println(Utilities.getDateTime() + " - Get Study CDEs.");
+
 		Properties AppProps = null;
 		try {
 			AppProps = PropertiesUtil.getAppProperties();
@@ -30,10 +34,6 @@ public class GetStudyCDEsManagerImpl implements GetStudyCDEsManager {
 		String userDN=null;
 		try {
 			userDN=gov.nih.nci.cagrid.introduce.servicetools.security.SecurityUtils.getCallerIdentity();
-			//if(!securityManager.canAccess(userDN, CDMSConnectorSecurityManager.GETSTUDYCDES_SERVICE,
-				//	AppProps.getProperty(gov.nih.nci.cdmsconnector.util.Constants.ClinConCSMCDERole))){
-			//	throw new AccessPermissionException("GetStudyCDEs permission denied to user:"+userDN);
-			//}
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			throw new AccessPermissionException(e1.toString());

@@ -6,13 +6,20 @@
  */
 package gov.nih.nci.cdmsconnector.dao;
 
+import gov.nih.nci.cdmsconnector.dao.c3d.OracleDAO;
+import gov.nih.nci.cdmsconnector.dao.c3d.OracleDAOConstants;
+import gov.nih.nci.cdmsconnector.manager.AccessPermissionException;
+import gov.nih.nci.cdmsconnector.manager.StudyAccessException;
 import gov.nih.nci.cdmsconnector.util.Constants;
 import gov.nih.nci.cdmsconnector.util.PropertiesUtil;
 import gov.nih.nci.cdmsconnector.util.ServiceLocator;
 import gov.nih.nci.cdmsconnector.util.ServiceLocatorException;
+import gov.nih.nci.cdmsconnector.util.StringEncrypter;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
@@ -20,6 +27,7 @@ import javax.transaction.UserTransaction;
 
 import org.apache.log4j.Logger;
 
+import java.util.Map;
 import java.util.Properties;
 
 /**
