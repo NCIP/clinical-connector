@@ -1,0 +1,15 @@
+Alter table STUDY_CDES_CTL
+ADD (  CREATE_USER    VARCHAR2(30))
+/
+
+Alter table STUDY_CDES_CTL
+ADD (  CREATE_DATE    DATE)
+/
+
+Alter table STUDY_CDES_CTL
+ADD (  MODIFY_USER    VARCHAR2(30))
+/
+
+Alter table STUDY_CDES_CTL
+ADD (  MODIFY_DATE    DATE)
+/
