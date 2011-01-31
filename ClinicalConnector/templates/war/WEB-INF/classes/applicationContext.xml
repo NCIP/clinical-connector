@@ -29,6 +29,7 @@
 		<property name="saveInitials" value="#{enrollPatientManager.saveInitials.value}" />
 		<property name="saveEnrollmentDate" value="#{enrollPatientManager.saveEnrollmentDate.value}" />
 		<property name="validator" ref="enrollPatientValidator" />
+		<property name="translator" ref="enrollPatientTranslator" />
 	</bean>
       <bean id="enrollmentDAO"
 		class="gov.nih.nci.clinicalconnector.dao.c3d.EnrollmentOracleDAOImpl" />
@@ -36,6 +37,10 @@
 		class="gov.nih.nci.clinicalconnector.domain.adapter.bridg111.EnrollPatientAdapterImpl" />
 	<bean id="enrollPatientValidator"
 		class="gov.nih.nci.clinicalconnector.domain.validator.EnrollPatientRequestValidatorImpl">
+		<property name="isValidStudyDAO" ref="isValidStudyDAO" />
+	</bean>
+	<bean id="enrollPatientTranslator"
+		class="gov.nih.nci.clinicalconnector.dao.c3d.TranslateStudyDAOImpl">
 		<property name="isValidStudyDAO" ref="isValidStudyDAO" />
 	</bean>
 	<!-- EnrollPatient Section Ends -->
@@ -46,7 +51,12 @@
 		<property name="bridg21ModelAdapter" ref="bridg21ModelAdapter" />
 		<property name="validator" ref="loadLabsValidator" />
 		<property name="securityManager" ref="securityManager" />
+		<property name="translator" ref="loadLabsTranslator" />
 		<!--<property name="cctsModelAdapter" ref="cctsModelAdapter" />-->
+	</bean>
+	<bean id="loadLabsTranslator"
+		class="gov.nih.nci.clinicalconnector.dao.c3d.TranslateStudyDAOImpl">
+		<property name="isValidStudyDAO" ref="isValidStudyDAO" />
 	</bean>
 	<bean id="loadLabsDAO" class="gov.nih.nci.clinicalconnector.dao.c3d.LoadLabsOracleDAOImpl" />
 	<bean id="loadLabsAdapter"

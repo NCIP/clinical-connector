@@ -7,6 +7,7 @@ import gov.nih.nci.cdmsconnector.domain.StudySubject;
 import gov.nih.nci.clinicalconnector.dao.IsValidStudyDAO;
 import gov.nih.nci.clinicalconnector.domain.validator.DataValidationException;
 import gov.nih.nci.clinicalconnector.domain.validator.EnrollPatientRequestValidator;
+import gov.nih.nci.clinicalconnector.manager.InvalidStudyException;
 
 public class EnrollPatientRequestValidatorImpl implements
 		EnrollPatientRequestValidator {
@@ -18,8 +19,10 @@ public class EnrollPatientRequestValidatorImpl implements
 		if (request == null) {
 			throw new DataValidationException("Corrupt request");
 		}
-		validateStudy(request.getStudy());
+		Study study = request.getStudy();
 		validateStudySubject(request.getStudySubject());
+		validateStudySite(study.getStudySite());
+		validateStudy(study);
 		return true;
 	}
 
@@ -38,10 +41,10 @@ public class EnrollPatientRequestValidatorImpl implements
 			throw new DataValidationException("Study Not Received");
 		}
 		if(!isValidStudyDAO.isValidStudy(study.getStudyIdentifier())){
-			throw new DataValidationException("Invalid Study:"+study.getStudyIdentifier());
+			throw new InvalidStudyException("Invalid Study:"+study.getStudyIdentifier());
 		}
-		HealthCareFacility site = study.getStudySite();
-		validateStudySite(site);
+		//HealthCareFacility site = study.getStudySite();
+		//validateStudySite(site);
 	}
 
 	private void validateStudySite(HealthCareFacility site)

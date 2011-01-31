@@ -49,16 +49,16 @@ public class BRIDG21Adapter implements
 			RegisterSubjectRequest registration) throws Exception {
 
 		System.out.println("Inside BRIDG21Adapter");
-		System.out.println("Before NEW EnrollPatientRequest");
+		//System.out.println("Before NEW EnrollPatientRequest");
 
 		gov.nih.nci.cdmsconnector.domain.EnrollPatientRequest cdmsRequest = new gov.nih.nci.cdmsconnector.domain.EnrollPatientRequest();
 
 		// studySite
 
-		System.out.println("Before NEW Study");
+		//System.out.println("Before NEW Study");
 		gov.nih.nci.cdmsconnector.domain.Study study = new gov.nih.nci.cdmsconnector.domain.Study();
 
-		System.out.println("Before NEW StudySite");
+		//System.out.println("Before NEW StudySite");
 		try {
 			study.setStudySite(getStudySite(registration.getStudySubject().getStudySiteIdentifier()));
 
