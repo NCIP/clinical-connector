@@ -182,6 +182,7 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 						ppenrollDateStr, ppbirthDateStr, ppgender,
 						ppptLastName, ppptFirstName, ppptInitials);
 
+				System.out.println("After qa.enrollPWrapperWrapper.");
 				log.debug("After qa.enrollPWrapperWrapper : ");
 				
 				setDataFlag(pId);
@@ -288,6 +289,9 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 			String ptBirthDate, String ptGender)
 			throws InvalidStudyOrPatientException, StudyAccessException,
 			Exception {
+
+		System.out.println("Inside setPatientMRN");
+
 		String uName = null;
 		String pWord = null;
 		String c3dTnsEntry = null;
@@ -317,12 +321,14 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 		// if (offStCdes != null && offStCdes.containsKey(Constants.PT_ID_CDE)
 		// &&
 		// offStCdes.containsKey(Constants.NCI_INST_CD_CDE ) ){
-		log.debug(" Inside setPatientMRN");
+		log.debug("Inside setPatientMRN");
 
-		if (mrnCode != null && mrnCode.containsKey(Constants.PT_ID_CDE)
-				&& mrnCode.containsKey(Constants.NCI_INST_CD_CDE)) {
+		if (mrnCode != null) {
+			/* && mrnCode.containsKey(Constants.PT_ID_CDE)
+			   && mrnCode.containsKey(Constants.NCI_INST_CD_CDE)) */
 
 			log.debug("Study Name : "    + studyIdentifier);
+			System.out.println("Loading CDE identified data points.");
 			/*
 			log.debug("  PT_ID_CDE : "   + mrnCode.get(Constants.PT_ID_CDE));
 			log.debug("  NCI_INST_CD : " + mrnCode.get(Constants.NCI_INST_CD_CDE));
@@ -334,14 +340,14 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 			log.debug("  REG_DATE : "	     + mrnCode.get(Constants.REG_DATE));
 			*/
 			String res = null;
-			System.out.println("NCI_INST_CD : " + nciInstituteCode);
+			/*System.out.println("NCI_INST_CD : " + nciInstituteCode);
 			System.out.println("PT_ID_CDE : " + participantIdentifier);
 			System.out.println("CONSENT_DATE" + consentDate);
 			System.out.println("CONSENT_VERSION" + consentVersion);
 			System.out.println("PT_INITS" + ptInitials);
 			System.out.println("PT_DOB" + ptBirthDate);
 			System.out.println("PT_GENDER" + ptGender);
-			System.out.println("REG_DATE" + regDate);
+			System.out.println("REG_DATE" + regDate);*/
 
 			// Try to set MRN if it's not NULL
 			// TODO Need to check that mrnCode.get returns a value for each call 
@@ -349,9 +355,9 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 			// TODO nulls are killing system.
 
 			if (participantIdentifier != null
-					&& participantIdentifier.length() > 0) {
+				&& participantIdentifier.length() > 0
+				&& mrnCode.containsKey(Constants.PT_ID_CDE)) {
 				try {
-					// SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
 					log.debug("MRN CODE :" + participantIdentifier);
 					
 					res = qa.loadQuestionValuesWrapper(uName, pWord,
@@ -360,16 +366,18 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 							participantIdentifier);
 
 					if (res != null && !res.equalsIgnoreCase("")) {
-						log.warn("Failed to record Patient Id/MRN due to reason : "
-							    	+ res);
+						log.warn("Failed to record Patient Id/MRN due to reason : "	+ res);
 					}
 				} catch (Throwable t) {
 					log.warn("Failed to record Patient Id/MRN due to reason : "
 							+ res, t);
 				}
+			} else {
+				System.out.println("   Patient Id not loaded due to value being null or CDE not being set for study.");
 			}
 
-			if (nciInstituteCode != null && nciInstituteCode.length() > 0) {
+			if (nciInstituteCode != null && nciInstituteCode.length() > 0
+					&& mrnCode.containsKey(Constants.NCI_INST_CD_CDE) ) {
 				try {
 					log.debug("NCI Institute CODE :" + nciInstituteCode);
 
@@ -384,8 +392,12 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 				} catch (Throwable t) {
 					log.warn("Failed to record NCI Institute Code due to: " + res, t);
 				}
+			} else {
+				System.out.println("   NCI Institution Code not loaded due to value being null or CDE not being set for study.");
 			}
-			if (consentDate != null && consentDate.length() > 0) {
+			
+			if (consentDate != null && consentDate.length() > 0
+					&& mrnCode.containsKey(Constants.CONSENT_DATE) ) {
 				try {
 					log.debug("Consent Date:" + consentDate);
 
@@ -400,6 +412,8 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 				} catch (Throwable t) {
 					log.warn("Failed to record Consent Date due to: " + res, t);
 				}
+			} else {
+				System.out.println("   Consent Date not loaded due to value being null or CDE not being set for study.");
 			}
 			/* PRC Removed because this is a FUTURE requirement
 			 * if (consentVersion != null && consentVersion.length() > 0) {
@@ -418,7 +432,8 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 					log.warn("Failed to record Consent Version due to: " + res, t);
 				}
 			}*/
-			if (ptInitials != null && ptInitials.length() > 0) {
+			if (ptInitials != null && ptInitials.length() > 0
+					&& mrnCode.containsKey(Constants.PT_INITS) ) {
 				try {
 					log.debug("Patient Initials:" + ptInitials);
 
@@ -433,8 +448,12 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 				} catch (Throwable t) {
 					log.warn("Failed to record Patient Initials due to: " + res, t);
 				}
+			} else {
+				System.out.println("   Patient Initials not loaded due to value being null or CDE not being set for study.");
 			}
-			if (ptBirthDate != null && ptBirthDate.length() > 0) {
+			
+			if (ptBirthDate != null && ptBirthDate.length() > 0
+					&& mrnCode.containsKey(Constants.PT_DOB) ) {
 				try {
 					log.debug("Patient DOB:" + ptBirthDate);
 
@@ -449,8 +468,12 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 				} catch (Throwable t) {
 					log.warn("Failed to record Patient DOB due to: " + res, t);
 				}
+			} else {
+				System.out.println("   Patient Date of Birth not loaded due to value being null or CDE not being set for study.");
 			}
-			if (ptGender != null && ptGender.length() > 0) {
+			
+			if (ptGender != null && ptGender.length() > 0
+					&& mrnCode.containsKey(Constants.PT_GENDER) ) {
 				try {
 					log.debug("Patient Gender:" + ptGender);
 
@@ -465,8 +488,12 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 				} catch (Throwable t) {
 					log.warn("Failed to record Patient Gender due to: " + res, t);
 				}
+			} else {
+				System.out.println("   Patient Gender not loaded due to value being null or CDE not being set for study.");
 			}
-			if (regDate != null && regDate.length() > 0) {
+			
+			if (regDate != null && regDate.length() > 0
+				&& mrnCode.containsKey(Constants.REG_DATE) ) {
 				try {
 					log.debug("Patient Gender:" + regDate);
 
@@ -481,11 +508,13 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 				} catch (Throwable t) {
 					log.warn("Failed to record Registration Date due to: " + res, t);
 				}
+			} else {
+				System.out.println("   Patient Gender not loaded due to value being null or CDE not being set for study.");
 			}
 
 		} else {
 			throw new StudyAccessException(
-					"Unable to get Off Study CDEs Information. Please contact C3D Webservices Administrator ");
+					"Unable to get Study CDE Loading Information. Please contact Clinical Connector for C3D Service Administrator ");
 		}
 
 	}
