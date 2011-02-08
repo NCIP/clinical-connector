@@ -397,7 +397,8 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 							sql.file="@{file}"
 							onerror="continue"/>
 					</sequential>
-				</for>					
+				</for>	
+				<antcall target="dcapi:default" />
 			</case>
 			<case value="postgresql">
 				<fail  message="database type mysql not allowed"/>
@@ -935,17 +936,58 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 		">
 	</target>
 
-	<target name="upgrade:database" description="Upgrades database using BDA Datbase Upgrade process." unless="exclude.database"
+	<target name="dcapi:default" description="Sets the DCAPI User records default value based upong property file values"
+		depends="
+		common:init,
+		install:database:prep
+		">
+		<echo message="Checking for database type inside dcapi:default"/>
+		<switch value="${database.type}">
+			<case value="oracle">
+				<echo message="Set database values in the DCAPI_USER_CREDENTIALS table using ${db.upgrade.oracle.dir}/TablesAndData"/>
+				<for param="file" keepgoing="true">
+				   <path>
+				      <fileset dir="${working.dir}/${db.dist.relative.dir}" includes="OracleDcapiSet.sql"/>
+				   </path>
+				   <sequential>
+				      <echo message="@{file}"/>
+				      <run-sql-script database.url="${database.url}"
+				      		      database.user="${database.user}"
+				      		      database.password="${database.password}"
+				      		      sql.delimiter="/"
+				      		      sql.delimitertype="normal"
+				      		      sql.file="@{file}"
+						      onerror="continue"/>
+				   </sequential>
+				</for>	
+			</case>
+			<case value="postgresql">
+				<fail  message="database type mysql not allowed"/>
+				<!--<database-install
+					db.install.create.file.list="${db.install.create.postgresql.file.list}"
+					sql.delimiter="/"
+					sql.delimitertype="row"
+					/>-->
+			</case>
+			<case value="mysql">
+				<fail  message="database type mysql not allowed"/>
+				<!--<database-install
+					db.install.create.file.list="${db.install.create.mysql.file.list}"
+					/> -->
+			</case>
+		</switch>
+		<!--<database-upgrade
+			database.changelog.file="${os.temp.dir}/${project.name}/db-upgrade.xml"
+			/>
+		<database-tag/>-->
+	</target>
+
+	<target name="upgrade:database" description="Upgrades database using BDA Database Upgrade process." unless="exclude.database"
 		depends="
 		common:init,
 		install:database:prep,
 		install:database:validation:pre-install
 		">
-		<!--db.install.upgrade.oracle.file.list=C3DGridService_Tables_and_Data_UPGRADE_Bare.sql
-		    db.install.upgrade.oracle.proc.list=C3DGridService_ProcFunc_Bare.sql
-		    db.install.upgrade.oracle.security=C3DGridService_ObjectSecurity_Bare.sql
-		    db.install.upgrade.oracle.synonyms=C3DGridService_ObjectSynonyms_Bare.sql -->
-
 		<echo message="Checking for database type inside install:database"/>
 		<switch value="${database.type}">
 			<case value="oracle">
@@ -1013,6 +1055,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 						      onerror="continue"/>
 				   </sequential>
 				</for>	
+				<antcall target="dcapi:default" />
 			</case>
 			<case value="postgresql">
 				<fail  message="database type mysql not allowed"/>
