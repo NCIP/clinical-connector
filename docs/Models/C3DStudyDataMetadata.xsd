@@ -9,15 +9,19 @@
 	<xs:element name="StudyMetadata" type="studyDataMeta:StudyMetadata"/>
 	<xs:complexType name="StudyMetadata">
 		<xs:sequence>
-			<xs:element name="CDEMetadata" type="studyDataMeta:CDEMetadata" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="CRFMetadata" type="studyDataMeta:CRFMetadata" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CDEMetadata" nillable="true" 
+				type="studyDataMeta:CDEMetadata" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CRFMetadata" nillable="true"
+				type="studyDataMeta:CRFMetadata" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="StudyData" type="studyDataMeta:StudyData"/>
 	<xs:complexType name="StudyData">
 		<xs:sequence>
-			<xs:element name="CDEData" type="studyDataMeta:CDEData" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="CRFData" type="studyDataMeta:CRFData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CDEData" nillable="true"
+				type="studyDataMeta:CDEData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CRFData" nillable="true"
+				type="studyDataMeta:CRFData" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="CDEMetadata" type="studyDataMeta:CDEMetadata"/>
