@@ -1,5 +1,4 @@
 
-<%@page import="gov.nih.nci.cdmsconnector.test.EnrollPatientTest"%>
 <%@page import="java.net.URL"%>
 <%@page import="java.io.StringWriter"%>
 <%@page import="gov.nih.nci.cagrid.common.Utils"%>
