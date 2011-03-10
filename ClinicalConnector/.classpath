@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry excluding="gov/|nih/" kind="src" path="src"/>
-	<classpathentry kind="src" path="test/src"/>
-	<classpathentry kind="src" path="build/stubs-ClinicalConnector/src"/>
+	<classpathentry including="gov/nih/nci/cdmsconnector/c3d/actions/|gov/nih/nci/cdmsconnector/c3d/capture/|gov/nih/nci/cdmsconnector/c3d/hotLink/|gov/nih/nci/cdmsconnector/capture/|gov/nih/nci/cdmsconnector/domain/|gov/nih/nci/cdmsconnector/hotLink/|gov/nih/nci/cdmsconnector/test/|gov/nih/nci/cdmsconnector/util/|gov/nih/nci/clinicalconnector/c3d/security/|gov/nih/nci/clinicalconnector/client/|gov/nih/nci/clinicalconnector/common/|gov/nih/nci/clinicalconnector/dao/|gov/nih/nci/clinicalconnector/domain/adapter/bridg111/|gov/nih/nci/clinicalconnector/domain/adapter/bridg21/|gov/nih/nci/clinicalconnector/domain/adapter/ccts/|gov/nih/nci/clinicalconnector/domain/validator/|gov/nih/nci/clinicalconnector/manager/|gov/nih/nci/clinicalconnector/ser/|gov/nih/nci/clinicalconnector/service/|gov/nih/nci/clinicalconnector/service/globus/|gov/nih/nci/clinicalconnector/service/globus/resource/" kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/globus/ws-core-4.0.3/lib/addressing-1.0.jar"/>
 	<classpathentry kind="lib" path="C:/globus/ws-core-4.0.3/lib/axis.jar"/>
 	<classpathentry kind="lib" path="C:/globus/ws-core-4.0.3/lib/axis-url.jar"/>
@@ -115,5 +113,9 @@
 	<classpathentry kind="lib" path="lib/C3DGridService-stubs.jar"/>
 	<classpathentry kind="lib" path="lib/jaxb-api-2.1.jar"/>
 	<classpathentry kind="lib" path="lib/jaxb-impl-2.1.4.jar"/>
+	<classpathentry kind="lib" path="lib/stax-api-1.0-2.jar"/>
+	<classpathentry kind="lib" path="lib/castor-0.9.9.jar"/>
+	<classpathentry kind="lib" path="lib/websso.jar"/>
+	<classpathentry kind="lib" path="lib/SmokeTestService-client.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
