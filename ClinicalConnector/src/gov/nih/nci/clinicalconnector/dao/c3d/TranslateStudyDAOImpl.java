@@ -29,7 +29,7 @@ public class TranslateStudyDAOImpl extends OracleDAO implements TranslateStudyDA
 		"SELECT STUDY_IN FROM STUDY_TRANSLATIONS WHERE STUDY_TRANS = ?";
 
 	protected static final String INSERT_TRANS = 
-		"INSERT INTO STUDY_TRANSLATIONS (STUDY_IN, STUDY_TRANS, CREATED_USER, CREATED_DATE) " +
+		"INSERT INTO STUDY_TRANSLATIONS (STUDY_IN, STUDY_TRANS, CREATE_USER, CREATE_DATE) " +
 		"VALUES (?, ?, ?, SYSDATE)";
 	
 	public String translateStudy(String studyName) throws Exception {

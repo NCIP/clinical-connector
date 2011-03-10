@@ -45,49 +45,27 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 		String userDN=null;
 
 		try {
-			System.out.println("Inside EnrollPatientManagerImpl.enrollPatient");
-			System.out.println("setting cdmsEnrollPatientRequest NULL");
+			System.out.println("Inside EnrollPatientManagerImpl.enrollPatient.");
+			System.out.println("Setting cdmsEnrollPatientRequest NULL.");
 			EnrollPatientRequest cdmsEnrollPatientRequest = null;
 			
-			System.out.println("setting adapter");
+			System.out.println("Setting adapter.");
 			
 			EnrollPatientAdapter adapter = modelAdapter;
 
 			if (bridg21ModelAdapter.getEnrollPatientRequestType().isAssignableFrom(enrollPatientRequest.getClass())){
 				adapter = bridg21ModelAdapter;
 			} else {
-				throw new InvalidRequestException("Invalid Model Passed");
+				throw new InvalidRequestException("Invalid Model Passed.");
 			}
 
 			//System.out.println("setting cdmsEnrollPatientRequest from adapter.map...");
 			cdmsEnrollPatientRequest = adapter.mapAndValidateEnrollPatientRequest(enrollPatientRequest);
 			
-			System.out.println("Validate Request");
-			try {
-				validator.validate(cdmsEnrollPatientRequest);
-			} catch (InvalidStudyException e1) {
-				//e1.printStackTrace();
-				System.out.println("Inside Exception Handler");
-				try {
-					System.out.println("Study not found, translating...");
-					String oldStudy = cdmsEnrollPatientRequest.getStudy().getStudyIdentifier();
-					String newStudy = translator.translateStudy(oldStudy);
-					//String newStudy = cdmsEnrollPatientRequest.getStudy().getStudyIdentifier();
-				    System.out.println("Study '" + oldStudy + "' successfully " + 
-							           "translated to Study '" + newStudy + "'.");
-					Study study = cdmsEnrollPatientRequest.getStudy();
-					study.setStudyIdentifier(newStudy);
-					cdmsEnrollPatientRequest.setStudy(study);
-				} catch (Exception ec) {
-					ec.printStackTrace();
-					throw new AccessPermissionException(ec.toString());
-				}
-			} catch (Exception e1) {
-					throw new InvalidStudyOrPatientException(e1.toString());
-			}
-			
-			//System.out.println("patientPosition...");
-
+			/* *
+			 * CSM Check.  Get study Id/Name and check it against CSM.  If user is suthorized for
+			 * study, it will pass through, otherwise and exception will be fired 
+			 * */
 			String studyName = cdmsEnrollPatientRequest.getStudy().getStudyIdentifier();
 			String siteName = cdmsEnrollPatientRequest.getStudy().getStudySite().getOrganizationName();
 			
@@ -109,6 +87,62 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 					throw new AccessPermissionException(e1.toString());
 				}
 			}
+			
+			/* *
+			 * Request Validation/Study Translation 
+			 * */
+			System.out.println("Validate Enrollment Request.");
+			try {
+				validator.validate(cdmsEnrollPatientRequest);
+			} catch (InvalidStudyException e1) {
+				//e1.printStackTrace();
+				/* *
+				 * If the exception is "Invalid Study", then perform Study Tranlations
+				 * and keep processing if the translated study is valid in C3D.
+				 * */
+				System.out.println("Inside Validator Exception Handler.");
+				try {
+					System.out.println("Study Not Found, Performing Translation.");
+					String oldStudy = cdmsEnrollPatientRequest.getStudy().getStudyIdentifier();
+					String newStudy = translator.translateStudy(oldStudy);
+					//String newStudy = cdmsEnrollPatientRequest.getStudy().getStudyIdentifier();
+				    System.out.println("Study name '" + oldStudy + "' successfully " + 
+							           "translated to '" + newStudy + "'.");
+					Study study = cdmsEnrollPatientRequest.getStudy();
+					study.setStudyIdentifier(newStudy);
+					cdmsEnrollPatientRequest.setStudy(study);
+				} catch (Exception ec) {
+					ec.printStackTrace();
+					throw new AccessPermissionException(ec.toString());
+				}
+			} catch (Exception e1) {
+					throw new InvalidStudyOrPatientException(e1.toString());
+			}
+			
+			//System.out.println("patientPosition...");
+
+			/* Moved this ABOVE study translation
+			 * String studyName = cdmsEnrollPatientRequest.getStudy().getStudyIdentifier();
+			String siteName = cdmsEnrollPatientRequest.getStudy().getStudySite().getOrganizationName();
+			
+			String useCSM = props.getProperty("enrollPatientService.useCSM");
+			
+			if (useCSM != null && useCSM.equalsIgnoreCase("true")) {
+
+				try {
+					userDN=gov.nih.nci.cagrid.introduce.servicetools.security.SecurityUtils.getCallerIdentity();
+					try {
+						SuiteRole suiteRole = securityManager.getRole(props.getProperty(gov.nih.nci.cdmsconnector.util.Constants.ClinConCSMRegRole));
+						securityManager.checkAuthorization(userDN, studyName,siteName, suiteRole);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+						throw new AccessPermissionException(e1.toString());
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					throw new AccessPermissionException(e1.toString());
+				}
+			}*/
 
 			String patientPosition = (String) enrollPatient(cdmsEnrollPatientRequest);
 
@@ -153,7 +187,7 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 		
 	    try {
 	    	 String saveBirthDate = props.getProperty("enrollPatientManager.saveBirthDate.value");
-	    	 System.out.println("saveBirthDate from DB = '" + saveBirthDate);
+	    	 System.out.println("saveBirthDate property = '" + saveBirthDate + "'");
 	    	 
 			 if (saveBirthDate != null && saveBirthDate.equalsIgnoreCase("true")){ 
 				 setSaveBirthDate(true);
@@ -162,7 +196,7 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 			 }
 
 	    	 String saveGender = props.getProperty("enrollPatientManager.saveGender.value");
-	    	 System.out.println("saveGender from DB = '" + saveGender);
+	    	 System.out.println("saveGender property = '" + saveGender + "'");
 	    	 
 			 if (saveGender != null && saveGender.equalsIgnoreCase("true")){ 
 				 setSaveGender(true);
@@ -170,7 +204,7 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 				 setSaveGender(false);
 			 }
 	    	 String saveInitials = props.getProperty("enrollPatientManager.saveInitials.value");
-	    	 System.out.println("saveInitials from DB = '" + saveInitials);
+	    	 System.out.println("saveInitials property = '" + saveInitials + "'");
 	    	 
 			 if (saveInitials != null && saveInitials.equalsIgnoreCase("true")){ 
 				 setSaveInitials(true);
@@ -178,7 +212,7 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 				 setSaveInitials(false);
 			 }
 	    	 String saveEnrollmentDate = props.getProperty("enrollPatientManager.saveEnrollmentDate.value");
-	    	 System.out.println("saveEnrollmentDate from DB = '" + saveEnrollmentDate);
+	    	 System.out.println("saveEnrollmentDate property = '" + saveEnrollmentDate + "'");
 	    	 
 			 if (saveEnrollmentDate != null && saveEnrollmentDate.equalsIgnoreCase("true")){ 
 				 setSaveEnrollmentDate(true);

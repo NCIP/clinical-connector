@@ -313,7 +313,7 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 		} else {
 			// Throw Exception
 			throw new StudyAccessException(
-					"Unable to get DCAPIUserCredentials. Please Contact Clinical Connector Administrator");
+					"Unable to get DCAPIUserCredentials. Please Contact Clinical Connector Administrator.");
 		}
 		// get Study name
 		Map<String, String> mrnCode = getMRNCDEInformation(studyIdentifier);
@@ -509,7 +509,7 @@ public class EnrollmentOracleDAOImpl extends OracleDAO implements EnrollmentDAO{
 					log.warn("Failed to record Registration Date due to: " + res, t);
 				}
 			} else {
-				System.out.println("   Patient Gender not loaded due to value being null or CDE not being set for study.");
+				System.out.println("   Registration Date not loaded due to value being null or CDE not being set for study.");
 			}
 
 		} else {

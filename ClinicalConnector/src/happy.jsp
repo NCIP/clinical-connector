@@ -9,7 +9,7 @@
 <%@page import="gov.nih.nci.clinicalconnector.dao.BaseJDBCDAO"%>
 <%@page import="gov.nih.nci.cdmsconnector.test.LoadLabsTest"%>
 <%@page import="gov.nih.nci.cdmsconnector.test.EnrollPatientTest"%>
-<%--@page import="gov.nih.nci.cdmsconnector.test.SmokeTestServiceTest"--%>
+<%@page import="gov.nih.nci.cdmsconnector.test.SmokeTestServiceTest"%>
 <%-- @page import="gov.nih.nci.cdmsconnector.test.GetStudyCDEsTest"--%>
 <%-- @page import="gov.nih.nci.cdmsconnector.test.GetStudyCDEsDataTest"--%>
 
@@ -54,20 +54,6 @@
 		out.flush();
 	}
 
-	String testEnrollPatient = request
-			.getParameter("testEnrollPatient");
-	if (testEnrollPatient != null && "true".equals(testEnrollPatient)) {
-		out.println("Starting the EnrollPatientTest...<br/>");
-		out.flush();
-		boolean success = testEnrollPatient(request, response, out);
-		if (success) {
-			out.println("<br/>EnrollPatientTest Status: Success<br/>");
-		} else {
-			out.println("<br/>EnrollPatientTest Status: Failed<br/>");
-		}
-		out.flush();
-	}
-
 	String testLoadLabsService = request
 			.getParameter("testLoadLabsService");
 	if (testLoadLabsService != null
@@ -97,62 +83,6 @@
 		} else {
 			out
 					.println("<br/>EnrollPatientServiceTest Status: Failed<br/>");
-		}
-		out.flush();
-	}
-
-	String testGetStudyCDEs = request.getParameter("testGetStudyCDEs");
-	if (testGetStudyCDEs != null && "true".equals(testGetStudyCDEs)) {
-		out.println("Starting the GetStudyCDEsTest...<br/>");
-		out.flush();
-		boolean success = testGetStudyCDEs(request, response, out);
-		if (success) {
-			out.println("<br/>GetStudyCDEsTest Status: Success<br/>");
-		} else {
-			out.println("<br/>GetStudyCDEsTest Status: Failed<br/>");
-		}
-		out.flush();
-	}
-
-	String testGetStudyCDEsData = request
-			.getParameter("testGetStudyCDEsData");
-	if (testGetStudyCDEsData != null
-			&& "true".equals(testGetStudyCDEsData)) {
-		out.println("Starting the GetStudyCDEsDataTest...<br/>");
-		out.flush();
-		boolean success = testGetStudyCDEsData(request, response, out);
-		if (success) {
-			out
-					.println("<br/>GetStudyCDEsDataTest Status: Success<br/>");
-		} else {
-			out
-					.println("<br/>GetStudyCDEsDataTest Status: Failed<br/>");
-		}
-		out.flush();
-	}
-
-	String testIsValidStudy = request.getParameter("testIsValidStudy");
-	if (testIsValidStudy != null && "true".equals(testIsValidStudy)) {
-		out.println("Starting the IsValidStudyTest...<br/>");
-		out.flush();
-		boolean success = testIsValidStudy(request, response, out);
-		if (success) {
-			out.println("<br/>IsValidStudyTest Status: Success<br/>");
-		} else {
-			out.println("<br/>IsValidStudyTest Status: Failed<br/>");
-		}
-		out.flush();
-	}
-
-	String testPermissions = request.getParameter("testPermissions");
-	if (testPermissions != null && "true".equals(testPermissions)) {
-		out.println("Starting the PermissionsTest...<br/>");
-		out.flush();
-		boolean success = testPermissions(request, response, out);
-		if (success) {
-			out.println("<br/>PermissionsTest Status: Success<br/>");
-		} else {
-			out.println("<br/>PermissionsTest Status: Failed<br/>");
 		}
 		out.flush();
 	}
@@ -227,20 +157,11 @@ function getAction() {
 
 <p>
 <ul>
-	<!--	<li><a href="happy.jsp?runSmokeTest=true">Run
-	SmokeTest</a></li>-->
-	<li><a href="happy.jsp?testEnrollPatient=true">Run
-	testEnrollPatient</a></li>
+
 	<li><a href="happy.jsp?testLoadLabsService=true">Run
 	testLoadLabsService</a></li>
 	<li><a href="happy.jsp?testEnrollPatientService=true">Run
 	testEnrollPatientService</a></li>
-	<li><a href="happy.jsp?testGetStudyCDEs=true">Run
-	testGetStudyCDEs</a></li>
-	<li><a href="happy.jsp?testGetStudyCDEsData=true">Run
-	testGetStudyCDEsData</a></li>
-	<li><a href="happy.jsp?testIsValidStudy=true">Run
-	testIsValidStudy</a></li>
 
 	<li>HotLink<form>Study:<input id="study" value="SMOKE_TEST">  Patient Position<input id="patientPosition" value="">  PatientId(MRN)<input id="patientId" value="1212332"> <input type="button" value="create hot link to c3d" onclick="getAction()"/></form><div id="hotlink"></div><br/></li>
 
@@ -261,84 +182,7 @@ function getAction() {
 </html>
 
 
-<%!private boolean testEnrollPatient(HttpServletRequest request,
-			HttpServletResponse response, javax.servlet.jsp.JspWriter writer)
-			throws Exception {
-		StringWriter stringWriter;
-
-		try {
-			URL enrollPatientURL = new URL(request.getScheme(), request
-					.getServerName(), request.getServerPort(), request
-					.getContextPath()
-					+ "/services/cagrid/C3DGridService");
-
-			EnrollPatientTest enrollPatientTest = new EnrollPatientTest();
-			enrollPatientTest.setUrl(enrollPatientURL.toString());
-
-			String def = request.getParameter("def");
-			if (def != null && "false".equals(def)) {
-				String firstName = request.getParameter("firstName");
-				enrollPatientTest.setFirstName(firstName);
-				String lastName = request.getParameter("lastName");
-				enrollPatientTest.setLastName(lastName);
-				String gender = request.getParameter("gender");
-				enrollPatientTest.setGender(gender);
-				String studyName = request.getParameter("studyName");
-				enrollPatientTest.setStudyName(studyName);
-				String mrn = request.getParameter("mrn");
-				enrollPatientTest.setMrn(mrn);
-				String nciInstituteCode = request
-						.getParameter("nciInstituteCode");
-				enrollPatientTest.setNciInstituteCode(nciInstituteCode);
-			}
-
-			writer
-					.println("EnrollPatientRequest:<br/><form method='post' action='happy.jsp?testEnrollPatient=true&def=false'><br/>");
-			writer.println("First Name:<input name='firstName' value='"
-					+ enrollPatientTest.getFirstName() + "'/><br/>");
-			writer.println("Last Name:<input name='lastName' value='"
-					+ enrollPatientTest.getLastName() + "'/><br/>");
-			writer.println("Gender:<input name='gender' value='"
-					+ enrollPatientTest.getGender() + "'/><br/>");
-			writer.println("studyName:<input name='studyName' value='"
-					+ enrollPatientTest.getStudyName() + "'/><br/>");
-			writer.println("MRN:<input name='mrn' value='"
-					+ enrollPatientTest.getMrn() + "'/><br/>");
-			writer
-					.println("nciInstituteCode:<input name='nciInstituteCode' value='"
-							+ enrollPatientTest.getNciInstituteCode()
-							+ "'/><br/>");
-
-			writer.flush();
-
-			writer.println("<input type='Submit'/><br/>");
-
-			enrollPatientTest.testEnrollPatientAPI();
-
-			writer
-					.println("EnrollPatientResponse:<br/><textarea name='response' cols='100' rows='30'>"
-							+ enrollPatientTest.getResponseStr()
-							+ "</textarea><br/></form>");
-			writer.flush();
-
-		} catch (Exception e) {
-			writer.println("EnrollPatient Exception:<span><br/><pre>");
-
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			String stacktrace = sw.toString();
-
-			writer.println(stacktrace);
-			e.printStackTrace();
-			writer.println("</pre></span><br/>");
-			writer.flush();
-			return false;
-		}
-
-		return true;
-	}
-
-	private boolean testEnrollPatientService(HttpServletRequest request,
+<%!private boolean testEnrollPatientService(HttpServletRequest request,
 			HttpServletResponse response, javax.servlet.jsp.JspWriter writer)
 			throws Exception {
 		StringWriter stringWriter;
@@ -347,7 +191,7 @@ function getAction() {
 			URL registrationURL = new URL(request.getScheme(), request
 					.getServerName(), request.getServerPort(), request
 					.getContextPath()
-					+ "/services/cagrid/C3DGridService");
+					+ "/services/cagrid/ClinicalConnector");
 
 			EnrollPatientTest enrollPatientTest = new EnrollPatientTest();
 			enrollPatientTest.setUrl(registrationURL.toString());
@@ -456,7 +300,7 @@ function getAction() {
 			URL loadLabsURL = new URL(request.getScheme(), request
 					.getServerName(), request.getServerPort(), request
 					.getContextPath()
-					+ "/services/cagrid/C3DGridService");
+					+ "/services/cagrid/ClinicalConnector");
 
 			LoadLabsTest loadLabsTest = new LoadLabsTest();
 			loadLabsTest.setUrl(loadLabsURL.toString());
@@ -569,348 +413,6 @@ function getAction() {
 		}
 
 		return true;
-	}
-
-	/*private boolean testGetStudyCDEs(HttpServletRequest request,
-			HttpServletResponse response, javax.servlet.jsp.JspWriter writer)
-			throws Exception {
-		StringWriter stringWriter;
-
-		try {
-
-			URL c3dURL = new URL(request.getScheme(), request.getServerName(),
-					request.getServerPort(), request.getContextPath()
-							+ "/services/cagrid/C3DGridService");
-
-			GetStudyCDEsTest getStudyCDEsTest = new GetStudyCDEsTest();
-
-			getStudyCDEsTest.setUrl(c3dURL.toString());
-
-			String studyName = "00C0079";
-
-			getStudyCDEsTest.setUserName((String) request.getSession()
-					.getAttribute("testUserName"));
-			getStudyCDEsTest.setPassword((String) request.getSession()
-					.getAttribute("testPassword"));
-
-			String def = request.getParameter("def");
-			if (def != null && "false".equals(def)) {
-				String userName = request.getParameter("userName");
-				String password = request.getParameter("password");
-				if (userName != null && !"".equals(userName)
-						&& password != null && !"".equals(password)) {
-					getStudyCDEsTest.setUserName(userName);
-					getStudyCDEsTest.setPassword(password);
-					request.getSession().setAttribute("testUserName", userName);
-					request.getSession().setAttribute("testPassword", password);
-				}
-				studyName = request.getParameter("studyName");
-			}
-
-			getStudyCDEsTest.setStudyName(studyName);
-
-			writer
-					.println("GetStudyCDEsTestRequest:<br/><form method='post' action='happy.jsp?testGetStudyCDEs=true&def=false'><br/>");
-
-			writer.println("Username:<input name='userName' value='"
-					+ getStudyCDEsTest.getUserName() + "'/><br/>");
-			writer
-					.println("Password:<input name='password' type='password'/><br/>");
-			writer.println("StudyName:<input name='studyName' value='"
-					+ studyName + "'/><br/>");
-			writer
-					.println("<br/><input name='xml' value='XML Response' type='Submit'/> <input name='csv' value='CSV Response' type='Submit'/><br/>");
-			writer.flush();
-
-			try {
-				if (getStudyCDEsTest.getCredentials() == null) {
-					writer
-							.println("<font color='red'>Credentials Invalid</font><br/></form>");
-					writer.flush();
-					return false;
-				}
-			} catch (Exception e) {
-				writer
-						.println("<font color='red'>Credentials Invalid</font><br/></form>");
-				writer.flush();
-				return false;
-			}
-			getStudyCDEsTest.testGetStudyCDEsService();
-
-			if (request.getParameter("csv") != null
-					&& request.getParameter("csv").equals("CSV Response")) {
-				writer.println("GetStudyCDEsDataTestResponse:<br/><pre>"
-						+ getStudyCDEsTest.getCSVResponse()
-						+ "</pre><br/></form>");
-			} else {
-				writer
-						.println("GetStudyCDEsTestResponse:<br/><textarea name='response' cols='100' rows='50'>"
-								+ getStudyCDEsTest.getResponseStr()
-								+ "</textarea><br/></form>");
-			}
-			writer.flush();
-
-		} catch (Exception e) {
-			writer.println("GetStudyCDEs Exception:<span><br/><pre>");
-
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			String stacktrace = sw.toString();
-
-			writer.println(stacktrace);
-			e.printStackTrace();
-			writer.println("</pre></span><br/>");
-			writer.flush();
-			return false;
-		}
-
-		return true;
-	}*/
-
-	/*private boolean testGetStudyCDEsData(HttpServletRequest request,
-			HttpServletResponse response, javax.servlet.jsp.JspWriter writer)
-			throws Exception {
-		StringWriter stringWriter;
-
-		try {
-
-			URL c3dURL = new URL(request.getScheme(), request.getServerName(),
-					request.getServerPort(), request.getContextPath()
-							+ "/services/cagrid/C3DGridService");
-
-			GetStudyCDEsDataTest getStudyCDEsDataTest = new GetStudyCDEsDataTest();
-
-			getStudyCDEsDataTest.setUrl(c3dURL.toString());
-
-			String studyName = "00C0079";
-			CommonDataElement cde = new CommonDataElement();
-			cde.setPublicIdentifier("62");
-			cde.setVersion("6.0");
-
-			getStudyCDEsDataTest.setUserName((String) request.getSession()
-					.getAttribute("testUserName"));
-			getStudyCDEsDataTest.setPassword((String) request.getSession()
-					.getAttribute("testPassword"));
-
-			String def = request.getParameter("def");
-			if (def != null && "false".equals(def)) {
-				String userName = request.getParameter("userName");
-				String password = request.getParameter("password");
-				if (userName != null && !"".equals(userName)
-						&& password != null && !"".equals(password)) {
-					getStudyCDEsDataTest.setUserName(userName);
-					getStudyCDEsDataTest.setPassword(password);
-					request.getSession().setAttribute("testUserName", userName);
-					request.getSession().setAttribute("testPassword", password);
-				}
-				studyName = request.getParameter("studyName");
-				cde.setPublicIdentifier(request
-						.getParameter("cdePublicIdentifier"));
-				cde.setVersion(request.getParameter("cdeVersion"));
-			}
-
-			getStudyCDEsDataTest.setCde(cde);
-			getStudyCDEsDataTest.setStudyName(studyName);
-
-			writer
-					.println("GetStudyCDEsDataTestRequest:<br/><form method='post' action='happy.jsp?testGetStudyCDEsData=true&def=false'><br/>");
-
-			writer.println("Username:<input name='userName' value='"
-					+ getStudyCDEsDataTest.getUserName() + "'/><br/>");
-			writer
-					.println("Password:<input name='password' type='password'/><br/>");
-
-			writer.println("StudyName:<input name='studyName' value='"
-					+ studyName + "'/>");
-			writer
-					.println("<br/>cde.publicIdentifier:<input name='cdePublicIdentifier' value='"
-							+ cde.getPublicIdentifier() + "'/>");
-			writer.println("<br/>cde.version:<input name='cdeVersion' value='"
-					+ cde.getVersion() + "'/>");
-			writer
-					.println("<br/><input name='xml' value='XML Response' type='Submit'/> <input name='csv' value='CSV Response' type='Submit'/><br/>");
-			writer.flush();
-
-			try {
-				if (getStudyCDEsDataTest.getCredentials() == null) {
-					writer
-							.println("<font color='red'>Credentials Invalid</font><br/></form>");
-					writer.flush();
-					return false;
-				}
-			} catch (Exception e) {
-				writer
-						.println("<font color='red'>Credentials Invalid</font><br/></form>");
-				writer.flush();
-				return false;
-			}
-
-			getStudyCDEsDataTest.testGetStudyCDEsDataService();
-
-			if (request.getParameter("csv") != null
-					&& request.getParameter("csv").equals("CSV Response")) {
-				writer.println("GetStudyCDEsDataTestResponse:<br/><pre>"
-						+ getStudyCDEsDataTest.getCSVResponse()
-						+ "</pre><br/></form>");
-			} else {
-				writer
-						.println("GetStudyCDEsDataTestResponse:<br/><textarea name='response' cols='100' rows='50'>"
-								+ getStudyCDEsDataTest.getResponseStr()
-								+ "</textarea><br/></form>");
-			}
-			writer.flush();
-
-		} catch (Exception e) {
-			writer.println("GetStudyCDEsData Exception:<span><br/><pre>");
-
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			String stacktrace = sw.toString();
-
-			writer.println(stacktrace);
-			e.printStackTrace();
-			writer.println("</pre></span><br/>");
-			writer.flush();
-			return false;
-		}
-
-		return true;
-	}*/
-
-	/*private boolean testIsValidStudy(HttpServletRequest request,
-			HttpServletResponse response, javax.servlet.jsp.JspWriter writer)
-			throws Exception {
-		StringWriter stringWriter;
-
-		try {
-
-			URL c3dURL = new URL(request.getScheme(), request.getServerName(),
-					request.getServerPort(), request.getContextPath()
-							+ "/services/cagrid/C3DGridService");
-
-			IsValidStudyTest isValidStudyTest = new IsValidStudyTest();
-
-			isValidStudyTest.setUrl(c3dURL.toString());
-
-			String studyName = "00C0079";
-
-			isValidStudyTest.setUserName((String) request.getSession()
-					.getAttribute("testUserName"));
-			isValidStudyTest.setPassword((String) request.getSession()
-					.getAttribute("testPassword"));
-
-			String def = request.getParameter("def");
-			if (def != null && "false".equals(def)) {
-				String userName = request.getParameter("userName");
-				String password = request.getParameter("password");
-				if (userName != null && !"".equals(userName)
-						&& password != null && !"".equals(password)) {
-					isValidStudyTest.setUserName(userName);
-					isValidStudyTest.setPassword(password);
-					request.getSession().setAttribute("testUserName", userName);
-					request.getSession().setAttribute("testPassword", password);
-				}
-				studyName = request.getParameter("studyName");
-			}
-
-			isValidStudyTest.setStudyName(studyName);
-
-			writer
-					.println("IsValidStudyTestRequest:<br/><form method='post' action='happy.jsp?testIsValidStudy=true&def=false'><br/>");
-
-			writer.println("Username:<input name='userName' value='"
-					+ isValidStudyTest.getUserName() + "'/><br/>");
-			writer
-					.println("Password:<input name='password' type='password'/><br/>");
-
-			writer.println("StudyName:<input name='studyName' value='"
-					+ studyName + "'/>");
-			writer
-					.println("<br/><input name='xml' value='XML Response' type='Submit'/><br/>");
-			writer.flush();
-
-			try {
-				if (isValidStudyTest.getCredentials() == null) {
-					writer
-							.println("<font color='red'>Credentials Invalid</font><br/></form>");
-					writer.flush();
-					return false;
-				}
-			} catch (Exception e) {
-				writer
-						.println("<font color='red'>Credentials Invalid</font><br/></form>");
-				writer.flush();
-				return false;
-			}
-
-			isValidStudyTest.testIsValidStudyService();
-
-			writer
-					.println("IsValidStudyTestResponse:<br/><textarea name='response' cols='100' rows='5'>"
-							+ isValidStudyTest.getResponseStr()
-							+ "</textarea><br/></form>");
-			writer.flush();
-
-		} catch (Exception e) {
-			writer.println("IsValidStudy Exception:<span><br/><pre>");
-
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			String stacktrace = sw.toString();
-
-			writer.println(stacktrace);
-			e.printStackTrace();
-			writer.println("</pre></span><br/>");
-			writer.flush();
-			return false;
-		}
-
-		return true;
-	}*/
-
-	private boolean testPermissions(HttpServletRequest request,
-			HttpServletResponse response, javax.servlet.jsp.JspWriter writer)
-			throws Exception {
-
-		try {
-			CSMCDMSConnectorSecurityManagerTest test = new CSMCDMSConnectorSecurityManagerTest();
-
-			/*ByteArrayOutputStream bos = new ByteArrayOutputStream();
-
-			writer.print("testing the permissions..");
-			writer.flush();
-			TestRunner runner = new TestRunner();
-			runner.setPrinter(new ResultPrinter(new PrintStream(bos)));
-			TestResult tresult = runner.doRun(test);
-			if(tresult.errorCount()>0 || tresult.failureCount()>0){
-				writer.println("<pre>"+bos.toString()+"</pre>");
-			}
-			*/
-			
-			test.testCanAccess();
-			
-			if(test.getStatus()!=null){
-				writer.println("<pre>"+test.getStatus()+"</pre>");
-			}
-			writer.println("</br>Completed<br/>");
-			writer.flush();
-
-		} catch (Exception e) {
-			writer.println("Permission Test Exception:<span><br/><pre>");
-
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			String stacktrace = sw.toString();
-
-			writer.println(stacktrace);
-			e.printStackTrace();
-			writer.println("</pre></span><br/>");
-			writer.flush();
-			return false;
-		}
-
-		return true;
-
 	}
 
 	private boolean testDBConnectivity(HttpServletRequest request,
