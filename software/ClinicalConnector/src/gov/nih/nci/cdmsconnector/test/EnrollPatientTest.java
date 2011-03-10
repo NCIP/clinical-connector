@@ -15,6 +15,7 @@ import gov.nih.nci.cagrid.common.Utils;
 import gov.nih.nci.clinicalconnector.client.ClinicalConnectorClient;
 import gov.nih.nci.clinicalconnector.service.ClinicalConnectorImpl;
 import clinicalconnector.nci.nih.gov.StudySubject;
+import clinicalconnector.nci.nih.gov.PerformedSubjectMilestone;
 //import clinicalconnector.nci.nih.gov.StudySite;
 //import clinicalconnector.nci.nih.gov.StudyProtocol;
 import _21090.org.iso.ENPN;
@@ -54,8 +55,8 @@ public class EnrollPatientTest extends CDMSConnectorBaseTest {
 
 		StringWriter writer = new StringWriter();
 
-		Utils.serializeObject(response, new QName("EnrollPatientResponse"),
-				writer);
+		/*Utils.serializeObject(response, new QName("EnrollPatientResponse"),
+				writer);*/
 		responseStr = writer.getBuffer().toString();
 		log.debug(responseStr);
 
@@ -89,9 +90,11 @@ public class EnrollPatientTest extends CDMSConnectorBaseTest {
 		
 		StudySubject studySubject = new StudySubject();
 		
+		PerformedSubjectMilestone performedSubjectMilestone = new PerformedSubjectMilestone();
+		
 		//Subject MRN
 		II subjectii = new II();
-		subjectii.setExtension("MRN:" + mrn);
+		subjectii.setExtension(mrn);
 		studySubject.setIdentifier(subjectii);
 		
 		//Subject Name - Wow totally complicated, good thing we don't us it.
@@ -110,18 +113,27 @@ public class EnrollPatientTest extends CDMSConnectorBaseTest {
 		
 		//Subject Birthdate
 		_21090.org.iso.TS birthDate = new _21090.org.iso.TS();
-		birthDate.setValue(null);
+		//birthDate.setValue(null);
+		birthDate.setValue("19801212");
 		studySubject.setBirthDate(birthDate);
 
 		//Subject StudySiteIdentifier
 		_21090.org.iso.II studySiteIdentifier = new _21090.org.iso.II();
 		studySiteIdentifier.setExtension(nciInstituteCode);
-		studySubject.setStudyIdentifier(studySiteIdentifier);
+		studySubject.setStudySiteIdentifier(studySiteIdentifier);
 
 		//Subject Study
 		_21090.org.iso.II studyii = new II();
- 		studyii.setExtension("STUDY:" + studyName);
+ 		studyii.setExtension(studyName);
 		studySubject.setStudyIdentifier(studyii);
+
+		//Registration/Consent Date
+		_21090.org.iso.TS regDate = new _21090.org.iso.TS();		
+		regDate.setValue("20101212");
+		performedSubjectMilestone.setRegistrationDate(regDate);
+		performedSubjectMilestone.setInformedConsentDate(regDate);
+		
+		request.setPerformedSubjectMilestone(performedSubjectMilestone);
 		
 		request.setStudySubject(studySubject);
         

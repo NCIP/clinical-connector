@@ -109,9 +109,9 @@ public class LoadLabsTest extends CDMSConnectorBaseTest {
 		CD activityNameCode1 = new CD();
 		activityNameCode1.setCode(activityName1);
 		II studyii1 = new II();
-		studyii1.setExtension("STUDY:"+studyName);
+		studyii1.setExtension(studyName);
 		II subjectii1 = new II();
-		subjectii1.setExtension("MRN:"+mrn1);
+		subjectii1.setExtension(mrn1);
 		
 		performedObservation1.setActivityNameCode(activityNameCode1);
 		performedObservation1.setStudyProtocolIdentifier(studyii1);
@@ -128,9 +128,11 @@ public class LoadLabsTest extends CDMSConnectorBaseTest {
 
 	    _21090.org.iso.TS reportedDate = new _21090.org.iso.TS();
 	    Calendar calendar = Calendar.getInstance();
-	    SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyyy");
+	    //SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyyy");
+	    SimpleDateFormat dFormat = new SimpleDateFormat("yyyy/MM/dd");
 	    //reportedDate.setValue(dFormat.format(calendar.getTime()));
-	    reportedDate.setValue("20080430T02:28:00.000Z");
+	    reportedDate.setValue("20101212");
+	    //reportedDate.setValue("20080430T02:28:00.000Z");
 	    _21090.org.iso.ST textResult = new _21090.org.iso.ST();
         textResult.setValue(textResult1);
 		

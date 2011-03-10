@@ -51,7 +51,7 @@ public class LoadLabsManagerImpl implements LoadLabsManager {
 				request.getClass())) {
 			modelAdapter = bridg21ModelAdapter;
 		} else {
-			throw new InvalidRequestException("Invalid Model Passed");
+			throw new InvalidRequestException("Invalid Model Passed.");
 		}
 
 		cdmsRequest = modelAdapter.mapAndValidateLoadLabsRequest(request);
@@ -102,7 +102,7 @@ public class LoadLabsManagerImpl implements LoadLabsManager {
 			validator.validate(cdmsRequest);
 		} catch (InvalidStudyException e1) {
 			//e1.printStackTrace();
-			System.out.println("Inside Exception Handler");
+			System.out.println("Inside Validation Exception Handler.");
 			for (LabResult result : cdmsRequest.getResults()) {
 
 				if (result == null) {
@@ -113,12 +113,12 @@ public class LoadLabsManagerImpl implements LoadLabsManager {
 //				String siteName = null;
 				
 				try {
-					System.out.println("Study not found, translating...");
+					System.out.println("Study Not Found, Performing Translation.");
 					String oldStudy = result.getStudy().getStudyIdentifier();
 					String newStudy = translator.translateStudy(oldStudy);
 
-				    System.out.println("Study '" + oldStudy + "' successfully " + 
-							           "translated to Study '" + newStudy + "'.");
+				    System.out.println("Study name '" + oldStudy + "' successfully " + 
+							           "translated to '" + newStudy + "'.");
 					Study study = result.getStudy();
 					study.setStudyIdentifier(newStudy);
 					result.setStudy(study);
