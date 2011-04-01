@@ -535,6 +535,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/trunk/software/bda-build-
 				<include name="**/*.fmx"/>
 				<include name="**/*.htm"/>
 				<include name="**/*.txt"/>
+				<include name="**/*.TXT"/>
 			</fileset>			
 		</copy>		
 		<!--${basedir}/${tools.dist.relative.dir} -->
