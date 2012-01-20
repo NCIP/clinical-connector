@@ -264,5 +264,4 @@ public class C3DGridServiceImpl extends C3DGridServiceImplBase { /*implements Re
 		this.getStudyCRFDataManager = getStudyCRFDataManager;
 	}
 
-
 }

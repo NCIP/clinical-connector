@@ -6,15 +6,15 @@ http\://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01
 http\://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl=org.oasis.wsrf.properties
 http\://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl=org.oasis.wsrf.properties
 
-gme\://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.cdt=gov.nih.nci.cabig.ccts.domain.cdt
-gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata=gov.nih.nci.cagrid.metadata
 gme\://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.studyData=gov.nih.nci.cabig.ccts.domain.studydata
-http\://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types=gov.nih.nci.cdmsconnector.c3d.stubs.types
 gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security=gov.nih.nci.cagrid.metadata.security
 gme\://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.bridg=gov.nih.nci.cabig.ccts.domain.bridg
 gme\://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.c3DStudyDataMetadata=gov.nih.nci.cabig.ccts.domain.c3dstudydatametadata
-
+gme\://ccts.cabig/1.0/gov.nih.nci.cabig.ccts.domain.cdt=gov.nih.nci.cabig.ccts.domain.cdt
+gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata=gov.nih.nci.cagrid.metadata
+http\://c3d.cdmsconnector.nci.nih.gov/C3DGridService/types=gov.nih.nci.cdmsconnector.c3d.stubs.types
 gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.service=gov.nih.nci.cagrid.metadata.service
+
 
 
 gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common=gov.nih.nci.cagrid.metadata.common

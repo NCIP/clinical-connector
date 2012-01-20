@@ -40,7 +40,7 @@ public class ClinicalConnectorImpl extends ClinicalConnectorImplBase implements 
 		super();
 	}
 
-	public clinicalconnector.nci.nih.gov.LoadLabsResponse loadLabs(clinicalconnector.nci.nih.gov.LoadLabsRequest loadLabsRequest) throws RemoteException {
+  public clinicalconnector.nci.nih.gov.LoadLabsResponse loadLabs(clinicalconnector.nci.nih.gov.LoadLabsRequest loadLabsRequest) throws RemoteException {
 
 		LoadLabsResponse response = null;
 		StringWriter writer = new StringWriter();
@@ -78,7 +78,7 @@ public class ClinicalConnectorImpl extends ClinicalConnectorImplBase implements 
 		return response;
 	}
 
-	public clinicalconnector.nci.nih.gov.RegisterSubjectResponse registerSubject(clinicalconnector.nci.nih.gov.RegisterSubjectRequest enrollPatientRequest) throws RemoteException {
+  public clinicalconnector.nci.nih.gov.RegisterSubjectResponse registerSubject(clinicalconnector.nci.nih.gov.RegisterSubjectRequest registerSubjectRequest) throws RemoteException {
 
         RegisterSubjectResponse enrollPatientResponse = null;
         StringWriter writer = new StringWriter();
