@@ -78,7 +78,7 @@ public class ClinicalConnectorImpl extends ClinicalConnectorImplBase implements 
 		return response;
 	}
 
-  public clinicalconnector.nci.nih.gov.RegisterSubjectResponse registerSubject(clinicalconnector.nci.nih.gov.RegisterSubjectRequest registerSubjectRequest) throws RemoteException {
+  public clinicalconnector.nci.nih.gov.RegisterSubjectResponse registerSubject(clinicalconnector.nci.nih.gov.RegisterSubjectRequest enrollPatientRequest) throws RemoteException {
 
         RegisterSubjectResponse enrollPatientResponse = null;
         StringWriter writer = new StringWriter();
