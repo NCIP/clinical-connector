@@ -41,6 +41,7 @@ public class EnrollPatientManagerImpl implements EnrollPatientManager {
 		try {
 			props = PropertiesUtil.getPropertiesFromDB();
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		String userDN=null;
 
