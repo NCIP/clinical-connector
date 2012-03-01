@@ -97,7 +97,7 @@ public class PropertiesUtil {
 		try {
 			getDBProperties();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 		try {
@@ -125,10 +125,12 @@ public class PropertiesUtil {
 			try {
 				stmt1.close();
 			} catch (Exception ex) {
+				ex.printStackTrace();
 			}
 			try {
 				cn.close();
 			} catch (Exception ex) {
+				ex.printStackTrace();
 			}
 		}
 
