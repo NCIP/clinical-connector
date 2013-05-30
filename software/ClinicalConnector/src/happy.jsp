@@ -1,4 +1,9 @@
+<%--
+Copyright Ekagra and SemanticBits, LLC
 
+Distributed under the OSI-approved BSD 3-Clause License.
+See http://ncip.github.com/clinical-connector/LICENSE.txt for details.
+--%>
 <%@page import="java.net.URL"%>
 <%@page import="java.io.StringWriter"%>
 <%@page import="gov.nih.nci.cagrid.common.Utils"%>

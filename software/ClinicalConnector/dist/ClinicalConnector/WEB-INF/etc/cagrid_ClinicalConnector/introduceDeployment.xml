@@ -1,3 +1,9 @@
+<!--
+  Copyright Ekagra and SemanticBits, LLC
+  
+  Distributed under the OSI-approved BSD 3-Clause License.
+  See http://ncip.github.com/clinical-connector/LICENSE.txt for details.
+-->
 <ns1:Deployment deployDateTime="1281466614004" deploymentPrefix="cagrid" serviceDeploymentDirName="cagrid_ClinicalConnector" serviceName="ClinicalConnector" xsi:type="ns1:Deployment" xmlns:ns1="gme://gov.nih.nci.cagrid.introduce/1/Deployment" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
  <Jars xsi:type="ns1:Jars">
   <Jar location="." name=".svn" xsi:type="ns1:Jar"/>

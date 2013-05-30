@@ -1,3 +1,9 @@
+<!--
+  Copyright Ekagra and SemanticBits, LLC
+  
+  Distributed under the OSI-approved BSD 3-Clause License.
+  See http://ncip.github.com/clinical-connector/LICENSE.txt for details.
+-->
 <Context path="/c3d" docBase="c3d" debug="1" crossContext="true">
 	<Logger className="org.apache.catalina.logger.FileLogger"
 		prefix="localhost_clinicalconnector_log." suffix=".txt" timestamp="true" />

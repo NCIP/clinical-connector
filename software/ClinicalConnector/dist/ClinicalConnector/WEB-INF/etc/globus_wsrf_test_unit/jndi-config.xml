@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright Ekagra and SemanticBits, LLC
+  
+  Distributed under the OSI-approved BSD 3-Clause License.
+  See http://ncip.github.com/clinical-connector/LICENSE.txt for details.
+-->
 <jndiConfig xmlns="http://wsrf.globus.org/jndi/config">
    <global>
      <resource name="query/eval/testExpression"
