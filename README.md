@@ -10,7 +10,6 @@ Please see the NOTICE and LICENSE files for details.
 You will find more details about Clinical Connector in the following links:
 
  * [Community wiki](https://wiki.nci.nih.gov/x/FIBDAw)
- * [NCI OSDI Home](https://github.com/NCIP)
  * [Issue tracker](https://tracker.nci.nih.gov/browse/C3DCLINICALCONNECTOR)
  * [Documentation wiki](https://wiki.nci.nih.gov/x/GIBDAw)
  * [Development Git repo](https://github.com/NCIP/clinical-connector)
